@@ -1,13 +1,10 @@
 # Node
 node_modules
 npm-debug.log
-pnpm-lock.yaml
 
 # Environment
-.env
-.env.local
-.env.development
-.env.production
+.env*
+!.env.example
 
 # Git
 .git
