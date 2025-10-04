@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -7,43 +7,74 @@ on:
     branches: [ "main" ]
 
 jobs:
+  # --- CI BUILD JOB ---
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Setup pnpm properly (installs pnpm on PATH)
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 9
 
-      # Setup Node.js with pnpm caching
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
 
-      # Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Check dependency drift
       - name: Check dependency drift
         run: pnpm run check:drift
 
-      # Run lint
       - name: Run ESLint
         run: pnpm lint
 
-      # Run type-check
       - name: Run TypeScript type-check
         run: pnpm tsc --noEmit
 
-      # Run build
       - name: Build app
         run: pnpm build
+
+
+  # --- CD FRONTEND JOB (VERCEL) ---
+  deploy-frontend:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+
+
+  # --- CD BACKEND JOB (FLY.IO) ---
+  deploy-backend:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Fly.io CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy to Fly.io
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
