@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Check dependency drift
+      - name: Check dependency drift
+        run: pnpm run check:drift
+
+      # Run lint
+      - name: Run ESLint
+        run: pnpm lint
+
+      # Run type-check
+      - name: Run TypeScript type-check
+        run: pnpm tsc --noEmit
+
+      # Run build
+      - name: Build app
+        run: pnpm build
