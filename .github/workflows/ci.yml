@@ -22,9 +22,12 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # Setup pnpm properly
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
 
       # Install dependencies
       - name: Install dependencies
