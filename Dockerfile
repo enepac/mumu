@@ -1,27 +1,24 @@
 # --- Build Stage ---
-FROM node:20.17.0-slim as builder
+FROM node:20.17.0-slim AS builder
 WORKDIR /app
-
-# Patch OS to reduce CVEs
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
+# Copy frontend and backend code
 COPY . .
+
+# Build frontend
 RUN pnpm build
 
-
 # --- Runtime Stage ---
-FROM node:20.17.0-slim as runtime
+FROM node:20.17.0-slim
 WORKDIR /app
-
-# Patch OS to reduce CVEs
-RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 RUN npm install -g pnpm
-
 COPY --from=builder /app ./
 
-EXPOSE 3000
-CMD ["pnpm", "start"]
+# Start backend API
+EXPOSE 8080
+CMD ["pnpm", "--dir", "backend", "start"]
