@@ -105,3 +105,6 @@ Proceed to:
 **Baseline Adjustment:**  
 Previous baseline/v0.1.6 existed. Created new tag baseline/v0.1.7 to preserve immutability and record final validation of Dependabot + CodeQL guardrails.
 
+**Baseline Adjustment:**  
+Tag baseline/v0.1.7 existed. Created new tag baseline/v0.1.7a to maintain immutability while finalizing Task 1.4 documentation and upstream synchronization.
+
