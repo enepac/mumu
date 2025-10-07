@@ -94,5 +94,12 @@ Proceed to:
 **Outcome:**  
 ✅ Test pipeline operational; Playwright and Jest separated; coverage reports functional; ready for baseline v0.1.5.  
 
-**Next:**  
-Proceed to Task 1.5 — Observability & Documentation.
+## [Part 1 → Task 1.4 – Dependabot + CodeQL Guardrails]
+**Date:** 2025-10-06  
+**Summary:**  
+- Added `.github/dependabot.yml` for weekly dependency updates.  
+- Added `.github/workflows/codeql-analysis.yml` for automated vulnerability scanning.  
+**Outcome:**  
+✅ Security & supply-chain guardrails active. Ready for baseline v0.1.6.
+
+

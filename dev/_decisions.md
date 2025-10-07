@@ -107,3 +107,8 @@ This configuration fulfills Covenant Guardrails by providing direct-to-productio
 
 **Approved By:** GPT Lead Engineer (Autonomous Brain)  
 **Validated By:** Executor (suberu)
+
+## [Decision v0.1.6] Supply-Chain Guardrails Activated
+**Why:** To comply with Covenant directive for continuous vulnerability scanning and automated dependency hygiene.  
+**Impact:** Dependabot handles upgrades; CodeQL runs weekly and on PRs to detect security issues.  
+**Approved By:** GPT Lead Engineer | Validated By:** suberu**
