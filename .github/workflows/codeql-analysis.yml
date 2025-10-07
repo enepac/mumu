@@ -1,5 +1,4 @@
-# .github/workflows/codeql-analysis.yml
-name: CodeQL
+name: CodeQL Security Scan
 
 on:
   push:
@@ -7,11 +6,10 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '0 12 * * 1' # Mondays 12:00 UTC
+    - cron: '0 12 * * 1'     # Mondays 12:00 UTC
 
 jobs:
   analyze:
-    name: Analyze
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -21,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
+        language: [ 'javascript' ]  # covers JS + TS
 
     steps:
       - name: Checkout repository

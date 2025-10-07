@@ -1,18 +1,18 @@
-# .github/dependabot.yml
 version: 2
 updates:
-  # npm / pnpm ecosystem
+  # Monitor your Node/pnpm dependencies
   - package-ecosystem: "npm"
-    directory: "/"
+    directory: "/"                # Root folder containing package.json
     schedule:
-      interval: "weekly"
+      interval: "daily"           # Run every day (use "weekly" if you prefer)
     open-pull-requests-limit: 5
     commit-message:
       prefix: "chore(deps)"
     ignore:
       - dependency-name: "next"
         versions: ["*canary*"]
-  # GitHub Actions
+
+  # Keep GitHub Actions up-to-date too
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
