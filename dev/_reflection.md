@@ -116,3 +116,16 @@ Previous baseline/v0.1.6 existed. Created new tag baseline/v0.1.7 to preserve im
 Unable to reach npm registry for @logrocket/browser due to network or regional block.
 Replaced with unscoped `logrocket` package (identical API). Verified installation integrity and API compatibility.
 
+## [Part 1 → Task 1.5 → Subtask 1.1] Pino Structured Logger Setup
+**Date:** 2025-10-07  
+**Executor:** suberu  
+**Branch:** enhancement/v0.1.5-observability-docs  
+**Summary:**  
+- Implemented Pino JSON logger in `src/lib/logger.ts`.  
+- Verified via Node runtime (CommonJS build + esModuleInterop).  
+- Output confirmed structured and colorized in dev mode.  
+
+**Outcome:**  
+✅ Logger pipeline operational and ready for observability integration.  
+
+

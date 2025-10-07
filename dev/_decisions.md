@@ -112,3 +112,20 @@ This configuration fulfills Covenant Guardrails by providing direct-to-productio
 **Why:** To comply with Covenant directive for continuous vulnerability scanning and automated dependency hygiene.  
 **Impact:** Dependabot handles upgrades; CodeQL runs weekly and on PRs to detect security issues.  
 **Approved By:** GPT Lead Engineer | Validated By:** suberu**
+
+## [Decision v0.1.8] Adopt Pino Structured Logger for Unified Telemetry
+**Context:**  
+To establish foundational structured logging before introducing error tracking and session telemetry.
+
+**Decision:**  
+- Use `pino` for JSON structured logs with `pino-pretty` in non-production environments.  
+- Set `LOG_LEVEL` env variable to control verbosity.  
+- Integrate this logger across API and client components for consistency.
+
+**Rationale:**  
+Pino provides high-throughput structured logging compatible with Sentry and LogRocket contexts.
+
+**Approved By:** GPT Lead Engineer  
+**Validated By:** suberu  
+**Baseline:** v0.1.8
+
