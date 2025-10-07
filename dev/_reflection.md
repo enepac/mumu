@@ -105,3 +105,10 @@ Proceed to:
 **Baseline Adjustment:**  
 Previous baseline/v0.1.6 existed. Created new tag baseline/v0.1.7 to preserve immutability and record final validation of Dependabot + CodeQL guardrails.
 
+**Branch Transition — Initiation of Task 1.5**
+- From: enhancement/v0.1.4-observability-guardrails  
+- To: enhancement/v0.1.5-observability-docs  
+- Based On: baseline/v0.1.7a  
+- Purpose: Begin Part 1 → Task 1.5 (Observability & Documentation)  
+- Status: Clean working tree; dependency locks committed before transition.
+
