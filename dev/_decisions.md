@@ -89,3 +89,21 @@ To achieve **Part 1.5 covenant goal (observability & documentation)** and ensure
 - ✅ Successfully deployed and verified Sentry instrumentation.
 - ✅ Logs confirmed on both local and Fly.io.
 - ✅ Baseline documented and frozen under v0.1.4.
+
+## [Decision v0.1.5] Jest + Playwright Testing Framework Adopted
+**Context:**  
+Part 1 → Task 1.4 required establishing automated testing guardrails before observability setup.  
+Jest 30 and Playwright 1.56 were selected for stability and integration within Vercel + Codespaces.  
+
+**Decision:**  
+- Adopt Jest ( `ts-jest` preset ) for unit and integration tests.  
+- Isolate E2E tests to Playwright, executed via `pnpm exec playwright test`.  
+- Enable coverage reports (`text`, `lcov`, `html`) under `/coverage/`.  
+- Configure Babel presets for React JSX and TypeScript support.  
+- Relax coverage threshold (0 %) temporarily until QA Phase 6.  
+
+**Rationale:**  
+This configuration fulfills Covenant Guardrails by providing direct-to-production validation and observability foundation without blocking early baselines on coverage percentages.
+
+**Approved By:** GPT Lead Engineer (Autonomous Brain)  
+**Validated By:** Executor (suberu)

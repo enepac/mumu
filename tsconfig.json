@@ -19,13 +19,15 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": []  // ✅ Explicitly clears implicit libraries (fixes dotenv error)
+    "types": ["jest", "node"]  // ✅ Explicitly clears implicit libraries (fixes dotenv error)
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src",
+    "tests"
   ],
   "exclude": ["node_modules", "backend"]
 }

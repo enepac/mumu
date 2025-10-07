@@ -79,3 +79,20 @@ Proceed to:
 - v0.1.5 → Add Jest + Playwright with coverage and CI validation.
 - v0.1.6 → Integrate Dependabot + CodeQL.
 - v0.1.7 → Extend telemetry pipeline to Grafana Cloud & Supabase logs.
+
+## [Part 1 → Task 1.4] Configure Jest + Playwright Tests with Coverage Reports
+**Date:** 2025-10-06  
+**Executor:** suberu  
+**Branch:** enhancement/v0.1.4-observability-guardrails  
+**Summary:**
+- Installed `jest`, `ts-jest`, `@types/jest`, `@babel/preset-react`, and `ts-node`.  
+- Created `/jest.config.ts` to run unit tests only and isolate Playwright E2E tests.  
+- Added Babel presets for React (JSX) and TypeScript transformation.  
+- Verified sample Jest test passes and coverage report generated under `/coverage/`.  
+- Confirmed CI compatibility; global coverage gate temporarily relaxed per Covenant Phase 1 criteria.  
+
+**Outcome:**  
+✅ Test pipeline operational; Playwright and Jest separated; coverage reports functional; ready for baseline v0.1.5.  
+
+**Next:**  
+Proceed to Task 1.5 — Observability & Documentation.
