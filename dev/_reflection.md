@@ -128,4 +128,8 @@ Replaced with unscoped `logrocket` package (identical API). Verified installatio
 **Outcome:**  
 ✅ Logger pipeline operational and ready for observability integration.  
 
+**Config Compliance (Task 1.5 → Subtask 1.2):**
+- Renamed `next.config.js` → `next.config.mjs` to satisfy ESM import enforcement.
+- Removed all `require()` usage to comply with `@typescript-eslint/no-require-imports`.
+- Verified ESLint clean run and Next.js configuration load.
 
