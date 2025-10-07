@@ -102,4 +102,6 @@ Proceed to:
 **Outcome:**  
 ✅ Security & supply-chain guardrails active. Ready for baseline v0.1.6.
 
+**Baseline Adjustment:**  
+Previous baseline/v0.1.6 existed. Created new tag baseline/v0.1.7 to preserve immutability and record final validation of Dependabot + CodeQL guardrails.
 
