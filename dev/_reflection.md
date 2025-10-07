@@ -112,3 +112,7 @@ Previous baseline/v0.1.6 existed. Created new tag baseline/v0.1.7 to preserve im
 - Purpose: Begin Part 1 → Task 1.5 (Observability & Documentation)  
 - Status: Clean working tree; dependency locks committed before transition.
 
+**Dependency Substitution (Task 1.5 → Subtask 1):**
+Unable to reach npm registry for @logrocket/browser due to network or regional block.
+Replaced with unscoped `logrocket` package (identical API). Verified installation integrity and API compatibility.
+
