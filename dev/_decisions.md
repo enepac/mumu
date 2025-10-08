@@ -173,3 +173,19 @@ Pino provides high-throughput structured logging compatible with Sentry and LogR
 
 > *Further decisions will be appended sequentially under each validated baseline.*
 
+## [Decision] Task 2.1 — Subtask 1 (API Orchestration Layer & Observability Baseline)
+**Decision Date:** 2025-10-07  
+**Tag:** baseline/backend-v0.2.1  
+**Responsible:** GPT (Lead Engineer) / Suberu (Executor)
+
+### Decision Summary
+To maintain compatibility with Sentry v10.18 and Next.js 15, the `next.config.mjs` file was converted to CommonJS (`next.config.cjs`) using `withSentryConfig`.  
+Instrumentation was restructured to rely on the stable public API (`@sentry/nextjs`) without direct `hub` or `core` imports.  
+Warnings from OpenTelemetry were accepted as benign in observability contexts.
+
+**Validated Outputs**
+- Build success (no runtime or type errors)
+- Observability trace confirmed
+- Structured logging active via Pino + Sentry capture
+
+

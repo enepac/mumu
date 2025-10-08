@@ -194,5 +194,20 @@ All static analysis layers (Next.js 15, Node, Browser, Prettier, and Jest contex
 **Timestamp:** (Insert current UTC time)  
 **Reviewer:** GPT-5 / @suberu  
 
+## [Reflection] Task 2.1 — Subtask 1 (API Orchestration Layer & Observability Baseline)
+**Date:** 2025-10-07  
+**Branch:** enhancement/v0.2.0-backend-platform  
+**Tag:** baseline/backend-v0.2.1  
+
+### Validation Summary
+- Next.js API routes compiled and served (`/api/health`, `/api/session`, `/api/ask`).
+- Sentry instrumentation initialized cleanly via public API (`@sentry/nextjs`).
+- No TypeScript or linting errors.
+- No “intermediate value” or ESM/CommonJS interop conflicts.
+- Runtime verified: `next dev` launches successfully with observability hooks active.
+
+### Reflection
+This subtask establishes the operational backbone for Mumu’s backend platform under Covenant rules — stable observability, atomic baseline, validated routes. System integrity confirmed for escalation to heavy-processing orchestration.
+
 
 
