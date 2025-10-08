@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src",
+    "tests",
+    "backend/**/*",
+    "jest.config.ts",
+    "next.config.ts",
+    "next.config.mjs",
+    "sentry.*.config.ts",
+    "playwright.config.ts",
+    "next-env.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", ".next", "coverage"]
+}

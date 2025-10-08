@@ -63,12 +63,10 @@ app.get("/api/check", async (_req: Request, res: Response) => {
   } catch (err) {
     Sentry.captureException(err);
     logger.error({ err }, "Supabase Error in /api/check");
-    res
-      .status(500)
-      .json({
-        ok: false,
-        error: err instanceof Error ? err.message : "Unknown error",
-      });
+    res.status(500).json({
+      ok: false,
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
   }
 });
 
@@ -80,19 +78,17 @@ app.get("/api/messages", async (_req: Request, res: Response) => {
   } catch (err) {
     Sentry.captureException(err);
     logger.error({ err }, "Supabase Error in /api/messages");
-    res
-      .status(500)
-      .json({
-        ok: false,
-        error: err instanceof Error ? err.message : "Unknown error",
-      });
+    res.status(500).json({
+      ok: false,
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
   }
 });
 
 // ────────────────────────────────────────────────
 //  Global Error Middleware (Sentry-safe)
 // ────────────────────────────────────────────────
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   Sentry.captureException(err);
   logger.error({ err }, "Unhandled error");
