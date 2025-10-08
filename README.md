@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Mumu — Stealth-Mode AI Development Framework
 
-## Getting Started
+**Version:** v0.1.10   |  **Branch:** `enhancement/v0.1.5-observability-docs`  
+**Baseline:** `baseline/v0.1.9`   |  **License:** Proprietary / Private R&D  
 
-First, run the development server:
+---
 
+## ⚙️ Overview
+Mumu is an experimental AI-driven engineering platform designed around the **Covenant Strict Mode** principle — a governed framework that enforces accuracy, immutability, and atomic commits at every subtask.  
+It integrates **Next.js 15**, **TypeScript**, **Supabase**, **Sentry**, **LogRocket**, **Pino**, and **Playwright E2E** into a unified development lifecycle with reproducible baselines.
+
+---
+
+## 🏗️ System Architecture
+
+| Layer | Key Technologies | Description |
+|-------|------------------|-------------|
+| **Frontend (UX + Stealth UI)** | Next.js 15 + React 19 | User-facing stealth interface & session replay hooks |
+| **Backend (API + Observability)** | Supabase SDK v2 · Pino · Sentry · LogRocket | Secure API layer with structured logs and telemetry |
+| **Testing & Quality** | Jest · Playwright | Unit + E2E validation with coverage thresholds |
+| **Dev Guardrails** | ESLint 9 · Prettier · Husky · lint-staged · CodeQL · Dependabot | Automated static analysis & supply-chain security |
+| **Covenant Execution Layer** | GPT-5 (Lead Architect) + Executor | Atomic commit enforcement and baseline tagging |
+
+---
+
+## 🧩 Environment Setup
+
+### **1️⃣ Prerequisites**
+| Tool | Version | Notes |
+|------|----------|-------|
+| **Node.js** | ≥ 22.17 LTS | Native ESM support required |
+| **pnpm** | ≥ 9.5 | Preferred package manager |
+| **Git** | ≥ 2.44 | Covenant Atomic Commit discipline |
+| **VS Code** | Latest | Recommended editor with ESLint + Prettier plugins |
+
+### **2️⃣ Clone and Install**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/enepac/mumu.git
+cd mumu
+pnpm install
