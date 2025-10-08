@@ -129,3 +129,47 @@ Pino provides high-throughput structured logging compatible with Sentry and LogR
 **Validated By:** suberu  
 **Baseline:** v0.1.8
 
+# 📘 Mumu — Decision Log
+
+> Version 1.0 · Maintained under Covenant Strict Mode  
+> Each decision entry is timestamped, scoped, and immutable once baselined.
+
+---
+
+## 🧭 Structure
+| Field | Description |
+|--------|--------------|
+| **ID** | Sequential decision identifier (e.g., DL-001) |
+| **Scope** | Task / Subtask context |
+| **Rationale** | Why this decision was made |
+| **Impact** | What system or process it affects |
+| **Status** | `Accepted · Deferred · Superseded · Rejected` |
+
+---
+
+### DL-001 — Adopt Covenant Strict Mode
+**Scope:** Foundational Governance  
+**Rationale:** Guarantee deterministic AI-guided development and atomic baselines.  
+**Impact:** All future sessions, tasks, and commits must follow the Covenant hierarchy.  
+**Status:** ✅ Accepted  
+
+---
+
+### DL-002 — Adopt ESLint 9 Flat Config System  
+**Scope:** Task 1.5 → Subtask 1.2  
+**Rationale:** Modern Next.js 15 + TypeScript projects require flat configuration for performance and plugin isolation.  
+**Impact:** Standardized linting across browser and Node contexts.  
+**Status:** ✅ Accepted  
+
+---
+
+### DL-003 — Integrate Pino as Primary Structured Logger  
+**Scope:** Task 1.5 → Subtask 1.1  
+**Rationale:** Provide JSON-structured logs for observability pipelines and error replay.  
+**Impact:** Improves telemetry fidelity for Sentry and LogRocket.  
+**Status:** ✅ Accepted  
+
+---
+
+> *Further decisions will be appended sequentially under each validated baseline.*
+
