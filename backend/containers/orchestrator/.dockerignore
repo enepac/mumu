@@ -1,0 +1,10 @@
+# Ignore unnecessary files for Fly builds
+node_modules
+dist
+.git
+.gitignore
+Dockerfile
+fly.toml
+*.log
+*.env
+*.tsbuildinfo
