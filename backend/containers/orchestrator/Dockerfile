@@ -11,7 +11,8 @@ ENV PORT=8080
 
 # Copy local manifest & install prod deps
 COPY package.json ./
-RUN npm install --omit=dev typescript
+# Install only production deps + TS compiler + Node types
+RUN npm install --omit=dev typescript @types/node
 
 # Copy orchestrator source
 COPY . .
