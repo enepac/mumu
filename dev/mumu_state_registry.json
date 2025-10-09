@@ -1,0 +1,16 @@
+{
+  "project_name": "Mumu",
+  "governance_mode": "Covenant Strict Mode + PSC Active",
+  "current_part": "2",
+  "current_task": "2.2",
+  "current_subtask": "2.2.1",
+  "current_baseline": "backend-v0.2.2a",
+  "active_branch": "enhancement/v0.2.0-backend-platform",
+  "last_validated_at": "2025-10-09T23:59:00Z",
+  "validated_by": "GPT-5 under Covenant Strict Mode",
+  "next_action": "Scaffold LLM Orchestrator container (Subtask 2.2.2b) and deploy to Fly.io",
+  "upcoming_baseline": "backend-v0.2.2b",
+  "previous_baseline": "backend-v0.2.1",
+  "health": "Stable",
+  "notes": "Whisper GPU container validated and deployed. API orchestration active. Next step: orchestrator container for LLM pipelines."
+}
