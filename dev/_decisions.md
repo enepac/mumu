@@ -317,3 +317,45 @@ Fixes: Compile TypeScript in-image, add @types dependencies, bind 0.0.0.0:8080.
 Rationale: Ensures deterministic GPU container build and observable health.
 Baseline Tag: backend-v0.2.2a
 
+Decision Log — Part 2 → Task 2.2 → Subtask 2.2.1 (Whisper GPU Container Development)
+
+1. Decision: Move Fly.io build context to backend-level
+   Context: The Fly build repeatedly failed to find backend/shared and src directories because the build context was too narrow.
+   Action: Moved fly.whisper.toml to /backend and set build_context = "." so Docker could access all backend files.
+   Rationale: Ensures deterministic builds and prevents missing-file errors.
+   Impact: Simplified deployment structure and made container builds reproducible across environments.
+
+2. Decision: Bind Express server to 0.0.0.0
+   Context: The Fly proxy reported that the app was not listening on the expected address.
+   Action: Changed Express app.listen() to include host = "0.0.0.0".
+   Rationale: Containers must listen on all interfaces to be accessible externally.
+   Impact: Resolved Fly proxy connectivity and allowed /health endpoint access.
+
+3. Decision: Add in-container TypeScript compilation
+   Context: The container attempted to run server.js, which did not exist because only TypeScript source files were copied.
+   Action: Added "pnpm exec tsc -p backend/tsconfig.json" to the Dockerfile build phase and ran the compiled dist output at runtime.
+   Rationale: Containers must compile TS code before execution to avoid runtime module errors.
+   Impact: Ensured consistent runtime behavior and reproducible builds.
+
+4. Decision: Expand tsconfig include paths
+   Context: The TypeScript compiler returned "No inputs were found" because it excluded the containers and shared folders.
+   Action: Updated tsconfig.json includes to ["index.ts", "src/**/*.ts", "containers/**/*.ts", "shared/**/*.ts"].
+   Rationale: Include all relevant directories to guarantee a complete backend build.
+   Impact: Resolved compiler errors and produced a complete build output.
+
+5. Decision: Install type declarations for build-time validation
+   Context: The TypeScript compiler failed due to missing @types packages for Node, Express, and CORS.
+   Action: Installed @types/node, @types/express, and @types/cors before running tsc in Docker.
+   Rationale: Type declarations are required for successful compilation in TypeScript builds.
+   Impact: Eliminated all type errors and enabled a successful in-container build.
+
+6. Decision: Confirm baseline after successful /health response
+   Context: After applying all fixes, the Whisper GPU container built and deployed correctly.
+   Action: Validated external access via curl and confirmed JSON health response.
+   Rationale: Covenant requires observable health before baseline tagging.
+   Impact: Whisper GPU container validated as backend-v0.2.2a baseline.
+
+Key Architectural Outcome:
+The backend’s GPU container build pipeline is now fully deterministic, self-contained, and compliant with Covenant Atomic Commit and Direct-to-Production standards. The lessons learned here define the canonical pattern for future container deployments.
+
+

@@ -376,3 +376,44 @@ Fixed build-context, TypeScript type declarations, and runtime binding.
 Outcome: ✅ Whisper GPU container operational.
 Baseline: backend-v0.2.2a.
 
+Reflection Log — Part 2 → Task 2.2 → Subtask 2.2.1 (Whisper GPU Container Development)
+
+1. Error: Fly.io build context failures ("failed to calculate checksum of ref ... '/shared': not found")
+   Root Cause: The initial fly.toml used local build contexts ("./" or "../"), which prevented Docker from seeing directories outside the containers/whisper folder. Fly.io only includes files within the specified context during deployment.
+   Fix: Moved fly.whisper.toml to /backend, set build_context = ".", and updated all COPY commands to use backend/... paths.
+   Lesson: Fly.io requires the build_context to include all necessary subdirectories; explicit relative paths ensure deterministic builds.
+
+2. Error: Express server not reachable – Fly warning "app is not listening on expected address"
+   Root Cause: Express app.listen() was bound only to port, which defaults to localhost (127.0.0.1). Fly machines expect services to listen on 0.0.0.0:8080.
+   Fix: Updated server code to listen on 0.0.0.0.
+   Lesson: Always bind to 0.0.0.0 in containerized environments to expose the service externally.
+
+3. Error: Cannot find module '/app/containers/whisper/server.js'
+   Root Cause: Docker attempted to run server.js, but only the TypeScript source (server.ts) existed; no build step was compiling to JavaScript inside the container.
+   Fix: Added a TypeScript build step using "pnpm exec tsc -p backend/tsconfig.json" and changed CMD to run the compiled file in dist/.
+   Lesson: Containers running TypeScript code must include an explicit build step before runtime.
+
+4. Error: TypeScript compiler – "No inputs were found in config file ..."
+   Root Cause: backend/tsconfig.json excluded container and shared directories, so tsc found no files to compile.
+   Fix: Expanded the include paths in tsconfig.json to include index.ts, src/**/*.ts, containers/**/*.ts, and shared/**/*.ts.
+   Lesson: Keep tsconfig inclusion paths synchronized with actual repository structure to ensure all files are compiled.
+
+5. Error: TypeScript build failure – missing type declarations
+   Root Cause: @types packages (@types/node, @types/express, @types/cors) were not installed during the Docker build. The compiler could not find declaration files for Node and Express.
+   Fix: Installed required type declarations using "pnpm add -D @types/node @types/express @types/cors" before running tsc.
+   Lesson: When compiling inside containers, include type declaration packages even if they are dev-only dependencies.
+
+6. Validation Outcome:
+   After all fixes, the container deployed successfully. Logs showed "Whisper container listening on 0.0.0.0:8080".
+   curl [https://mumu-whisper.fly.dev/health](https://mumu-whisper.fly.dev/health) returned {"status":"healthy","uptime":1.232,"version":"v0.2.2a"}.
+
+Result: Whisper GPU container validated and reachable through Fly.io.
+
+Key Takeaways:
+
+* Align Fly.io build_context with repository boundaries.
+* Always expose services on 0.0.0.0:PORT.
+* Include both source and type declaration files in TypeScript builds.
+* Record each debugging step to preserve reproducibility and covenant traceability.
+
+
