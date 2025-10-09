@@ -1,0 +1,10 @@
+{
+  "name": "mumu-orchestrator",
+  "version": "1.0.0",
+  "main": "dist/orchestrator.js",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^5.6.1",
+    "pino": "^10.0.0"
+  }
+}
