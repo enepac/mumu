@@ -1,0 +1,7 @@
+# Enforce LF line endings across all files
+* text eol=lf
+
+# Keep these as binary
+*.png binary
+*.jpg binary
+*.pdf binary

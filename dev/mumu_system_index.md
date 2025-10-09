@@ -10,6 +10,7 @@
 - MUMU_COVENANT_ENFORCEMENT_INSTRUCTION.pdf → GPT runtime discipline and command hierarchy
 - Decision_Log_v3.pdf → Formal record of architectural and strategic decisions
 - Complete_Hierarchical_Task_Map.pdf → Canonical roadmap (Parts → Tasks → Subtasks)
+- mumu_update_protocol.md → Enforces automatic documentation updates at every subtask validation
 
 ---
 
