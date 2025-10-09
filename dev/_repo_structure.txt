@@ -10,7 +10,10 @@
 |   |   |   |-- health.ts
 |   |   |   |-- metrics.ts
 |   |   |   |-- orchestrator.ts
-|   |   |   `-- pipeline.ts
+|   |   |   |-- package.json
+|   |   |   |-- pipeline.ts
+|   |   |   |-- tsconfig.json
+|   |   |   `-- utils.ts
 |   |   `-- whisper
 |   |       |-- Dockerfile.gpu
 |   |       |-- health.ts
@@ -29,10 +32,17 @@
 |   |   `-- types.ts
 |   `-- tsconfig.json
 |-- dev
+|   |-- Mumu_Covenant_Context_Manifest_v2.md
 |   |-- _decisions.md
 |   |-- _reflection.md
 |   |-- _repo_structure.txt
-|   `-- mumu_master_doc.md
+|   |-- baseline_registry.md
+|   |-- mumu_boot_command.txt
+|   |-- mumu_master_doc.md
+|   |-- mumu_progress_narrative.md
+|   |-- mumu_state_registry.json
+|   |-- mumu_system_index.md
+|   `-- mumu_update_protocol.md
 |-- docker-compose.yml
 |-- eslint.config.mjs
 |-- fly.toml
@@ -83,4 +93,4 @@
 |-- tsconfig.json
 `-- tsconfig.tsbuildinfo
 
-19 directories, 64 files
+19 directories, 74 files

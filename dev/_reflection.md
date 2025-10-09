@@ -416,4 +416,116 @@ Key Takeaways:
 * Include both source and type declaration files in TypeScript builds.
 * Record each debugging step to preserve reproducibility and covenant traceability.
 
+### Reflection — Subtask 2.2.2b  
+Deployment of LLM Orchestrator container (`mumu-orchestrator`) completed successfully.  
+Encountered module-type mismatch and invalid Fastify logger config; resolved by aligning `package.json` to CommonJS and switching to proper Fastify logger object configuration.  
+Health endpoint confirmed active with proper uptime telemetry.  
+System integrity validated.
+
+### Reflection — Subtask 2.2.2b (Fly.io Orchestrator Deployment)
+
+**Timeline Summary**
+
+Subtask 2.2.2b encompassed the full lifecycle of deploying the Mumu Orchestrator container (`mumu-orchestrator`) on Fly.io.  
+The process began from a working branch `enhancement/v0.2.0-backend-platform` and followed covenant-aligned discipline for deterministic backend deployment.
+
+---
+
+**Key Development Stages**
+
+1. **Initial Preparation**
+   - Created container directory: `backend/containers/orchestrator/`.
+   - Added base Dockerfile referencing Node 22-slim image.
+   - Verified local TypeScript compilation and orchestrator Fastify routes.
+   - Installed dependencies:  
+     `pnpm add fastify pino @sentry/node bullmq cors dotenv express ioredis prom-client @supabase/supabase-js`.
+
+2. **Dependency Resolution & Type Fixes**
+   - Encountered missing types: `Cannot find name 'process'` and `Cannot find module 'os'`.
+   - Resolved by installing build-time types:  
+     `pnpm add -D @types/node typescript`.
+   - Added lightweight `tsconfig.json` for container compilation.
+
+3. **ESLint Validation**
+   - Ran `pnpm lint --fix` after adding `globals` dependency to repair ESLint’s node global definitions.
+   - Lint executed successfully with no remaining warnings.
+
+4. **Initial Deployment Attempts**
+   - Attempted `fly launch --name mumu-orchestrator --vm-gpus 1 --vm-gpu-kind a10`.
+   - Received error: `unknown flag: --vm-gpu-count`; corrected to use `--vm-gpus`.
+   - First `fly deploy` failed because Dockerfile referenced nonexistent relative paths:
+     ```
+     COPY ../../package.json ../../pnpm-lock.yaml* ./
+     ```
+     Corrected by adjusting build context to use local `package.json` only.
+
+5. **Subsequent Failures and Resolutions**
+   - **Error 1:** `ENOENT: no such file or directory, open '/app/package.json'`  
+     → Fixed path references in Dockerfile.
+   - **Error 2:** `The specified path does not exist: tsconfig.json`  
+     → Added dedicated `tsconfig.json` in orchestrator folder.
+   - **Error 3:** Missing `@types/node` within build image.  
+     → Added to Dockerfile install step:  
+       `RUN npm install --omit=dev typescript @types/node`.
+   - **Error 4:** Application failed with  
+     `ReferenceError: exports is not defined in ES module scope`.  
+     → Root cause: `"type": "module"` in root package.json combined with CommonJS output.  
+     → Standardized build to CommonJS for container context.
+
+6. **Runtime Logger Configuration Failure**
+   - Once CommonJS alignment resolved, container reached runtime but crashed on:
+     ```
+     FastifyError [Error]: logger options only accepts a configuration object.
+     ```
+   - Investigated and determined the root cause: `Fastify({ logger })` passed a Pino instance instead of a configuration object.
+   - Fixed code:
+     ```ts
+     const app = Fastify({
+       logger: {
+         level: process.env.LOG_LEVEL || "info",
+         transport: process.env.NODE_ENV === "production" ? undefined : { target: "pino-pretty" },
+       },
+     });
+     ```
+
+7. **Successful Deployment**
+   - After correction, redeployed container:
+     ```
+     fly deploy -c fly.toml
+     ```
+   - Deployment logs confirmed healthy build:
+     ```
+     ✓ Configuration is valid
+     image size: 84 MB
+     Visit https://mumu-orchestrator.fly.dev/
+     ```
+   - Health endpoint validated:
+     ```bash
+     curl -s https://mumu-orchestrator.fly.dev/health
+     ```
+     → Response:
+     ```json
+     {
+       "status": "ok",
+       "version": "dev",
+       "uptime": 0.615072103,
+       "memory": { "rss": 63774720, "heapUsed": 10223456 },
+       "hostname": "91850e41f77e38"
+     }
+     ```
+
+---
+
+**Final Reflection**
+
+The orchestrator now serves as the live backend executor for multi-step LLM pipelines.  
+The build encountered multiple realistic cloud deployment conditions—invalid Docker paths, Node module resolution, ESM/CJS boundary mismatches, and runtime logger misconfiguration—all of which were resolved sequentially and documented.  
+The result is a healthy, reproducible Fly.io service baseline (GPU A10).
+
+---
+
+**Validated:** October 9 2025  
+**Engineer:** Suberu  
+**Environment:** Fly.io GPU A10  
+**Status:** Healthy  
 

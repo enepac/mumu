@@ -1,6 +1,7 @@
 // ────────────────────────────────────────────────
-// ESLint Flat Config — Mumu Covenant Final v0.1.9
-// Task 1.5 → Subtask 1.2 (Sentry + LogRocket Integration)
+// ESLint Flat Config — Mumu Covenant Final v0.1.10
+// Fix: Add Node + ES2022 globals (setTimeout, clearTimeout, etc.)
+// Task 2.2 → Subtask 2.2.2b (LLM Orchestrator Container)
 // ────────────────────────────────────────────────
 
 import js from "@eslint/js";
@@ -9,6 +10,7 @@ import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 import prettierConfig from "eslint-config-prettier";
 import prettierPlugin from "eslint-plugin-prettier";
+import globals from "globals"; // ✅ Added — brings in Node & browser built-ins
 
 const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
 
@@ -41,28 +43,14 @@ export default [
         ecmaFeatures: { jsx: true },
       },
       globals: {
-        // ✅ Node globals
-        process: "readonly",
-        console: "readonly",
-        module: "readonly",
-        require: "readonly",
-        __dirname: "readonly",
-        exports: "readonly",
+        // ✅ Merge in Node + browser + ES2022 globals automatically
+        ...globals.node,
+        ...globals.browser,
+        ...globals.es2022,
 
-        // ✅ Browser & React
-        window: "readonly",
-        document: "readonly",
+        // ✅ Jest testing globals
+        ...globals.jest,
         React: "readonly",
-
-        // ✅ Jest globals
-        describe: "readonly",
-        it: "readonly",
-        test: "readonly",
-        expect: "readonly",
-        beforeAll: "readonly",
-        afterAll: "readonly",
-        beforeEach: "readonly",
-        afterEach: "readonly",
       },
     },
 
@@ -83,14 +71,17 @@ export default [
   {
     files: [
       "backend/**/*.{ts,js}",
+      "backend/containers/**/*.{ts,js}", // ✅ Added to include orchestrator & whisper containers
       "jest.config.ts",
       "next.config.ts",
       "next.config.mjs",
+      "next.config.cjs",
       "sentry.*.config.ts",
       "playwright.config.ts",
     ],
     languageOptions: {
       globals: {
+        ...globals.node,
         process: "readonly",
         console: "readonly",
         module: "readonly",

@@ -136,5 +136,28 @@ Next milestones focus on completing the orchestration layer (LLM container), per
 - Complete Hierarchical Task Map  
 
 ---
+#### Narrative Progress — Part 2 → Task 2.2 → Subtask 2.2.2b
+
+The backend orchestration system advanced into production-grade deployment.  
+This milestone transitioned the Orchestrator from a local Fastify mock service into a cloud-native container operating on Fly.io GPU infrastructure.
+
+The process reflected a true “flight-black-box” deployment pattern:
+- Multiple container build retries with detailed Docker and Node runtime telemetry.
+- Stepwise error identification, correction, and redeployment cycles.
+- Validation via live HTTP `/health` endpoint confirming operational stability.
+
+**Technical Milestones**
+- Node 22 slim base image confirmed minimal footprint (84 MB).
+- Added TypeScript, Fastify, and telemetry dependencies inline.
+- Resolved ESM-to-CommonJS mismatch through deterministic configuration.
+- Established logging discipline using Fastify’s built-in Pino transport.
+- Final build and deployment validated via Fly.io console and external `curl`.
+
+**Flight Telemetry Snapshot**
+{"status":"ok","version":"dev","uptime":0.615072103,"hostname":"91850e41f77e38"}
+
+
+The orchestrator now stands as the operational anchor for backend pipeline orchestration—ready to integrate autoscaling policies and metrics collection in Subtask 2.2.3.
+
 
 End of document.

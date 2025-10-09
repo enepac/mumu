@@ -24,14 +24,6 @@
 
 ---
 
-## NEXT SCHEDULED BASELINES
-- backend-v0.2.2b — LLM Orchestrator Container (Fly.io)
-- backend-v0.2.3 — Supabase RLS + AES-256 Enforcement
-- backend-v0.2.4 — Redis Queues + BullMQ Worker Validation
-- backend-v0.3.0 — Backend Platform Consolidation Baseline
-
----
-
 ## REGISTRY MANAGEMENT
 This registry is immutable once a baseline is tagged.  
 Edits are allowed only for new baseline entries, each appended with:
@@ -40,5 +32,23 @@ Edits are allowed only for new baseline entries, each appended with:
 - Validation confirmation line from Covenant logs.
 
 ---
+#### Baseline v0.2.2b — Backend Orchestrator (Fly.io)
+- **Container:** mumu-orchestrator  
+- **Platform:** Fly.io GPU (A10)  
+- **Build Image:** Node 22-slim  
+- **Image Size:** 84 MB  
+- **Environment:** production (bound to 0.0.0.0:8080)  
+- **Endpoints:** `/health`, `/metrics`, `/orchestrate`  
+- **Health Status:** OK  
+- **Uptime:** 0.615 s (initial response)  
+- **Hostname:** `91850e41f77e38`  
+- **Validation Date:** October 9 2025  
+- **Resolved Issues:**  
+  1. Docker path and build context corrections  
+  2. TypeScript and Node type missing definitions  
+  3. ESM/CommonJS runtime conflict  
+  4. Fastify logger configuration error  
+- **Outcome:** Successful deployment and runtime validation  
+- **Next Step:** Subtask 2.2.3 — Autoscaling & Metrics Integration
 
 End of Registry.

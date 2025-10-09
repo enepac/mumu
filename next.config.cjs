@@ -1,5 +1,5 @@
 /* eslint-env node */
-/* eslint-disable no-undef */
+ 
 
 // ────────────────────────────────────────────────
 // Next.js Config (CommonJS Bridge for Sentry)

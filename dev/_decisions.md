@@ -358,4 +358,47 @@ Decision Log — Part 2 → Task 2.2 → Subtask 2.2.1 (Whisper GPU Container De
 Key Architectural Outcome:
 The backend’s GPU container build pipeline is now fully deterministic, self-contained, and compliant with Covenant Atomic Commit and Direct-to-Production standards. The lessons learned here define the canonical pattern for future container deployments.
 
+### Decision — Subtask 2.2.2b  
+- **Issue:** Runtime crash due to ES module vs CommonJS mismatch and Fastify logger misconfiguration.  
+- **Decision:** Standardize orchestrator runtime to CommonJS; use Fastify’s built-in logger configuration (no manual pino instance).  
+- **Outcome:** Successful Fly.io deployment with healthy `/health` and `/metrics` routes.
+
+### Decision — Subtask 2.2.2b (Fly.io LLM Orchestrator Container)
+
+**Context**
+Subtask executed under Part 2 → Task 2.2 (Heavy Processing Containers).  
+Objective: deploy `mumu-orchestrator` Fly.io container for multi-step LLM pipeline orchestration (Draft → Refine → Fallback).
+
+---
+
+**Key Decisions & Outcomes**
+
+1. **Docker Build Context Alignment**
+   - Moved away from relative parent context (`../../`) to local project root copy.  
+   - Outcome: prevented build cache checksum failures (`package.json not found`).
+
+2. **TypeScript Compilation Discipline**
+   - Added `tsconfig.json` within container directory to isolate build environment.  
+   - Included `@types/node` installation in Dockerfile for build-time consistency.
+
+3. **Runtime Module Strategy**
+   - Reverted to CommonJS runtime for Fly.io compatibility.  
+   - Eliminated `exports is not defined in ES module scope` error.
+
+4. **Fastify Logger Configuration**
+   - Replaced explicit Pino instance with inline logger configuration object.  
+   - Resulted in clean startup: server bound to `0.0.0.0:8080`.
+
+5. **Validation**
+   - Health check returned `status: ok`.  
+   - Machine ID `91850e41f77e38` verified stable.  
+   - Response metrics confirm process memory telemetry within safe limits (< 70 MB RSS).
+
+---
+
+**Final Decision**
+The Orchestrator container build is validated and baseline-tagged as:
+`baseline/backend-v0.2.2b`.
+
+All lessons integrated into Decision Log v3 for future Fly.io deployments.
 
