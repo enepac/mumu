@@ -188,4 +188,132 @@ Warnings from OpenTelemetry were accepted as benign in observability contexts.
 - Observability trace confirmed
 - Structured logging active via Pino + Sentry capture
 
+## [Decision] Task 2.1 — API Orchestration Layer (Vercel)
+**Date:** 2025-10-07  
+**Branch:** enhancement/v0.2.0-backend-platform  
+**Baseline Tag:** baseline/backend-v0.2.1  
+**Status:** ✅ Decisions Ratified and Baselined  
+
+---
+
+### 🧩 Decision 1 — TypeScript Module System Alignment
+**Context:**  
+Node 22 + Next.js 15 ESM incompatibility caused multiple runtime and import errors.  
+
+**Decision:**  
+Adopt `ESNext` for build-time module resolution but compile generated outputs using CommonJS for runtime stability.  
+All execution commands (`pnpm dev`, `pnpm build`) must rely on Next’s compiler rather than raw Node or ts-node.  
+
+**Impact:**  
+Resolved ESM import conflicts and stabilized TS execution environment.  
+Codified in `tsconfig.json` (esModuleInterop + moduleResolution: "node").  
+
+---
+
+### ⚙️ Decision 2 — Pino Logger Interop Strategy
+**Context:**  
+`pino` package exports using CommonJS style (`export = pino`), breaking ES imports.
+
+**Decision:**  
+Retain `pino` as logger but enable `"esModuleInterop": true`.  
+All logging modules to use TypeScript ES imports; compilation transpiles properly for CJS execution.
+
+**Impact:**  
+Standardized structured JSON logging across both frontend (LogRocket) and backend (Pino).
+
+---
+
+### 🧠 Decision 3 — ESLint v9 Migration Policy
+**Context:**  
+Upgrade to ESLint 9 required rewriting all lint configurations to flat config format.  
+
+**Decision:**  
+Adopt `eslint.config.mjs` with full object-based plugin registration.  
+Use Prettier as last layer for conflict resolution and formatting normalization.  
+
+**Impact:**  
+Achieved full lint compliance under ESLint 9.37.0 and Next 15’s schema.  
+All future lint rules must adhere to the flat-config model.
+
+---
+
+### ⚙️ Decision 4 — Sentry Integration Model
+**Context:**  
+Sentry integration repeatedly failed due to deprecated keys (`sentry:`) and invalid imports.  
+
+**Decision:**  
+- Migrate entirely to `@sentry/nextjs` v10.18.0.  
+- Remove all references to `@sentry/browser` and `@sentry/tracing`.  
+- Initialize via `instrumentation.ts` using `Sentry.init()` with captureConsoleIntegration.  
+- Configure through `withSentryConfig()` wrapper in `next.config.cjs`.
+
+**Impact:**  
+Eliminated mixed integration layers; ensures parity between server and client instrumentation.
+
+---
+
+### 🧩 Decision 5 — Configuration Syntax Enforcement
+**Context:**  
+Next.js build failed due to ESM spread syntax conflict inside Sentry wrapper.
+
+**Decision:**  
+Convert Next.js configuration file to CommonJS (`next.config.cjs`).  
+This standard is now mandated for all plugin integrations until ESM interop matures.
+
+**Impact:**  
+Stable build pipeline under both local and CI/CD environments.
+
+---
+
+### ⚙️ Decision 6 — Observability Warning Handling
+**Context:**  
+OpenTelemetry generated benign dynamic import warnings.
+
+**Decision:**  
+Warnings classified as “non-critical observability noise.”  
+Documented and excluded from CI/CD fail criteria; only true build errors halt pipeline.
+
+**Impact:**  
+Reduced false alarms; improved CI/CD signal-to-noise ratio.
+
+---
+
+### 🪵 Decision 7 — Git Line Ending Normalization
+**Context:**  
+Windows CRLF → LF conversion warnings appeared on every commit.
+
+**Decision:**  
+Maintain repository-wide LF normalization.  
+Document developer-side guidance to set `git config core.autocrlf true`.
+
+**Impact:**  
+Consistent cross-platform commit hygiene; no functional changes to build artifacts.
+
+---
+
+### ✅ Validation Summary
+- All integrations (Sentry, Pino, LogRocket) verified functional under Next 15.5.4.  
+- CI/CD pipeline clean (`lint`, `tsc`, `build`, `dev`).  
+- Covenant §9 (Atomic Commit) executed successfully with tag `baseline/backend-v0.2.1`.  
+- Logs and reflections updated per dual-record mandate.
+
+---
+
+### 📘 Permanent Directives (Carried Forward)
+1. All **observability hooks** (Sentry, LogRocket, Pino) must remain centralized; no direct imports outside `src/lib` or `instrumentation.ts`.  
+2. **Next config files** must remain in CommonJS until verified stable under Next 16.  
+3. Each new integration must define both a reflection (what failed) and a decision (why it remains).  
+
+---
+
+**Result:**  
+All engineering, configuration, and integration decisions for Task 2.1 ratified under Covenant enforcement.  
+Baseline confirmed at `baseline/backend-v0.2.1`.
+
+## [Decision] Whisper GPU Container Baseline
+Context: Task 2.2 → Subtask 2.2.1
+Action: Deploy Whisper fallback GPU service with Fly.io autoscaling.
+Fixes: Compile TypeScript in-image, add @types dependencies, bind 0.0.0.0:8080.
+Rationale: Ensures deterministic GPU container build and observable health.
+Baseline Tag: backend-v0.2.2a
 

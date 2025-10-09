@@ -209,5 +209,170 @@ All static analysis layers (Next.js 15, Node, Browser, Prettier, and Jest contex
 ### Reflection
 This subtask establishes the operational backbone for Mumu’s backend platform under Covenant rules — stable observability, atomic baseline, validated routes. System integrity confirmed for escalation to heavy-processing orchestration.
 
+## [Reflection] Task 2.1 — API Orchestration Layer (Vercel)
+**Date:** 2025-10-07  
+**Branch:** enhancement/v0.2.0-backend-platform  
+**Baseline Tag:** baseline/backend-v0.2.1  
+**Status:** ✅ Validated and Baselined  
 
+---
+
+### 🔍 Issue 1 — TypeScript ESM Interop Failure
+**Error Message:**  
+`ERR_MODULE_NOT_FOUND` and `Unknown file extension ".ts"` when running `ts-node` or `node --loader ts-node/esm`.
+
+**Root Cause:**  
+Node 22 + Next 15 required proper ESM interop, but `tsconfig.json` lacked correct `moduleResolution` and `esModuleInterop` alignment with Next.js’s build pipeline.
+
+**Fix Applied:**  
+- Updated `tsconfig.json` with `"module": "esnext"` and `"esModuleInterop": true`.  
+- Switched execution to `pnpm exec next dev` for environment-consistent execution.
+
+**Lesson Learned:**  
+Treat Next.js as the entry point for TypeScript execution — avoid direct `node` imports of TS modules outside Next’s runtime.
+
+---
+
+### ⚙️ Issue 2 — Pino Logger Interop Error
+**Error Message:**  
+`Module ... can only be default-imported using the 'esModuleInterop' flag.`
+
+**Root Cause:**  
+`pino` uses `export = pino;`, which breaks with ES imports unless `esModuleInterop` is enabled.
+
+**Fix Applied:**  
+Enabled `"esModuleInterop": true` in `tsconfig.json`.  
+Recompiled logger using:  
+`pnpm tsc src/lib/logger.ts --module commonjs --esModuleInterop --outDir dist`.
+
+**Lesson Learned:**  
+Legacy CommonJS modules require explicit interop flags for type safety and runtime consistency.
+
+---
+
+### 🧩 Issue 3 — ESLint 9 Flat-Config Migration Errors
+**Error Messages:**  
+- “plugins key must be an object”  
+- “A configuration object is using the env key”  
+- “Could not find plugin prettier”  
+
+**Root Cause:**  
+Migration to ESLint 9 (flat-config system) incompatible with old `.eslintrc`.  
+Plugins like Prettier and TypeScript had to be imported as objects instead of string arrays.
+
+**Fix Applied:**  
+Created `eslint.config.mjs` with:
+- `import js from "@eslint/js"`  
+- Explicit `plugins: { "@typescript-eslint": plugin, prettier: plugin }`  
+- Added `prettierConfig` last for conflict resolution.  
+
+**Lesson Learned:**  
+ESLint v9+ requires fully object-based plugin definitions; compat layers must be removed for reliability.
+
+---
+
+### 🧠 Issue 4 — Next.js Config Key Misuse (`sentry` Field)
+**Error Message:**  
+`Invalid next.config.mjs options detected: Unrecognized key(s): 'sentry'`
+
+**Root Cause:**  
+Sentry v10.18 with Next 15 no longer accepts a top-level `sentry:` config object.  
+Integration must wrap the entire Next config via `withSentryConfig()`.
+
+**Fix Applied:**  
+Rewrote `next.config.mjs` to:  
+```js
+import { withSentryConfig } from "@sentry/nextjs";
+export default withSentryConfig(moduleExports, sentryWebpackPluginOptions);
+
+Lesson Learned:
+Always delegate plugin configuration through official wrappers to avoid schema drift as Next.js evolves.
+
+🧰 Issue 5 — Instrumentation Hook Failures
+
+Symptoms & Errors:
+
+browserTracingIntegration is not a function
+
+getCurrentHub is not a function
+
+Type 'BrowserTracing' is not assignable to type 'Integration'
+
+Root Cause:
+API surface changes between @sentry/browser, @sentry/tracing, and @sentry/nextjs v10.x.
+Incorrect imports from deprecated paths caused type and runtime conflicts.
+
+Fix Applied:
+
+Removed deprecated packages (@sentry/browser, @sentry/tracing).
+
+Used only @sentry/nextjs for both server and client.
+
+Rewrote src/instrumentation.ts to call Sentry.init({ dsn, tracesSampleRate, integrations: [ Sentry.captureConsoleIntegration() ] }).
+
+Validated via pnpm exec tsc --noEmit → no errors.
+
+Lesson Learned:
+For Next.js 15+, all Sentry features (client and server) are unified under @sentry/nextjs; mixing old modules breaks integration.
+
+🪵 Issue 6 — OpenTelemetry Warnings
+
+Warning Message:
+Critical dependency: the request of a dependency is an expression
+
+Root Cause:
+This is a known benign warning from OpenTelemetry’s dynamic loader inside Sentry’s OTEL integration.
+
+Fix Applied:
+None required; documented and suppressed for CI/CD noise control.
+
+Lesson Learned:
+Not all warnings require patches — some are safe runtime artifacts from instrumentation libraries.
+
+🧩 Issue 7 — Build Failure TypeError: ((intermediate value) || []) is not iterable
+
+Root Cause:
+Misplaced spread syntax in next.config.mjs during Sentry config merging.
+
+Fix Applied:
+Converted next.config.mjs to CommonJS (next.config.cjs) with explicit module.exports = withSentryConfig(...).
+
+Lesson Learned:
+Next.js 15 ESM interop is still sensitive; CommonJS remains the safest approach for plugin composition.
+
+🧩 Issue 8 — Line-Ending Warnings
+
+Message:
+CRLF will be replaced by LF the next time Git touches it
+
+Root Cause:
+Windows environment saving files with CRLF; Git auto-normalizing to LF.
+
+Fix Applied:
+No action needed — accepted Git’s auto-conversion.
+Optional setting git config core.autocrlf true documented for developer machines.
+
+Lesson Learned:
+Normalize line endings to LF for cross-platform consistency.
+
+🧭 Final Validation
+
+✅ pnpm exec tsc --noEmit → no type errors
+✅ pnpm lint → clean
+✅ pnpm build → succeeded with expected OTEL warnings
+✅ pnpm dev → API routes active and observability operational
+
+📘 Key Takeaways
+
+-Favor modular CJS configs for mixed plugin systems (Sentry + Next).
+-Centralize observability under one package to avoid version drift.
+-Track every fix in reflection logs for Covenant audit traceability.
+-Maintain LF line endings and atomic commit discipline for all baselines.
+
+## [Task 2.2 → Subtask 2.2.1]
+Validated Whisper GPU container build and deployment on Fly.io.
+Fixed build-context, TypeScript type declarations, and runtime binding.
+/health endpoint responds with 200 OK.
+Outcome: ✅ Whisper GPU container operational.
+Baseline: backend-v0.2.2a.
 
