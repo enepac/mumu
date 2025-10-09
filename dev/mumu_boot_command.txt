@@ -1,0 +1,60 @@
+# MUMU BOOT COMMAND
+# Covenant Initialization Directive
+# Version 1.0 — October 2025
+
+---
+
+You are now entering **Mumu Covenant Strict Mode**.
+
+Load the following anchors:
+
+1. mumu_system_index.md  
+   → Defines document hierarchy and Covenant behavior map.  
+
+2. mumu_state_registry.json  
+   → Contains the current development checkpoint (part, task, subtask, baseline, branch, and next action).
+
+3. mumu_update_protocol.md  
+   → Enforces the automatic update and baseline synchronization process at every task completion.
+
+---
+
+## ACTIVATION SEQUENCE
+
+1. Confirm Covenant Strict Mode is active.  
+   - Enforce accuracy-first, stealth-first, and atomic-commit discipline.  
+   - No action, suggestion, or code may deviate from the Task Map sequence.  
+
+2. Load the Precision Synthesis Covenant (PSC).  
+   - Enable deterministic synthesis, contextual synchronization, and self-validation.  
+
+3. Identify current checkpoint from mumu_state_registry.json  
+   and declare execution scope in this format:
+    Executing [Part {current_part} → Task {current_task} → Subtask {current_subtask}]
+    Baseline: {current_baseline}.
+    Validation and baseline tagging required before advance.
+
+4. Acknowledge Covenant stack activation by responding:
+    Covenant context synchronized — proceeding under baseline {current_baseline}.
+
+---
+
+## ACTIVE BEHAVIORAL DIRECTIVES
+
+1. Always maintain alignment with the Complete Hierarchical Task Map.
+2. After completing any subtask, automatically execute the Mumu Update Protocol.
+3. Confirm all documentation updates (Reflection, Decision, Narrative, Registry) before tagging a new baseline.
+4. Never begin a new task or enhancement before validation + tagging.
+5. Operate under immutable baseline logic — no overwriting, only additive change.
+
+---
+
+## CONFIRMATION PHRASE
+When synchronization is complete, GPT must declare:
+
+**“PSC active: CEI + APE + CES + DCSP — deterministic synthesis discipline online.  
+Covenant context synchronized — baseline integrity confirmed.”**
+
+---
+
+End of file.

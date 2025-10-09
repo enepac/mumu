@@ -3,10 +3,30 @@
 |-- README.md
 |-- backend
 |   |-- Dockerfile
+|   |-- containers
+|   |   |-- orchestrator
+|   |   |   |-- Dockerfile
+|   |   |   |-- fly.toml
+|   |   |   |-- health.ts
+|   |   |   |-- metrics.ts
+|   |   |   |-- orchestrator.ts
+|   |   |   `-- pipeline.ts
+|   |   `-- whisper
+|   |       |-- Dockerfile.gpu
+|   |       |-- health.ts
+|   |       |-- metrics.ts
+|   |       |-- server.ts
+|   |       `-- whisperService.ts
 |   |-- fly.toml
+|   |-- fly.whisper.toml
 |   |-- index.ts
 |   |-- package.json
 |   |-- pnpm-lock.yaml
+|   |-- scripts
+|   |   `-- deploy_fly.sh
+|   |-- shared
+|   |   |-- logger.ts
+|   |   `-- types.ts
 |   `-- tsconfig.json
 |-- dev
 |   |-- _decisions.md
@@ -18,7 +38,7 @@
 |-- fly.toml
 |-- jest.config.ts
 |-- next-env.d.ts
-|-- next.config.mjs
+|-- next.config.cjs
 |-- next.config.ts
 |-- package.json
 |-- playwright.config.ts
@@ -34,10 +54,19 @@
 |-- sentry.server.config.ts
 |-- src
 |   |-- app
+|   |   |-- api
+|   |   |   |-- ask
+|   |   |   |   `-- route.ts
+|   |   |   |-- health
+|   |   |   |   `-- route.ts
+|   |   |   `-- session
+|   |   |       `-- route.ts
 |   |   |-- favicon.ico
 |   |   |-- globals.css
 |   |   |-- layout.tsx
 |   |   `-- page.tsx
+|   |-- instrumentation-client.ts
+|   |-- instrumentation.ts
 |   `-- lib
 |       |-- logger.ts
 |       |-- logrocket.ts
@@ -51,6 +80,7 @@
 |   `-- unit
 |       `-- sample.test.ts
 |-- tsconfig.eslint.json
-`-- tsconfig.json
+|-- tsconfig.json
+`-- tsconfig.tsbuildinfo
 
-10 directories, 43 files
+19 directories, 64 files
