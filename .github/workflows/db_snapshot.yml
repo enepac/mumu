@@ -8,6 +8,11 @@ on:
     - cron: "0 0 * * *" # nightly at midnight UTC
   workflow_dispatch:
 
+  permissions:
+  contents: write   # ✅ allow commits and pushes
+  actions: read
+  checks: read
+
 jobs:
   snapshot:
     runs-on: ubuntu-latest
