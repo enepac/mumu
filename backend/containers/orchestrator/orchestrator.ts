@@ -1,5 +1,9 @@
 // backend/containers/orchestrator/orchestrator.ts
-import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import Fastify, {
+  FastifyInstance,
+  FastifyReply,
+  FastifyRequest,
+} from "fastify";
 import { runPipeline } from "./pipeline";
 import { healthHandler } from "./health";
 import { metricsHandler } from "./metrics";
@@ -24,28 +28,25 @@ app.get("/health", healthHandler);
 app.get("/metrics", metricsHandler);
 
 // Main orchestration endpoint
-app.post(
-  "/orchestrate",
-  async (req: FastifyRequest, reply: FastifyReply) => {
-    const { prompt, workspaceId, metadata } = (req.body as any) || {};
+app.post("/orchestrate", async (req: FastifyRequest, reply: FastifyReply) => {
+  const { prompt, workspaceId, metadata } = (req.body as any) || {};
 
-    if (!prompt) {
-      reply.code(400).send({ error: "Missing prompt" });
-      return;
-    }
-
-    try {
-      const result = await runPipeline({ prompt, workspaceId, metadata });
-      reply.code(200).send({ success: true, result });
-    } catch (error: any) {
-      req.log.error(error);
-      reply.code(500).send({
-        error: "Pipeline failed",
-        details: error.message,
-      });
-    }
+  if (!prompt) {
+    reply.code(400).send({ error: "Missing prompt" });
+    return;
   }
-);
+
+  try {
+    const result = await runPipeline({ prompt, workspaceId, metadata });
+    reply.code(200).send({ success: true, result });
+  } catch (error: any) {
+    req.log.error(error);
+    reply.code(500).send({
+      error: "Pipeline failed",
+      details: error.message,
+    });
+  }
+});
 
 // ─────────────────────────────────────────────
 // SERVER LAUNCH
