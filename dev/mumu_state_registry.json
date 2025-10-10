@@ -1,10 +1,10 @@
 {
   "project_name": "Mumu",
-  "governance_mode": "Covenant Strict Mode + PSC Active",
-  "validated_by": "GPT-5 under Covenant Strict Mode",
-
   "component": "backend-persistence",
   "version": "0.2.3-c",
+  "governance_mode": "Covenant Strict Mode + PSC Active",
+  "validated_by": "GPT-5 Covenant Executor",
+  "health": "PASS",
 
   "current_part": "2",
   "current_task": "2.3",
@@ -13,8 +13,7 @@
   "previous_baseline": "backend-v0.2.3-b",
   "upcoming_baseline": "backend-v0.2.3-d",
   "active_branch": "enhancement/v0.2.3-persistence-security",
-  "last_validated_at": "2025-10-10T18:18:00Z",
-  "health": "PASS",
+  "last_validated_at": "2025-10-10T20:00:00Z",
 
   "part_summary": {
     "part_label": "2 — Backend & Orchestration Build",
@@ -27,7 +26,7 @@
     "name": "RLS and Policies",
     "environment": "Supabase Cloud + Local CLI",
     "artifacts": [
-      "supabase/migrations/20251010181830_rls_policies.sql",
+      "supabase/migrations/20251010183209_rls_policies.sql",
       "backend/db/schema.sql"
     ],
     "dist_files": [
@@ -38,10 +37,10 @@
   },
 
   "validation": {
-    "validated_at": "2025-10-10T18:18:00Z",
+    "validated_at": "2025-10-10T20:00:00Z",
     "validated_by": "GPT-5 Covenant Executor",
     "health": "PASS",
-    "notes": "RLS and policies successfully deployed; Supabase schema parity confirmed. All workspace tables protected under RLS policies."
+    "notes": "RLS verified true for all workspace tables via Supabase SQL query; live production enforcement confirmed."
   },
 
   "baseline": {
@@ -61,7 +60,8 @@
       "commands_executed": [
         "supabase link",
         "supabase db push",
-        "supabase db pull"
+        "supabase db pull",
+        "manual SQL enforcement via Supabase SQL Editor"
       ]
     }
   },
@@ -70,7 +70,7 @@
     "supabase_cli_version": "2.48.3",
     "doppler_version": "3.x",
     "os": "Windows 10/11 (Git Bash)",
-    "verified_at": "2025-10-10T18:18:00Z"
+    "verified_at": "2025-10-10T20:00:00Z"
   },
 
   "previous_context": {
@@ -80,5 +80,5 @@
   },
 
   "next_action": "Proceed to Subtask 2.3.4 — AES-256 Encryption for sensitive columns.",
-  "notes": "Subtask 2.3.3 validated and baselined under Covenant Strict Mode — RLS and workspace policies confirmed live in Supabase Cloud."
+  "notes": "Subtask 2.3.3 validated and baselined under Covenant Strict Mode — RLS enforcement confirmed live in Supabase Cloud and recorded at baseline backend-v0.2.3-c."
 }

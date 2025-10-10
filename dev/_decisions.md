@@ -481,11 +481,12 @@ Schema validated against remote DB → baseline stability for upcoming RLS and e
 
 **Status:** ✅ Approved · Logged · Baseline `backend-v0.2.3-b` created.
 
-## Decision D-2.3.3 — Row-Level Security Activation
+## Decision D-2.3.3 — Row-Level Security Activation (Final)
 **Date:** 2025-10-10  
-**Scope:** Task 2.3 → Subtask 2.3.3  
-**Decision:** Enable Supabase RLS on all workspace-bound tables; define and enforce workspace isolation using JWT claims (`auth.role()` & `request_workspace_id()`).  
-**Rationale:** Ensures zero cross-workspace data exposure and supports principle of least privilege.  
-**Impact:** Backend persistence now fully protected by declarative RLS. Enables secure multitenancy and data governance.  
+**Scope:** Part 2 → Task 2.3 → Subtask 2.3.3  
+**Decision:** Enforce Row-Level Security for all workspace-linked tables using direct SQL enforcement to guarantee active protection.  
+**Rationale:** Ensures isolation and prevents data leakage between user workspaces.  
+**Impact:** Backend persistence layer now compliant with Covenant data isolation standards.  
 **Status:** ✅ Approved · Logged · Baseline backend-v0.2.3-c created.
+
 

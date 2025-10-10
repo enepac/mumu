@@ -186,11 +186,11 @@ All core tables were defined and verified through Supabase Cloud connectivity.
 Running `supabase db pull` produced the remote schema snapshot, confirming a synchronized, secure database foundation.  
 System health: ✅ Stable · Baseline `backend-v0.2.3-b` tagged.
 
-#### Subtask 2.3.3 — Row-Level Security & Policies (backend-v0.2.3-c)
-Supabase Row-Level Security implemented and validated.  
-Every workspace-bound table now enforces isolation via declarative policies using `auth.role()` and `request_workspace_id()` logic.  
-This closes the loop on multitenant data protection in Mumu’s backend persistence layer.  
-System health: ✅ Stable · Baseline `backend-v0.2.3-c` tagged.
+#### Subtask 2.3.3 — Row-Level Security (RLS) & Policies (backend-v0.2.3-c)
+After final SQL enforcement, RLS is active on all workspace-scoped tables.  
+This ensures strict tenant isolation across data and prepares the system for encryption-level security in the next phase.  
+System Health: ✅ Stable · Baseline backend-v0.2.3-c tagged.
+
 
 
 End of document.
