@@ -100,6 +100,13 @@ Edits are allowed only for new baseline entries, each appended with:
 - Validated By: GPT-5 Covenant Executor  
 - Outcome: All workspace tables now protected by enforced RLS; policies deployed and functional.
 
+## baseline/backend-v0.2.3-d (2025-10-10)
+- Scope: Subtask 2.3.4 — AES-256 Encryption (Sensitive Columns)  
+- Validation: Runtime encryption verified via /api/ask  
+- Method: AES-256-GCM using Node crypto module  
+- Key Management: Doppler (DATA_ENCRYPTION_KEY)  
+- Status: ✅ PASS  
+- Validated By: GPT-5 Covenant Executor
 
 
 End of Registry.

@@ -18,7 +18,9 @@
 |   |-- shared
 |   |   |-- logger.ts
 |   |   `-- types.ts
-|   `-- tsconfig.json
+|   |-- tsconfig.json
+|   `-- utils
+|       `-- encryption.ts
 |-- dev
 |   |-- Mumu_Covenant_Context_Manifest_v2.md
 |   |-- _decisions.md
@@ -37,6 +39,7 @@
 |-- eslint.config.mjs
 |-- fly.toml
 |-- jest.config.ts
+|-- next-env.d.ts
 |-- next.config.cjs
 |-- next.config.ts
 |-- package.json
@@ -66,7 +69,8 @@
 |       `-- supabaseClient.ts
 |-- supabase
 |   |-- migrations
-|   |   `-- 20251010183209_rls_policies.sql
+|   |   |-- 20251010183209_rls_policies.sql
+|   |   `-- 20251010191432_aes256_encryption.sql
 |   |-- schema.sql
 |   `-- seed.sql
 |-- tests
@@ -77,4 +81,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-19 directories, 58 files
+20 directories, 61 files

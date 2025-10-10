@@ -1,67 +1,69 @@
 {
   "project_name": "Mumu",
   "component": "backend-persistence",
-  "version": "0.2.3-c",
+  "version": "0.2.3-d",
   "governance_mode": "Covenant Strict Mode + PSC Active",
   "validated_by": "GPT-5 Covenant Executor",
   "health": "PASS",
 
   "current_part": "2",
   "current_task": "2.3",
-  "current_subtask": "2.3.3",
-  "current_baseline": "backend-v0.2.3-c",
-  "previous_baseline": "backend-v0.2.3-b",
-  "upcoming_baseline": "backend-v0.2.3-d",
+  "current_subtask": "2.3.4",
+  "current_baseline": "backend-v0.2.3-d",
+  "previous_baseline": "backend-v0.2.3-c",
+  "upcoming_baseline": "backend-v0.2.3-e",
   "active_branch": "enhancement/v0.2.3-persistence-security",
-  "last_validated_at": "2025-10-10T20:00:00Z",
+  "last_validated_at": "2025-10-10T21:50:00Z",
 
   "part_summary": {
     "part_label": "2 — Backend & Orchestration Build",
     "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-    "subtask_label": "2.3.3 — Row-Level Security (RLS) and Policies",
-    "description": "Implement Supabase Row-Level Security for all workspace-scoped tables and enforce workspace isolation using declarative policies."
+    "subtask_label": "2.3.4 — AES-256 Encryption (Sensitive Columns)",
+    "description": "Implement application-level AES-256-GCM encryption for sensitive data columns using Doppler-managed key injection to ensure confidentiality and isolation at rest."
   },
 
   "artifact_summary": {
-    "name": "RLS and Policies",
-    "environment": "Supabase Cloud + Local CLI",
+    "name": "AES-256 Encryption Runtime",
+    "environment": "Next.js API Runtime + Doppler + Supabase",
     "artifacts": [
-      "supabase/migrations/20251010183209_rls_policies.sql",
-      "backend/db/schema.sql"
+      "backend/utils/encryption.ts",
+      "src/app/api/ask/route.ts"
     ],
     "dist_files": [
       "dev/_reflection.md",
       "dev/_decisions.md",
-      "dev/baseline_registry.md"
+      "dev/baseline_registry.md",
+      "dev/mumu_progress_narrative.md"
     ]
   },
 
   "validation": {
-    "validated_at": "2025-10-10T20:00:00Z",
+    "validated_at": "2025-10-10T21:50:00Z",
     "validated_by": "GPT-5 Covenant Executor",
     "health": "PASS",
-    "notes": "RLS verified true for all workspace tables via Supabase SQL query; live production enforcement confirmed."
+    "notes": "AES-256 encryption verified in runtime; Doppler key integration functional; encryption logs confirmed via /api/ask route. RLS remains active for workspace-scoped tables, ensuring layered security compliance."
   },
 
   "baseline": {
-    "tag": "baseline/backend-v0.2.3-c",
+    "tag": "baseline/backend-v0.2.3-d",
     "type": "backend",
-    "scope": "row-level-security"
+    "scope": "application-layer encryption"
   },
 
   "deployment": {
-    "platform": "Supabase Cloud",
+    "platform": "Vercel + Supabase Cloud + Doppler",
     "status": "validated",
     "details": {
       "project_ref": "gjrxxiblykxtgmfwnjbp",
       "project_name": "mumu-db",
       "connection_verified": true,
       "schema_state": "up_to_date",
+      "runtime_validated": true,
       "commands_executed": [
-        "supabase link",
-        "supabase db push",
-        "supabase db pull",
-        "manual SQL enforcement via Supabase SQL Editor"
+        "doppler secrets set DATA_ENCRYPTION_KEY",
+        "doppler run -- pnpm dev",
+        "curl POST /api/ask (encryption validation)",
+        "git commit + tag baseline/backend-v0.2.3-d"
       ]
     }
   },
@@ -69,16 +71,17 @@
   "runtime": {
     "supabase_cli_version": "2.48.3",
     "doppler_version": "3.x",
+    "node_version": ">=18.x (Next.js 15 App Router)",
     "os": "Windows 10/11 (Git Bash)",
-    "verified_at": "2025-10-10T20:00:00Z"
+    "verified_at": "2025-10-10T21:50:00Z"
   },
 
   "previous_context": {
-    "baseline": "backend-v0.2.3-b",
-    "component": "core-schema",
-    "notes": "Supabase remote schema confirmed via `supabase db pull`; schema written locally; migration parity validated."
+    "baseline": "backend-v0.2.3-c",
+    "component": "row-level-security",
+    "notes": "Supabase Row-Level Security enforced live; workspace isolation verified via SQL inspection and reflected in production state."
   },
 
-  "next_action": "Proceed to Subtask 2.3.4 — AES-256 Encryption for sensitive columns.",
-  "notes": "Subtask 2.3.3 validated and baselined under Covenant Strict Mode — RLS enforcement confirmed live in Supabase Cloud and recorded at baseline backend-v0.2.3-c."
+  "next_action": "Proceed to Subtask 2.3.5 — Configure Nightly Snapshots + Failover (Supabase setting).",
+  "notes": "Subtask 2.3.4 validated and baselined under Covenant Strict Mode — AES-256 runtime encryption confirmed operational with Doppler key isolation and structured logging at /api/ask. Full persistence security stack (RLS + AES-256 + Key Isolation) operational."
 }

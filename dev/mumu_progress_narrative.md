@@ -191,6 +191,11 @@ After final SQL enforcement, RLS is active on all workspace-scoped tables.
 This ensures strict tenant isolation across data and prepares the system for encryption-level security in the next phase.  
 System Health: ✅ Stable · Baseline backend-v0.2.3-c tagged.
 
+#### Subtask 2.3.4 — AES-256 Encryption (backend-v0.2.3-d)
+Mumu backend achieved runtime encryption compliance.  
+Application-layer AES-256-GCM encryption verified operational via /api/ask test.  
+This closes the persistence security foundation: Supabase (RLS) + AES-256 (app-level) + Doppler (key isolation).  
+System Health: ✅ Stable · Baseline backend-v0.2.3-d tagged.
 
 
 End of document.

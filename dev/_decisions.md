@@ -489,4 +489,12 @@ Schema validated against remote DB → baseline stability for upcoming RLS and e
 **Impact:** Backend persistence layer now compliant with Covenant data isolation standards.  
 **Status:** ✅ Approved · Logged · Baseline backend-v0.2.3-c created.
 
+## Decision D-2.3.4 — AES-256 Encryption Migration to Application Layer
+**Date:** 2025-10-10  
+**Scope:** Part 2 → Task 2.3 → Subtask 2.3.4  
+**Decision:** Migrate AES-256 encryption from database-level pgcrypto to application-level (Node.js AES-256-GCM) due to Supabase role constraints.  
+**Rationale:** Prevent migration-level function errors; ensure consistent encryption using controlled key rotation via Doppler.  
+**Impact:** Secure data-at-rest model verified; Supabase schema simplified.  
+**Status:** ✅ Approved and baselined under backend-v0.2.3-d.
+
 

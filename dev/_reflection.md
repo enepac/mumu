@@ -732,5 +732,16 @@ Verified via `select relname, relrowsecurity` query → all returned `true`.
 **Outcome:** ✅ Multitenant workspace isolation fully operational and confirmed in production database.  
 **Next Step:** Proceed to Subtask 2.3.4 — AES-256 encryption for sensitive columns.
 
+### Reflection R-2.3.4 — AES-256 Encryption (Sensitive Columns)
+**Date:** 2025-10-10 T21:50Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+
+**Summary:**  
+Migrated encryption enforcement from Supabase pgcrypto layer to application-level AES-256-GCM encryption, implemented in `backend/utils/encryption.ts` and verified via `/api/ask` route test.  
+Encryption executed successfully using Doppler-injected key, returning valid ciphertext logs.  
+
+**Outcome:** ✅ Application-layer encryption validated and Covenant-compliant.  
+Sensitive data now encrypted before persistence, maintaining full separation between key management (Doppler) and data storage (Supabase).  
+
 
 
