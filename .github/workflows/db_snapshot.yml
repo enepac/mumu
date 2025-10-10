@@ -1,0 +1,47 @@
+name: Nightly Supabase Snapshot
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # every day at midnight UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  checks: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Supabase CLI
+        run: |
+          curl -fsSL https://cli.supabase.com/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Configure Doppler secrets
+        uses: dopplerhq/cli-action@v2
+
+      - name: Make snapshot script executable
+        run: chmod +x backend/scripts/db_snapshot.sh
+
+      - name: Run snapshot script
+        run: backend/scripts/db_snapshot.sh
+
+      - name: Commit and push snapshot
+        run: |
+          git config --global user.name "mumu-covenant-bot"
+          git config --global user.email "bot@mumu.app"
+          git add dev/snapshots/mumu_backup_*.sql
+          git commit -m "chore(snapshot): nightly Supabase backup [skip ci]" || echo "No changes to commit"
+          git push
