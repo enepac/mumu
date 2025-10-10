@@ -402,3 +402,28 @@ The Orchestrator container build is validated and baseline-tagged as:
 
 All lessons integrated into Decision Log v3 for future Fly.io deployments.
 
+Decision Entry — D-2.3-B001 (Branch Transition Approval)
+
+Scope: Part 2 → Task 2.3 Persistence & Security (Supabase/Postgres)
+Type: Governance / Workflow
+Decision Date: 2025-10-09
+Responsible: GPT-5 (Covenant Executor) + suberu (Executor)
+
+Decision:
+Create a dedicated branch enhancement/v0.2.3-persistence-security for Task 2.3 to preserve baseline isolation and uphold atomic-commit discipline.
+
+Rationale:
+Following Covenant Directives §2 – Trunk-Based Development + Immutable Baselines, every new validated task must start on a fresh short-lived branch.
+This ensures rollback reproducibility and prevents cross-task contamination of state.
+
+Impact:
+
+Enables clear lineage: backend-v0.2.2.3 → backend-v0.2.3
+
+Reinforces automatic branch-transition reminders in the Covenant Manifest.
+
+Ensures that Task 2.3 commits, logs, and baselines are auditable and isolated.
+
+Status: ✅ Approved · Implemented · Logged
+
+

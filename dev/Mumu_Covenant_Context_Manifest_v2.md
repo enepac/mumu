@@ -67,11 +67,21 @@ If any drift detected:
 - No progression without validation + baseline.
 
 **Enhancement Protocol Within Scope**
-
 Enhancement Proposal → execute → close → return to primary mapped task [X.Y]
-
-
 Enhancements must not spawn new tasks or advance sequence.
+
+### 🔄 Automatic Branch Transition Directive (Addendum Oct 2025)
+
+After every validated baseline and before any new task begins, GPT must:
+
+1. Verify that the active Git branch corresponds to the new task scope.
+2. If not, prompt the executor to create a new enhancement branch using the pattern:
+   `enhancement/v{next_baseline}-{task_name}`.
+3. Append both a Reflection and Decision entry documenting:
+   - Previous → new branch names
+   - Validation tag of the prior baseline
+   - Executor and timestamp
+4. Only after branch creation confirmation may Covenant Strict Mode proceed with the next mapped task.
 
 ---
 

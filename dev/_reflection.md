@@ -635,3 +635,31 @@ Scoped build context via .mumu-dockerignore eliminates Windows tar mode errors.
 UTF-8 encoding with LF endings must be enforced for consistent remote builds.
 
 This marks completion of Subtask 2.2.3 under Part 2.2 Backend Platform, with the orchestrator container stabilized, autoscaling verified, and metrics operational in production.
+
+Reflection Entry — Branch Transition (Task 2.3 Initialization)
+
+Date: 2025-10-09
+Executor: suberu
+Validated By: GPT-5 under Covenant Strict Mode
+Previous Branch: enhancement/v0.2.0-backend-platform
+New Branch: enhancement/v0.2.3-persistence-security
+Context: Transition after completion of Task 2.2 → Baseline backend-v0.2.2.3
+
+Summary
+
+After validating Task 2.2 (Heavy Processing Containers / Fly.io), the Covenant mandates atomic isolation of the following task.
+A new enhancement branch is created to host all persistence and security work for Supabase/Postgres (Task 2.3).
+This guarantees immutability of the previous baseline and ensures rollback safety per Decision Log v3 §2.
+
+Insights
+
+Branch transitions are part of the Immutable Baseline discipline.
+
+Future sessions must trigger automatic branch prompts immediately after baseline tagging.
+
+Reflection-First Verification Rule re-enabled to prevent missed transition reminders.
+
+Outcome
+
+✅ Branch transition authorized under Covenant Strict Mode.
+✅ Ready to execute Phase 0 — Supabase Provision Validation Gate.
