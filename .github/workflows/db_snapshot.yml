@@ -1,8 +1,11 @@
 name: Nightly Supabase Snapshot
 
 on:
+  push:
+    branches:
+      - enhancement/v0.2.3-persistence-security
   schedule:
-    - cron: "0 0 * * *" # every day at midnight UTC
+    - cron: "0 0 * * *" # nightly at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -23,7 +26,7 @@ jobs:
       - name: Configure Doppler secrets
         uses: dopplerhq/cli-action@v2
         with:
-          doppler-token: ${{ secrets.DOPPLER_SERVICE_TOKEN }}
+          doppler-token: \${{ secrets.DOPPLER_SERVICE_TOKEN }}
 
       - name: Run snapshot script
         run: backend/scripts/db_snapshot.sh
@@ -35,5 +38,3 @@ jobs:
           git add dev/snapshots/mumu_backup_*.sql
           git commit -m "chore(snapshot): nightly Supabase backup [skip ci]" || echo "No changes to commit"
           git push
-# trigger indexing
-# trigger GitHub workflow indexing
