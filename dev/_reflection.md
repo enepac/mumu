@@ -529,3 +529,109 @@ The result is a healthy, reproducible Fly.io service baseline (GPU A10).
 **Environment:** Fly.io GPU A10  
 **Status:** Healthy  
 
+----
+Here’s the **plain text version** of the full reflection entry — you can directly paste this into `dev/_reflection.md` without any markdown formatting, headers, or code blocks:
+
+---
+
+[2025-10-09] Subtask 2.2.3 — Orchestrator Autoscaling and Metrics (Full Timeline)
+
+Context:
+Scope: backend/containers/orchestrator
+Objective: production-grade Fly.io deploy with health, Prometheus metrics, and autoscaling verified.
+Baseline tag: baseline/backend-v0.2.2.3
+
+Phase A — Initial Build and Deploy
+Ran command: fly deploy -c backend/containers/orchestrator/fly.toml --remote-only
+Result: Build finished and image pushed. On first boot, app crashed immediately with error:
+FastifyError: logger options only accepts a configuration object.
+Code: FST_ERR_LOG_INVALID_LOGGER_CONFIG
+Root cause: Fastify v5 expects logger to be a config object, not a pre-instantiated pino instance.
+Fix: Rewrote logger initialization to pass a config object, using pino-pretty only in non-production mode. Rebuilt and redeployed. Application started successfully.
+
+Phase B — Local Compilation and Verification
+Installed required dependencies with pnpm add fastify prom-client pino and pnpm add -D typescript @types/node pino-pretty
+Compiled locally using pnpm exec tsc --project tsconfig.json
+Ran node dist/orchestrator.js
+Initial failure due to missing pino-pretty transport target. Installed pino-pretty as a dev dependency. After installation, local run succeeded and Fastify logged:
+Server listening at [http://127.0.0.1:8080](http://127.0.0.1:8080)
+Server listening at multiple interfaces
+Orchestrator running on port 8080
+Verification with curl [http://localhost:8080/health](http://localhost:8080/health) returned status ok JSON payload.
+Verification with curl [http://localhost:8080/metrics](http://localhost:8080/metrics) returned valid Prometheus metrics including nodejs, process, and custom histogram data.
+
+Phase C — Docker Build and Environment Challenges
+First build attempt failed during npx tsc with message: “This is not the tsc command you are looking for.”
+Cause: typescript was missing in the runtime image because only production dependencies were installed.
+Fix: Introduced a multi-stage Docker build with two stages: builder and runtime.
+Builder installs dev dependencies and compiles to dist.
+Runtime installs production dependencies using npm install --omit=dev --ignore-scripts to skip husky prepare hooks, which had previously caused failures.
+Ensured that tsconfig.json and package.json were copied before npm install to make TypeScript available.
+Also confirmed source files were copied before running npx tsc to ensure dist directory existed.
+Verified locally that pnpm exec tsc produced dist/orchestrator.js, health.js, metrics.js, pipeline.js, and utils.js.
+
+Encountered additional error during runtime install: husky not found.
+Resolved by ignoring postinstall scripts with --ignore-scripts.
+
+Second major issue: Fly remote build failing with “archive/tar: unknown file mode ?rwxr-xr-x”.
+Root cause: Windows file metadata leaking into build context during compression.
+Resolution: Created a root-level file named .mumu-dockerignore containing:
+**
+!backend/containers/orchestrator/**
+This limited the Docker build context strictly to orchestrator subdirectory and eliminated problematic Windows file metadata.
+All infrastructure files (Dockerfile, fly.toml, and .mumu-dockerignore) were saved as UTF-8 with LF line endings to avoid carriage return issues.
+This completely resolved tar mode errors on Fly builder.
+
+Final image built successfully with multi-stage setup.
+Image size approximately 77 MB.
+
+Phase D — Deployment Validation
+Deployed successfully to Fly.io.
+Health endpoint check:
+curl [https://mumu-orchestrator.fly.dev/health](https://mumu-orchestrator.fly.dev/health)
+returned status ok with hostname, uptime, and memory details.
+Metrics endpoint check:
+curl [https://mumu-orchestrator.fly.dev/metrics](https://mumu-orchestrator.fly.dev/metrics)
+returned valid Prometheus metrics including process_cpu_seconds_total, nodejs_heap, garbage collection durations, and custom histogram mumu_pipeline_duration_seconds.
+Node.js version reported remotely as v22.20.0.
+
+Logs from Fly:
+Server listening at [http://127.0.0.1:8080](http://127.0.0.1:8080)
+Server listening at [http://172.19.3.242:8080](http://172.19.3.242:8080)
+Server listening at [http://172.19.3.243:8080](http://172.19.3.243:8080)
+Orchestrator running on port 8080
+Health check on port 8080 is now passing.
+
+Phase E — Autoscaling Validation
+Scaled application to 2 machines using fly scale count 2 -a mumu-orchestrator
+Output confirmed creation of new machine 178175e0f20358 in region sjc.
+fly scale show reported 2 machines running, shared-cpu-1x size, 256MB memory each.
+Observed Fly autostop event: App has excess capacity, autostopping machine 178175e0f20358. 1 out of 2 machines left running.
+Conclusion: autoscaling and autostop verified functioning correctly.
+
+Phase F — File Encoding Hygiene
+Verified all infrastructure files were encoded as UTF-8 and used LF line endings.
+Ensured Visual Studio Code settings had End of Line: LF to maintain consistency.
+This prevented recurrence of tar file mode errors and ensured clean remote builds.
+
+Final State
+Health and metrics endpoints working both locally and remotely.
+Autoscaling functioning with min 1, max 3.
+Validated baseline captured as baseline/backend-v0.2.2.3
+Build ID registry.fly.io/mumu-orchestrator:deployment-01K75PDX45AG57WEFENRM41K31
+Image size 77 MB.
+Region sjc.
+Machines running: 2 shared-cpu-1x (256 MB each).
+
+Key Console Snapshots
+Remote health output: {"status":"ok","version":"dev","uptime":131.8797,"hostname":"91850e41f77e38"}
+Remote metrics sample included process_resident_memory_bytes, nodejs_version_info, and custom histograms.
+
+Lessons Learned
+Fastify logger must use configuration object rather than instantiated pino.
+Multi-stage builds isolate development and runtime dependencies efficiently.
+Using --ignore-scripts prevents husky postinstall errors in production images.
+Scoped build context via .mumu-dockerignore eliminates Windows tar mode errors.
+UTF-8 encoding with LF endings must be enforced for consistent remote builds.
+
+This marks completion of Subtask 2.2.3 under Part 2.2 Backend Platform, with the orchestrator container stabilized, autoscaling verified, and metrics operational in production.

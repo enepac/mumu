@@ -12,6 +12,7 @@
 |   |   |   |-- orchestrator.ts
 |   |   |   |-- package.json
 |   |   |   |-- pipeline.ts
+|   |   |   |-- pnpm-lock.yaml
 |   |   |   |-- tsconfig.json
 |   |   |   `-- utils.ts
 |   |   `-- whisper
@@ -47,7 +48,6 @@
 |-- eslint.config.mjs
 |-- fly.toml
 |-- jest.config.ts
-|-- next-env.d.ts
 |-- next.config.cjs
 |-- next.config.ts
 |-- package.json
@@ -90,7 +90,6 @@
 |   `-- unit
 |       `-- sample.test.ts
 |-- tsconfig.eslint.json
-|-- tsconfig.json
-`-- tsconfig.tsbuildinfo
+`-- tsconfig.json
 
-19 directories, 74 files
+19 directories, 73 files

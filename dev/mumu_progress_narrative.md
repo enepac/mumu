@@ -159,5 +159,17 @@ The process reflected a true “flight-black-box” deployment pattern:
 
 The orchestrator now stands as the operational anchor for backend pipeline orchestration—ready to integrate autoscaling policies and metrics collection in Subtask 2.2.3.
 
+### [2025-10-09] Orchestrator: From Crash to Baseline with Autoscaling & Metrics
+
+We began with a seemingly healthy image but a runtime crash: Fastify rejected a `pino` instance passed as `logger`. Converting that to a Fastify `logger` config, and scoping pretty logs to non-prod, stabilized boot.
+
+Next, TypeScript compilation inside the container failed because `npx tsc` was invoked without `typescript` installed. We introduced a multi-stage Docker build: the builder installs dev deps and compiles to `dist/`, while the runtime installs production deps with `--ignore-scripts` to bypass husky. We ensured `tsconfig.json` and sources were present *before* running `tsc` to prevent missing `dist/`.
+
+Fly’s remote builder raised `archive/tar: unknown file mode ?rwxr-xr-x`—a Windows artifact. We fixed this by constraining build context with a root `.mumu-dockerignore` to only include the orchestrator subtree, and we confirmed UTF-8 + LF in Dockerfile, Fly config, and ignore files.
+
+With local smoke tests (`/health`, `/metrics`) passing, we redeployed. Health checks went green, metrics exposed expected node/process families and our pipeline histogram. We scaled to 2 machines to verify redundancy and observed autostop under low load. Finally, we tagged the stable state as `baseline/backend-v0.2.2.3`.
+
+The key takeaways: use Fastify’s logger correctly, favor multi-stage builds, disable scripts in runtime, isolate build context on Windows, and enforce line endings. The result is a small image, fast startup, and production-grade observability.
+
 
 End of document.

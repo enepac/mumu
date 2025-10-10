@@ -51,4 +51,22 @@ Edits are allowed only for new baseline entries, each appended with:
 - **Outcome:** Successful deployment and runtime validation  
 - **Next Step:** Subtask 2.2.3 — Autoscaling & Metrics Integration
 
+## baseline/backend-v0.2.2.3 (2025-10-09)
+- Component: Orchestrator (Fastify + Prometheus)
+- Platform: Fly.io (Machines)
+- Region: sjc
+- Image: registry.fly.io/mumu-orchestrator:deployment-01K75PDX45AG57WEFENRM41K31
+- Image Size: 77 MB
+- Runtime: Node v22.20.0 (remote)
+- Machines: 2 × shared-cpu-1x, 256MB (autoscaling; autostop enabled)
+- Health: PASS (`/health` 200 OK)
+- Metrics: PASS (`/metrics` Prometheus compatible; nodejs/process/custom histograms)
+- Build Method: Multi-stage Docker (builder with dev deps, runtime omit dev + ignore scripts)
+- Context Isolation: `.mumu-dockerignore` limiting to orchestrator subtree
+- Encoding: UTF-8 + LF enforced on infra files
+- Validation URLs: `/health`, `/metrics`
+- Notes: Fixed Fastify logger config, husky in runtime, tsc availability, Windows tar mode error, and Fly.toml Dockerfile path
+- Validated By: GPT-5 Covenant Executor
+
+
 End of Registry.

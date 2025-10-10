@@ -82,3 +82,68 @@
   "next_action": "Configure Fly.io autoscaling and expose /metrics endpoint (Subtask 2.2.3).",
   "notes": "Whisper GPU container validated and deployed. API orchestration active. LLM Orchestrator successfully online with stable health telemetry and validated runtime pipeline. Ready for autoscaling, observability, and performance tuning under Subtask 2.2.3."
 }
+
+{
+  "project": "Mumu Covenant",
+  "component": "backend-orchestrator",
+  "version": "0.2.2.3",
+  "task_tree": {
+    "part": "2",
+    "task": "2.2",
+    "subtask": "2.2.3",
+    "label": "Autoscaling & Metrics Integration"
+  },
+  "deployment": {
+    "platform": "fly.io",
+    "app": "mumu-orchestrator",
+    "region_primary": "sjc",
+    "image": "registry.fly.io/mumu-orchestrator:deployment-01K75PDX45AG57WEFENRM41K31",
+    "image_size_mb": 77,
+    "status": "healthy",
+    "urls": {
+      "health": "https://mumu-orchestrator.fly.dev/health",
+      "metrics": "https://mumu-orchestrator.fly.dev/metrics",
+      "monitoring": "https://fly.io/apps/mumu-orchestrator/monitoring"
+    },
+    "machines": {
+      "count": 2,
+      "group": "app",
+      "size": "shared-cpu-1x",
+      "memory_mb": 256,
+      "region_counts": { "sjc": 2 },
+      "ids": ["91850e41f77e38", "178175e0f20358"]
+    },
+    "autoscaling": {
+      "min_machines": 1,
+      "max_machines": 3,
+      "auto_stop_machines": true,
+      "observed_autostop": true
+    }
+  },
+  "runtime": {
+    "node_version_remote": "v22.20.0",
+    "endpoints": ["/health", "/metrics", "/orchestrate"],
+    "metrics_status": "enabled",
+    "logger": "fastify+pino (pretty in dev)"
+  },
+  "artifacts": {
+    "dockerfile": "backend/containers/orchestrator/Dockerfile",
+    "fly_toml": "backend/containers/orchestrator/fly.toml",
+    "dockerignore": ".mumu-dockerignore",
+    "tsconfig": "backend/containers/orchestrator/tsconfig.json",
+    "dist_files": [
+      "health.js", "metrics.js", "orchestrator.js", "pipeline.js", "utils.js"
+    ]
+  },
+  "validation": {
+    "validated_at": "2025-10-09T23:59:00Z",
+    "validated_by": "GPT-5 Covenant Executor",
+    "health": "PASS",
+    "notes": "Autoscaling validated; metrics returned expected families; build context isolation resolved Windows tar mode error."
+  },
+  "baseline": {
+    "tag": "baseline/backend-v0.2.2.3",
+    "type": "backend",
+    "scope": "orchestrator"
+  }
+}
