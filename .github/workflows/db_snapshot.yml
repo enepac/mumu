@@ -29,6 +29,9 @@ jobs:
         with:
           doppler-token: \${{ secrets.DOPPLER_SERVICE_TOKEN }}
 
+      - name: Make snapshot script executable
+        run: chmod +x backend/scripts/db_snapshot.sh
+
       - name: Run snapshot script
         run: backend/scripts/db_snapshot.sh
 
