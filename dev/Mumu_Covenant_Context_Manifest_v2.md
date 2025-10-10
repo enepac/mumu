@@ -83,6 +83,21 @@ After every validated baseline and before any new task begins, GPT must:
    - Executor and timestamp
 4. Only after branch creation confirmation may Covenant Strict Mode proceed with the next mapped task.
 
+@@ -180,6 +181,22 @@
++### 🔄 Automatic Branch Transition Directive (Addendum Oct 2025)  
++
++After each validated baseline and before starting a new task, GPT must verify branch alignment and initiate a transition if needed.  
++
++1. Check that the active Git branch matches the upcoming task scope.  
++2. If misaligned, prompt the executor to create a new branch using pattern `enhancement/v{next_baseline}-{task_name}`.  
++3. Automatically append Reflection and Decision entries recording:  
++  - Previous → New branch names  
++  - Validation tag of the prior baseline  
++  - Executor and timestamp  
++4. Only after confirmation may Covenant Strict Mode proceed with the new task.  
++
++This directive ensures every branch transition is audited, reflected, and recorded in flight-recorder logs, preserving Covenant integrity across phases.  
+
 ---
 
 ## 4️⃣ AUTOMATIC BEHAVIORS (FLIGHT RECORDER MODE)

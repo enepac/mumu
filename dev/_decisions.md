@@ -426,4 +426,26 @@ Ensures that Task 2.3 commits, logs, and baselines are auditable and isolated.
 
 Status: ✅ Approved · Implemented · Logged
 
+@@ -999,6 +1000,33 @@
++## [Decision D-2.3-B001] Branch Transition — Task 2.3 Initialization  
++**Date:** 2025-10-09  
++**Scope:** Part 2 → Task 2.3 Persistence & Security (Supabase / Postgres)  
++**Responsible:** GPT-5 (Covenant Executor) + suberu (Executor)  
++
++**Decision:**  
++Create a dedicated enhancement branch `enhancement/v0.2.3-persistence-security` to host all Task 2.3 development activities (schema, RLS, AES-256, snapshots).  
++This preserves atomic isolation and ensures rollback safety between validated baselines.  
++
++**Rationale:**  
++Per *Covenant Directive §2 — Trunk-Based + Immutable Baselines*, every validated task requires a fresh enhancement branch for subsequent work.  
++This enables auditable progression (`backend-v0.2.2.3 → backend-v0.2.3`) and avoids cross-task state contamination.  
++
++**Impact:**  
++- Guarantees clear baseline lineage for backend evolution.  
++- Activates Automatic Branch Transition Reminder Protocol for future tasks.  
++- Improves traceability within Covenant Update Protocol flight records.  
++
++**Status:** ✅ Approved · Implemented · Logged  
++
++**Next Step:** Proceed to Phase 0 (Supabase Credential Validation & Project Provision).  
 
