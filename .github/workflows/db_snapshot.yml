@@ -21,7 +21,8 @@ jobs:
           node-version: 20
 
       - name: Install Supabase CLI
-        run: npm install -g supabase@latest
+        run: |
+          curl -fsSL https://cli.supabase.com/install.sh | sh -s -- -b /usr/local/bin
 
       - name: Configure Doppler secrets
         uses: dopplerhq/cli-action@v2
