@@ -457,3 +457,11 @@ Status: ✅ Approved · Implemented · Logged
 **Impact:** Enables safe provisioning of Supabase schemas in Subtask 2.3.1.  
 **Status:** ✅ Approved · Logged · Covenant Update Protocol executed.
 
+## Decision D-2.3.1 — Supabase Project Linkage & Provisioning
+**Date:** 2025-10-09  
+**Scope:** Task 2.3 → Subtask 2.3.1  
+**Decision:** Establish explicit local link to Supabase project (`gjrxxiblykxtgmfwnjbp`) using `.supabase/config.toml`. Confirmed remote database access and schema sync capability.  
+**Rationale:** Ensures deterministic database management and reproducible migrations without reliance on global CLI state.  
+**Impact:** Backend environment now has secure, versioned database connection for future RLS and encryption work.  
+**Status:** ✅ Approved · Logged · Baseline backend-v0.2.3-a created.
+

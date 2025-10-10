@@ -177,4 +177,8 @@ Secrets (`SUPABASE_URL`, `SERVICE_ROLE_KEY`, `ANON_KEY`) were fetched successful
 This phase establishes a secure foundation for database provisioning and schema migration in Subtask 2.3.1.  
 System health status: ✅ Stable. Baseline tagged as `backend-v0.2.3-p0`.
 
+#### Subtask 2.3.1 — Supabase Project Provisioning (backend-v0.2.3-a)
+Supabase CLI authenticated and linked to project `gjrxxiblykxtgmfwnjbp`. A manual `.supabase/config.toml` was anchored to enforce local linkage. Connectivity tests confirmed the remote database is accessible and ready for schema migration. This marks the foundation for Covenant-secured persistence development.
+
+
 End of document.

@@ -76,5 +76,14 @@ Edits are allowed only for new baseline entries, each appended with:
 - Validated By: GPT-5 Covenant Executor  
 - Outcome: Environment configuration verified and ready for Supabase linking.  
 
+## baseline/backend-v0.2.3-a (2025-10-09)
+- Scope: Subtask 2.3.1 — Supabase Project Provisioning  
+- Component: Supabase DB (gjrxxiblykxtgmfwnjbp)  
+- Artifacts: `.supabase/config.toml`, `backend/db/schema.sql`, `backend/db/seed.sql`  
+- Validation: `supabase db push --dry-run` → Remote database up to date  
+- Status: ✅ PASS  
+- Validated By: GPT-5 Covenant Executor  
+- Outcome: Cloud project linked and version-controlled for future schema migrations.
+
 
 End of Registry.

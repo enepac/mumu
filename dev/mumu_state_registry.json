@@ -4,14 +4,14 @@
   "validated_by": "GPT-5 under Covenant Strict Mode",
 
   "component": "backend-persistence",
-  "version": "0.2.3-p0",
+  "version": "0.2.3-a",
 
   "current_part": "2",
   "current_task": "2.3",
-  "current_subtask": "2.3.0",
-  "current_baseline": "backend-v0.2.3-p0",
-  "previous_baseline": "backend-v0.2.2.3",
-  "upcoming_baseline": "backend-v0.2.3",
+  "current_subtask": "2.3.1",
+  "current_baseline": "backend-v0.2.3-a",
+  "previous_baseline": "backend-v0.2.3-p0",
+  "upcoming_baseline": "backend-v0.2.3-b",
   "active_branch": "enhancement/v0.2.3-persistence-security",
   "last_validated_at": "2025-10-09T23:59:00Z",
   "health": "PASS",
@@ -19,16 +19,17 @@
   "part_summary": {
     "part_label": "2 — Backend & Orchestration Build",
     "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-    "subtask_label": "2.3.0 — Provision Validation Gate",
-    "description": "Validate environment synchronization via Doppler and Supabase before database provisioning."
+    "subtask_label": "2.3.1 — Supabase Project Provisioning",
+    "description": "Link Supabase project, establish local CLI configuration (.supabase/config.toml), and validate connectivity for schema migrations."
   },
 
   "artifact_summary": {
-    "name": "Doppler Environment & Supabase Secrets",
-    "environment": "Local + Doppler dev configuration",
+    "name": "Supabase Project Linkage",
+    "environment": "Cloud (Supabase) + Local CLI",
     "artifacts": [
-      ".doppler.yaml",
-      ".env.local"
+      ".supabase/config.toml",
+      "backend/db/schema.sql",
+      "backend/db/seed.sql"
     ],
     "dist_files": [
       "dev/_reflection.md",
@@ -41,38 +42,40 @@
     "validated_at": "2025-10-09T23:59:00Z",
     "validated_by": "GPT-5 Covenant Executor",
     "health": "PASS",
-    "notes": "Doppler environment sync validated; Supabase secrets accessible; ready for project provisioning."
+    "notes": "Supabase linkage validated via dry-run push; local config.toml anchored; ready for schema definitions."
   },
 
   "baseline": {
-    "tag": "baseline/backend-v0.2.3-p0",
+    "tag": "baseline/backend-v0.2.3-a",
     "type": "backend",
-    "scope": "environment"
+    "scope": "database-linkage"
   },
 
   "deployment": {
-    "platform": "local + Doppler",
+    "platform": "Supabase Cloud",
     "status": "validated",
     "details": {
-      "project": "mumu-backend",
-      "config": "dev",
-      "secrets_verified": ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_ANON_KEY"]
+      "project_ref": "gjrxxiblykxtgmfwnjbp",
+      "project_name": "mumu-db",
+      "connection_verified": true,
+      "schema_state": "up_to_date",
+      "commands_executed": ["supabase link", "supabase db push --dry-run"]
     }
   },
 
   "runtime": {
-    "supabase_cli_version": "1.x",
+    "supabase_cli_version": "2.48.3",
     "doppler_version": "3.x",
     "os": "Windows 10/11 (Git Bash)",
     "verified_at": "2025-10-09T23:59:00Z"
   },
 
   "previous_context": {
-    "baseline": "backend-v0.2.2.3",
-    "component": "backend-orchestrator",
-    "notes": "Orchestrator container validated with autoscaling and metrics on Fly.io prior to Task 2.3 transition."
+    "baseline": "backend-v0.2.3-p0",
+    "component": "environment-provision",
+    "notes": "Validated Doppler environment sync; Supabase secrets accessible prior to project linkage."
   },
 
-  "next_action": "Proceed to Subtask 2.3.1 — Supabase Project Provisioning (create and link Supabase project).",
-  "notes": "Phase 0 environment validation completed successfully under Covenant Strict Mode."
+  "next_action": "Proceed to Subtask 2.3.2 — Core Schema Definitions (create workspaces, documents, transcripts, responses, voiceprints, and reflection tables).",
+  "notes": "Subtask 2.3.1 validated and baselined under Covenant Strict Mode — Supabase project linkage complete and environment ready for schema definition."
 }

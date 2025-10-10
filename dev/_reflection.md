@@ -701,4 +701,12 @@ Supabase secrets (`URL`, `SERVICE_ROLE_KEY`, `ANON_KEY`) resolved via CLI and re
 **Outcome:** ✅ Environment layer operational and secure.  
 **Next Step:** Proceed to Subtask 2.3.1 — Supabase Project Provisioning and Schema Initialization.
 
+### Reflection R-2.3.1 — Supabase Project Provisioning Complete
+**Date:** 2025-10-09 T23:59 Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+**Summary:** Linked Supabase project `gjrxxiblykxtgmfwnjbp`; created `.supabase/config.toml` manually to enforce local linkage. Verified remote database via `supabase db push --dry-run` (showed schema up to date).  
+**Outcome:** ✅ Remote DB connection healthy and version-controlled under Covenant discipline.  
+**Next Step:** Proceed to Subtask 2.3.2 — Core Schema Definitions.
+
+
 
