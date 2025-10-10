@@ -720,4 +720,14 @@ Executed `supabase db pull` to confirm remote schema parity; schema successfully
 **Outcome:** ✅ Schema structure verified in Supabase Cloud. Remote connectivity and DDL parity confirmed without migration history changes.  
 **Next Step:** Proceed to Subtask 2.3.3 — Row-Level Security and Policies.
 
+### Reflection R-2.3.3 — Row-Level Security (RLS) & Policy Implementation
+**Date:** 2025-10-10 T18:18 Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+**Summary:** Implemented full Row-Level Security across workspace-scoped tables (`workspaces`, `documents`, `transcripts`, `responses`, `voiceprints`, `eval_sets`, and `reflections`).  
+Policies validated through Supabase migration `20251010181830_rls_policies.sql`.  
+Confirmed successful deployment via `supabase db push` with zero constraint conflicts after snapshot archival.  
+
+**Outcome:** ✅ Verified Supabase enforcement of workspace isolation; all tables RLS-enabled and policies functional.  
+**Next Step:** Proceed to Subtask 2.3.4 — AES-256 Encryption for sensitive columns.
+
 

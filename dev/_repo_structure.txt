@@ -30,7 +30,9 @@
 |   |-- mumu_progress_narrative.md
 |   |-- mumu_state_registry.json
 |   |-- mumu_system_index.md
-|   `-- mumu_update_protocol.md
+|   |-- mumu_update_protocol.md
+|   `-- snapshots
+|       `-- remote_schema_20251010.sql
 |-- docker-compose.yml
 |-- eslint.config.mjs
 |-- fly.toml
@@ -64,7 +66,7 @@
 |       `-- supabaseClient.ts
 |-- supabase
 |   |-- migrations
-|   |   `-- 20251010055805_remote_schema.sql
+|   |   `-- 20251010181830_rls_policies.sql
 |   |-- schema.sql
 |   `-- seed.sql
 |-- tests
@@ -75,4 +77,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-18 directories, 57 files
+19 directories, 58 files

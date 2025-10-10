@@ -4,31 +4,31 @@
   "validated_by": "GPT-5 under Covenant Strict Mode",
 
   "component": "backend-persistence",
-  "version": "0.2.3-b",
+  "version": "0.2.3-c",
 
   "current_part": "2",
   "current_task": "2.3",
-  "current_subtask": "2.3.2",
-  "current_baseline": "backend-v0.2.3-b",
-  "previous_baseline": "backend-v0.2.3-a",
-  "upcoming_baseline": "backend-v0.2.3-c",
+  "current_subtask": "2.3.3",
+  "current_baseline": "backend-v0.2.3-c",
+  "previous_baseline": "backend-v0.2.3-b",
+  "upcoming_baseline": "backend-v0.2.3-d",
   "active_branch": "enhancement/v0.2.3-persistence-security",
-  "last_validated_at": "2025-10-10T05:58:00Z",
+  "last_validated_at": "2025-10-10T18:18:00Z",
   "health": "PASS",
 
   "part_summary": {
     "part_label": "2 — Backend & Orchestration Build",
     "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-    "subtask_label": "2.3.2 — Core Schema Definitions",
-    "description": "Define and validate core database schema including workspaces, documents, transcripts, responses, voiceprints, eval_sets, and reflections. Validate remote parity via Supabase Cloud."
+    "subtask_label": "2.3.3 — Row-Level Security (RLS) and Policies",
+    "description": "Implement Supabase Row-Level Security for all workspace-scoped tables and enforce workspace isolation using declarative policies."
   },
 
   "artifact_summary": {
-    "name": "Core Schema Definitions",
+    "name": "RLS and Policies",
     "environment": "Supabase Cloud + Local CLI",
     "artifacts": [
-      "backend/db/schema.sql",
-      "supabase/migrations/20251010055805_remote_schema.sql"
+      "supabase/migrations/20251010181830_rls_policies.sql",
+      "backend/db/schema.sql"
     ],
     "dist_files": [
       "dev/_reflection.md",
@@ -38,16 +38,16 @@
   },
 
   "validation": {
-    "validated_at": "2025-10-10T05:58:00Z",
+    "validated_at": "2025-10-10T18:18:00Z",
     "validated_by": "GPT-5 Covenant Executor",
     "health": "PASS",
-    "notes": "Supabase remote schema confirmed via `supabase db pull`; schema written locally; migration parity validated."
+    "notes": "RLS and policies successfully deployed; Supabase schema parity confirmed. All workspace tables protected under RLS policies."
   },
 
   "baseline": {
-    "tag": "baseline/backend-v0.2.3-b",
+    "tag": "baseline/backend-v0.2.3-c",
     "type": "backend",
-    "scope": "core-schema"
+    "scope": "row-level-security"
   },
 
   "deployment": {
@@ -60,7 +60,7 @@
       "schema_state": "up_to_date",
       "commands_executed": [
         "supabase link",
-        "supabase db push --dry-run",
+        "supabase db push",
         "supabase db pull"
       ]
     }
@@ -70,15 +70,15 @@
     "supabase_cli_version": "2.48.3",
     "doppler_version": "3.x",
     "os": "Windows 10/11 (Git Bash)",
-    "verified_at": "2025-10-10T05:58:00Z"
+    "verified_at": "2025-10-10T18:18:00Z"
   },
 
   "previous_context": {
-    "baseline": "backend-v0.2.3-a",
-    "component": "database-linkage",
-    "notes": "Supabase linkage validated via dry-run push; local config.toml anchored; ready for schema definitions."
+    "baseline": "backend-v0.2.3-b",
+    "component": "core-schema",
+    "notes": "Supabase remote schema confirmed via `supabase db pull`; schema written locally; migration parity validated."
   },
 
-  "next_action": "Proceed to Subtask 2.3.3 — Row-Level Security (RLS) and Policies.",
-  "notes": "Subtask 2.3.2 validated and baselined under Covenant Strict Mode — Core Schema Definitions confirmed with Supabase Cloud parity."
+  "next_action": "Proceed to Subtask 2.3.4 — AES-256 Encryption for sensitive columns.",
+  "notes": "Subtask 2.3.3 validated and baselined under Covenant Strict Mode — RLS and workspace policies confirmed live in Supabase Cloud."
 }
