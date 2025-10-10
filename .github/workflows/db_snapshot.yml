@@ -36,3 +36,4 @@ jobs:
           git commit -m "chore(snapshot): nightly Supabase backup [skip ci]" || echo "No changes to commit"
           git push
 # trigger indexing
+# trigger GitHub workflow indexing
