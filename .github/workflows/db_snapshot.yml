@@ -1,15 +1,12 @@
 name: Nightly Supabase Snapshot
 
 on:
-  push:
-    branches:
-      - enhancement/v0.2.3-persistence-security
   schedule:
-    - cron: "0 0 * * *" # nightly at midnight UTC
+    - cron: "0 0 * * *" # every day at midnight UTC
   workflow_dispatch:
 
-  permissions:
-  contents: write   # ✅ allow commits and pushes
+permissions:
+  contents: write
   actions: read
   checks: read
 
@@ -18,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-    steps:
 
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -34,8 +31,6 @@ jobs:
 
       - name: Configure Doppler secrets
         uses: dopplerhq/cli-action@v2
-        with:
-          doppler-token: \${{ secrets.DOPPLER_SERVICE_TOKEN }}
 
       - name: Make snapshot script executable
         run: chmod +x backend/scripts/db_snapshot.sh
