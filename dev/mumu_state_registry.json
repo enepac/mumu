@@ -3,147 +3,76 @@
   "governance_mode": "Covenant Strict Mode + PSC Active",
   "validated_by": "GPT-5 under Covenant Strict Mode",
 
-  "current_part": "2",
-  "current_task": "2.2",
-  "current_subtask": "2.2.2b",
-  "current_baseline": "backend-v0.2.2b",
-  "previous_baseline": "backend-v0.2.2a",
-  "upcoming_baseline": "backend-v0.2.3",
+  "component": "backend-persistence",
+  "version": "0.2.3-p0",
 
-  "active_branch": "enhancement/v0.2.0-backend-platform",
-  "last_validated_at": "2025-10-09T20:55:00Z",
-  "health": "Stable",
+  "current_part": "2",
+  "current_task": "2.3",
+  "current_subtask": "2.3.0",
+  "current_baseline": "backend-v0.2.3-p0",
+  "previous_baseline": "backend-v0.2.2.3",
+  "upcoming_baseline": "backend-v0.2.3",
+  "active_branch": "enhancement/v0.2.3-persistence-security",
+  "last_validated_at": "2025-10-09T23:59:00Z",
+  "health": "PASS",
 
   "part_summary": {
-    "2": "Backend & Orchestration Build",
-    "task": "2.2 — Heavy Processing Containers (Fly.io)",
-    "subtask_description": "Deploy and validate the LLM Orchestrator container responsible for multi-step pipeline execution across Draft, Refine, and Fallback stages."
+    "part_label": "2 — Backend & Orchestration Build",
+    "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
+    "subtask_label": "2.3.0 — Provision Validation Gate",
+    "description": "Validate environment synchronization via Doppler and Supabase before database provisioning."
   },
 
   "artifact_summary": {
-    "name": "Fly.io LLM Orchestrator Container",
-    "environment": "Fly.io GPU (A10)",
+    "name": "Doppler Environment & Supabase Secrets",
+    "environment": "Local + Doppler dev configuration",
     "artifacts": [
-      "backend/containers/orchestrator/Dockerfile",
-      "backend/containers/orchestrator/orchestrator.ts",
-      "backend/containers/orchestrator/health.ts",
-      "backend/containers/orchestrator/metrics.ts",
-      "backend/containers/orchestrator/pipeline.ts"
-    ]
-  },
-
-  "deployment_metadata": {
-    "validation_time": "2025-10-09T20:55:00Z",
-    "status": "validated",
-    "hostname": "91850e41f77e38",
-    "uptime_seconds": 0.615072103,
-    "endpoint_health": "ok",
-    "build_image": "Node 22-slim",
-    "image_size_mb": 84,
-    "fly_app": "mumu-orchestrator",
-    "fly_url": "https://mumu-orchestrator.fly.dev",
-    "gpu_model": "A10"
-  },
-
-  "flight_log": {
-    "errors_encountered": [
-      "Docker build path errors (ENOENT: package.json)",
-      "Missing tsconfig.json",
-      "Missing Node type definitions",
-      "ESM/CommonJS mismatch",
-      "Fastify logger invalid configuration"
+      ".doppler.yaml",
+      ".env.local"
     ],
-    "resolutions_applied": [
-      "Adjusted Dockerfile COPY context for local package.json resolution",
-      "Added dedicated tsconfig.json within orchestrator folder",
-      "Installed @types/node and typescript at build stage",
-      "Set runtime module system to CommonJS for compatibility",
-      "Replaced custom pino instance with Fastify inline logger configuration"
-    ],
-    "deployment_sequence": [
-      "Initial Fly launch and GPU flag correction",
-      "Dependency installation and ESLint linting with globals package",
-      "Dockerfile correction and rebuild verification",
-      "TypeScript compilation validation inside container",
-      "Fly deploy success — confirmed via /health endpoint"
-    ]
-  },
-
-  "health_snapshot": {
-    "response": {
-      "status": "ok",
-      "version": "dev",
-      "uptime": 0.615072103,
-      "hostname": "91850e41f77e38"
-    },
-    "verified_at": "2025-10-09T20:56:30Z"
-  },
-
-  "next_action": "Configure Fly.io autoscaling and expose /metrics endpoint (Subtask 2.2.3).",
-  "notes": "Whisper GPU container validated and deployed. API orchestration active. LLM Orchestrator successfully online with stable health telemetry and validated runtime pipeline. Ready for autoscaling, observability, and performance tuning under Subtask 2.2.3."
-}
-
-{
-  "project": "Mumu Covenant",
-  "component": "backend-orchestrator",
-  "version": "0.2.2.3",
-  "task_tree": {
-    "part": "2",
-    "task": "2.2",
-    "subtask": "2.2.3",
-    "label": "Autoscaling & Metrics Integration"
-  },
-  "deployment": {
-    "platform": "fly.io",
-    "app": "mumu-orchestrator",
-    "region_primary": "sjc",
-    "image": "registry.fly.io/mumu-orchestrator:deployment-01K75PDX45AG57WEFENRM41K31",
-    "image_size_mb": 77,
-    "status": "healthy",
-    "urls": {
-      "health": "https://mumu-orchestrator.fly.dev/health",
-      "metrics": "https://mumu-orchestrator.fly.dev/metrics",
-      "monitoring": "https://fly.io/apps/mumu-orchestrator/monitoring"
-    },
-    "machines": {
-      "count": 2,
-      "group": "app",
-      "size": "shared-cpu-1x",
-      "memory_mb": 256,
-      "region_counts": { "sjc": 2 },
-      "ids": ["91850e41f77e38", "178175e0f20358"]
-    },
-    "autoscaling": {
-      "min_machines": 1,
-      "max_machines": 3,
-      "auto_stop_machines": true,
-      "observed_autostop": true
-    }
-  },
-  "runtime": {
-    "node_version_remote": "v22.20.0",
-    "endpoints": ["/health", "/metrics", "/orchestrate"],
-    "metrics_status": "enabled",
-    "logger": "fastify+pino (pretty in dev)"
-  },
-  "artifacts": {
-    "dockerfile": "backend/containers/orchestrator/Dockerfile",
-    "fly_toml": "backend/containers/orchestrator/fly.toml",
-    "dockerignore": ".mumu-dockerignore",
-    "tsconfig": "backend/containers/orchestrator/tsconfig.json",
     "dist_files": [
-      "health.js", "metrics.js", "orchestrator.js", "pipeline.js", "utils.js"
+      "dev/_reflection.md",
+      "dev/_decisions.md",
+      "dev/baseline_registry.md"
     ]
   },
+
   "validation": {
     "validated_at": "2025-10-09T23:59:00Z",
     "validated_by": "GPT-5 Covenant Executor",
     "health": "PASS",
-    "notes": "Autoscaling validated; metrics returned expected families; build context isolation resolved Windows tar mode error."
+    "notes": "Doppler environment sync validated; Supabase secrets accessible; ready for project provisioning."
   },
+
   "baseline": {
-    "tag": "baseline/backend-v0.2.2.3",
+    "tag": "baseline/backend-v0.2.3-p0",
     "type": "backend",
-    "scope": "orchestrator"
-  }
+    "scope": "environment"
+  },
+
+  "deployment": {
+    "platform": "local + Doppler",
+    "status": "validated",
+    "details": {
+      "project": "mumu-backend",
+      "config": "dev",
+      "secrets_verified": ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_ANON_KEY"]
+    }
+  },
+
+  "runtime": {
+    "supabase_cli_version": "1.x",
+    "doppler_version": "3.x",
+    "os": "Windows 10/11 (Git Bash)",
+    "verified_at": "2025-10-09T23:59:00Z"
+  },
+
+  "previous_context": {
+    "baseline": "backend-v0.2.2.3",
+    "component": "backend-orchestrator",
+    "notes": "Orchestrator container validated with autoscaling and metrics on Fly.io prior to Task 2.3 transition."
+  },
+
+  "next_action": "Proceed to Subtask 2.3.1 — Supabase Project Provisioning (create and link Supabase project).",
+  "notes": "Phase 0 environment validation completed successfully under Covenant Strict Mode."
 }

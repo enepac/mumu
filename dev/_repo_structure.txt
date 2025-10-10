@@ -5,22 +5,7 @@
 |   |-- Dockerfile
 |   |-- containers
 |   |   |-- orchestrator
-|   |   |   |-- Dockerfile
-|   |   |   |-- fly.toml
-|   |   |   |-- health.ts
-|   |   |   |-- metrics.ts
-|   |   |   |-- orchestrator.ts
-|   |   |   |-- package.json
-|   |   |   |-- pipeline.ts
-|   |   |   |-- pnpm-lock.yaml
-|   |   |   |-- tsconfig.json
-|   |   |   `-- utils.ts
 |   |   `-- whisper
-|   |       |-- Dockerfile.gpu
-|   |       |-- health.ts
-|   |       |-- metrics.ts
-|   |       |-- server.ts
-|   |       `-- whisperService.ts
 |   |-- fly.toml
 |   |-- fly.whisper.toml
 |   |-- index.ts
@@ -65,12 +50,6 @@
 |-- src
 |   |-- app
 |   |   |-- api
-|   |   |   |-- ask
-|   |   |   |   `-- route.ts
-|   |   |   |-- health
-|   |   |   |   `-- route.ts
-|   |   |   `-- session
-|   |   |       `-- route.ts
 |   |   |-- favicon.ico
 |   |   |-- globals.css
 |   |   |-- layout.tsx
@@ -92,4 +71,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-19 directories, 73 files
+16 directories, 55 files

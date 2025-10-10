@@ -68,5 +68,13 @@ Edits are allowed only for new baseline entries, each appended with:
 - Notes: Fixed Fastify logger config, husky in runtime, tsc availability, Windows tar mode error, and Fly.toml Dockerfile path
 - Validated By: GPT-5 Covenant Executor
 
+## baseline/backend-v0.2.3-p0 (2025-10-09)
+- Scope: Environment Provision Validation Gate  
+- Components: Doppler CLI · Supabase Secrets  
+- Status: PASS (`doppler run -- env | grep SUPABASE` verified)  
+- Branch: enhancement/v0.2.3-persistence-security  
+- Validated By: GPT-5 Covenant Executor  
+- Outcome: Environment configuration verified and ready for Supabase linking.  
+
 
 End of Registry.

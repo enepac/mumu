@@ -449,3 +449,11 @@ Status: ✅ Approved · Implemented · Logged
 +
 +**Next Step:** Proceed to Phase 0 (Supabase Credential Validation & Project Provision).  
 
+## Decision D-2.3-P0 — Environment Provision Validation Gate
+**Date:** 2025-10-09  
+**Scope:** Part 2 → Task 2.3 (Persistence & Security)  
+**Context:** Verified Doppler integration and Supabase secret resolution pipeline.  
+**Decision:** Accept Phase 0 as validated; environment variables are managed securely through Doppler with local fallback `.env.local`.  
+**Impact:** Enables safe provisioning of Supabase schemas in Subtask 2.3.1.  
+**Status:** ✅ Approved · Logged · Covenant Update Protocol executed.
+
