@@ -4,32 +4,31 @@
   "validated_by": "GPT-5 under Covenant Strict Mode",
 
   "component": "backend-persistence",
-  "version": "0.2.3-a",
+  "version": "0.2.3-b",
 
   "current_part": "2",
   "current_task": "2.3",
-  "current_subtask": "2.3.1",
-  "current_baseline": "backend-v0.2.3-a",
-  "previous_baseline": "backend-v0.2.3-p0",
-  "upcoming_baseline": "backend-v0.2.3-b",
+  "current_subtask": "2.3.2",
+  "current_baseline": "backend-v0.2.3-b",
+  "previous_baseline": "backend-v0.2.3-a",
+  "upcoming_baseline": "backend-v0.2.3-c",
   "active_branch": "enhancement/v0.2.3-persistence-security",
-  "last_validated_at": "2025-10-09T23:59:00Z",
+  "last_validated_at": "2025-10-10T05:58:00Z",
   "health": "PASS",
 
   "part_summary": {
     "part_label": "2 — Backend & Orchestration Build",
     "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-    "subtask_label": "2.3.1 — Supabase Project Provisioning",
-    "description": "Link Supabase project, establish local CLI configuration (.supabase/config.toml), and validate connectivity for schema migrations."
+    "subtask_label": "2.3.2 — Core Schema Definitions",
+    "description": "Define and validate core database schema including workspaces, documents, transcripts, responses, voiceprints, eval_sets, and reflections. Validate remote parity via Supabase Cloud."
   },
 
   "artifact_summary": {
-    "name": "Supabase Project Linkage",
-    "environment": "Cloud (Supabase) + Local CLI",
+    "name": "Core Schema Definitions",
+    "environment": "Supabase Cloud + Local CLI",
     "artifacts": [
-      ".supabase/config.toml",
       "backend/db/schema.sql",
-      "backend/db/seed.sql"
+      "supabase/migrations/20251010055805_remote_schema.sql"
     ],
     "dist_files": [
       "dev/_reflection.md",
@@ -39,16 +38,16 @@
   },
 
   "validation": {
-    "validated_at": "2025-10-09T23:59:00Z",
+    "validated_at": "2025-10-10T05:58:00Z",
     "validated_by": "GPT-5 Covenant Executor",
     "health": "PASS",
-    "notes": "Supabase linkage validated via dry-run push; local config.toml anchored; ready for schema definitions."
+    "notes": "Supabase remote schema confirmed via `supabase db pull`; schema written locally; migration parity validated."
   },
 
   "baseline": {
-    "tag": "baseline/backend-v0.2.3-a",
+    "tag": "baseline/backend-v0.2.3-b",
     "type": "backend",
-    "scope": "database-linkage"
+    "scope": "core-schema"
   },
 
   "deployment": {
@@ -59,7 +58,11 @@
       "project_name": "mumu-db",
       "connection_verified": true,
       "schema_state": "up_to_date",
-      "commands_executed": ["supabase link", "supabase db push --dry-run"]
+      "commands_executed": [
+        "supabase link",
+        "supabase db push --dry-run",
+        "supabase db pull"
+      ]
     }
   },
 
@@ -67,15 +70,15 @@
     "supabase_cli_version": "2.48.3",
     "doppler_version": "3.x",
     "os": "Windows 10/11 (Git Bash)",
-    "verified_at": "2025-10-09T23:59:00Z"
+    "verified_at": "2025-10-10T05:58:00Z"
   },
 
   "previous_context": {
-    "baseline": "backend-v0.2.3-p0",
-    "component": "environment-provision",
-    "notes": "Validated Doppler environment sync; Supabase secrets accessible prior to project linkage."
+    "baseline": "backend-v0.2.3-a",
+    "component": "database-linkage",
+    "notes": "Supabase linkage validated via dry-run push; local config.toml anchored; ready for schema definitions."
   },
 
-  "next_action": "Proceed to Subtask 2.3.2 — Core Schema Definitions (create workspaces, documents, transcripts, responses, voiceprints, and reflection tables).",
-  "notes": "Subtask 2.3.1 validated and baselined under Covenant Strict Mode — Supabase project linkage complete and environment ready for schema definition."
+  "next_action": "Proceed to Subtask 2.3.3 — Row-Level Security (RLS) and Policies.",
+  "notes": "Subtask 2.3.2 validated and baselined under Covenant Strict Mode — Core Schema Definitions confirmed with Supabase Cloud parity."
 }

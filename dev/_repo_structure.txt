@@ -6,6 +6,8 @@
 |   |-- containers
 |   |   |-- orchestrator
 |   |   `-- whisper
+|   |-- db
+|   |   `-- schema.sql
 |   |-- fly.toml
 |   |-- fly.whisper.toml
 |   |-- index.ts
@@ -61,6 +63,8 @@
 |       |-- logrocket.ts
 |       `-- supabaseClient.ts
 |-- supabase
+|   |-- migrations
+|   |   `-- 20251010055805_remote_schema.sql
 |   |-- schema.sql
 |   `-- seed.sql
 |-- tests
@@ -71,4 +75,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-16 directories, 55 files
+18 directories, 57 files

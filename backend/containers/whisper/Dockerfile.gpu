@@ -1,0 +1,35 @@
+# syntax=docker/dockerfile:1
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+# --- System & Node.js installation ---
+RUN apt-get update && \
+    apt-get install -y curl ffmpeg python3 build-essential && \
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g pnpm typescript && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# --- Copy manifests from backend ---
+COPY backend/package.json backend/pnpm-lock.yaml ./
+RUN pnpm install --prod && pnpm store prune
+
+# --- Install dev type definitions needed for compilation ---
+RUN pnpm add -D @types/node @types/express @types/cors
+
+# --- Copy source & shared code ---
+COPY backend/containers/whisper ./backend/containers/whisper
+COPY backend/shared ./backend/shared
+COPY backend/tsconfig.json ./backend/tsconfig.json
+
+# --- Build TypeScript to JS ---
+RUN pnpm exec tsc -p backend/tsconfig.json
+
+# --- Runtime ---
+WORKDIR /app/backend/containers/whisper
+ENV NODE_ENV=production
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["node", "../../dist/containers/whisper/server.js"]

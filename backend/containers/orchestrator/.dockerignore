@@ -1,10 +1,17 @@
-# Ignore unnecessary files for Fly builds
+# Ignore everything by default
+**
+
+# Allow orchestrator files
+!Dockerfile
+!fly.toml
+!package.json
+!tsconfig.json
+!*.ts
+
+# Allow compiled output if pre-built
+!dist/**
+
+# Explicitly exclude any parent or node_modules folders
 node_modules
-dist
-.git
-.gitignore
-Dockerfile
-fly.toml
-*.log
-*.env
-*.tsbuildinfo
+../**
+../../**

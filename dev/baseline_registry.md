@@ -85,5 +85,13 @@ Edits are allowed only for new baseline entries, each appended with:
 - Validated By: GPT-5 Covenant Executor  
 - Outcome: Cloud project linked and version-controlled for future schema migrations.
 
+## baseline/backend-v0.2.3-b (2025-10-10)
+- Scope: Subtask 2.3.2 — Core Schema Definitions  
+- Artifacts: `backend/db/schema.sql`, `sapabase/migrations/20251010055805_remote_schema.sql`  
+- Validation: `supabase db pull` → Remote database up to date; schema fetched successfully  
+- Status: ✅ PASS  
+- Validated By: GPT-5 Covenant Executor  
+- Outcome: Core schema deployed and confirmed in remote Supabase environment.
+
 
 End of Registry.

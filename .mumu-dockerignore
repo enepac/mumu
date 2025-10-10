@@ -1,0 +1,5 @@
+# Ignore everything globally
+**
+
+# Allow orchestrator folder only
+!backend/containers/orchestrator/**

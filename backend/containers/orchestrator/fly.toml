@@ -1,23 +1,69 @@
-# backend/containers/orchestrator/fly.toml
+# ────────────────────────────────────────────────
+# Fly.io Configuration — Mumu Orchestrator Service
+# Scoped build context, autoscaling, and runtime env
+# ────────────────────────────────────────────────
+
 app = "mumu-orchestrator"
 primary_region = "sjc"
 
+# ------------------------------
+# 🔧 Build Configuration
+# ------------------------------
 [build]
+  # The Dockerfile is in the same folder as this fly.toml
   dockerfile = "Dockerfile"
 
+  # Point to the root-level ignore file for minimal context
+  ignorefile = "../../.mumu-dockerignore"
+
+  # Optional: specify the target stage for multistage builds
+  build-target = "runtime"
+
+# ------------------------------
+# 🌍 Environment Variables
+# ------------------------------
 [env]
   NODE_ENV = "production"
   PORT = "8080"
+  LOG_LEVEL = "info"
 
+# ------------------------------
+# ⚙️ Services Configuration
+# ------------------------------
 [[services]]
   internal_port = 8080
   protocol = "tcp"
+
   auto_stop_machines = true
   min_machines_running = 1
   max_machines_running = 3
+
   [[services.ports]]
     handlers = ["http"]
     port = 80
+
   [[services.ports]]
     handlers = ["tls", "http"]
     port = 443
+
+  [services.concurrency]
+    type = "connections"
+    soft_limit = 25
+    hard_limit = 50
+
+  [[services.http_checks]]
+    interval = "10s"
+    grace_period = "5s"
+    method = "GET"
+    path = "/health"
+    protocol = "http"
+    timeout = "2s"
+    tls_skip_verify = false
+    restart_limit = 0
+
+# ------------------------------
+# 🧠 Metrics and Observability
+# ------------------------------
+[metrics]
+  port = 8080
+  path = "/metrics"

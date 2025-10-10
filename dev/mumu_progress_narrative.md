@@ -180,5 +180,11 @@ System health status: ✅ Stable. Baseline tagged as `backend-v0.2.3-p0`.
 #### Subtask 2.3.1 — Supabase Project Provisioning (backend-v0.2.3-a)
 Supabase CLI authenticated and linked to project `gjrxxiblykxtgmfwnjbp`. A manual `.supabase/config.toml` was anchored to enforce local linkage. Connectivity tests confirmed the remote database is accessible and ready for schema migration. This marks the foundation for Covenant-secured persistence development.
 
+#### Subtask 2.3.2 — Core Schema Definitions (backend-v0.2.3-b)
+Mumu’s backend persistence layer reached its first complete data model.  
+All core tables were defined and verified through Supabase Cloud connectivity.  
+Running `supabase db pull` produced the remote schema snapshot, confirming a synchronized, secure database foundation.  
+System health: ✅ Stable · Baseline `backend-v0.2.3-b` tagged.
+
 
 End of document.

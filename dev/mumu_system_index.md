@@ -15,12 +15,12 @@
 ---
 
 ## DEVELOPMENT LOGS
-- dev/_reflection.md → Debugging, fixes, and lessons (operational intelligence)
-- dev/_decisions.md → Engineering and architecture decisions (design rationale)
-- dev/mumu_progress_narrative.md → High-level chronological story of evolution
-- dev/baseline_registry.md → Ledger of all baselines, tags, and dates
-- dev/mumu_state_registry.json → Machine-readable snapshot of current progress and context
-- dev/_repo_structure.txt → Snapshot of repo directory tree at latest baseline
+- _reflection.md → Debugging, fixes, and lessons (operational intelligence)
+- _decisions.md → Engineering and architecture decisions (design rationale)
+- mumu_progress_narrative.md → High-level chronological story of evolution
+- baseline_registry.md → Ledger of all baselines, tags, and dates
+- mumu_state_registry.json → Machine-readable snapshot of current progress and context
+- _repo_structure.txt → Snapshot of repo directory tree at latest baseline
 
 ---
 

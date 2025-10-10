@@ -465,3 +465,18 @@ Status: ✅ Approved · Implemented · Logged
 **Impact:** Backend environment now has secure, versioned database connection for future RLS and encryption work.  
 **Status:** ✅ Approved · Logged · Baseline backend-v0.2.3-a created.
 
+## Decision D-2.3.2 — Core Schema Structure Approval
+**Date:** 2025-10-10  
+**Scope:** Part 2 → Task 2.3 → Subtask 2.3.2  
+
+**Decision:**  
+Finalize normalized workspace-centric schema with foreign key bindings and vector embedding fields for LLM and audio pipelines.  
+Confirm remote Supabase schema synced and version-controlled via local `backend/db/schema.sql`.  
+
+**Rationale:**  
+Ensures secure, consistent, and reproducible data layer for orchestration and analysis tasks while maintaining workspace isolation.  
+
+**Impact:**  
+Schema validated against remote DB → baseline stability for upcoming RLS and encryption work.  
+
+**Status:** ✅ Approved · Logged · Baseline `backend-v0.2.3-b` created.
