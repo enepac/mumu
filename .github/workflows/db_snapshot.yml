@@ -46,7 +46,8 @@ jobs:
 
       - name: Link Supabase project
         run: |
-          supabase link --project-ref gjrxxiblykxtgmfwnjbp --password ${{ secrets.SUPABASE_DB_PASSWORD }}
+          echo "${{ secrets.SUPABASE_DB_PASSWORD }}" | supabase link --project-ref gjrxxiblykxtgmfwnjbp --password -
+
 
       - name: Run snapshot script
         run: bash backend/scripts/db_snapshot.sh
