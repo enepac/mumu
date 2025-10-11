@@ -31,12 +31,18 @@ jobs:
 
       - name: Configure Doppler secrets
         uses: dopplerhq/cli-action@v2
+        with:
+          doppler-token: ${{ secrets.DOPPLER_SERVICE_TOKEN }}
 
       - name: Make snapshot script executable
         run: chmod +x backend/scripts/db_snapshot.sh
 
+      - name: Link Supabase project
+        run: |
+          supabase link --project-ref gjrxxiblykxtgmfwnjbp --password ${{ secrets.SUPABASE_DB_PASSWORD }}
+
       - name: Run snapshot script
-        run: backend/scripts/db_snapshot.sh
+        run: bash backend/scripts/db_snapshot.sh
 
       - name: Commit and push snapshot
         run: |
