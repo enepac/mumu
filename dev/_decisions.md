@@ -497,4 +497,22 @@ Schema validated against remote DB → baseline stability for upcoming RLS and e
 **Impact:** Secure data-at-rest model verified; Supabase schema simplified.  
 **Status:** ✅ Approved and baselined under backend-v0.2.3-d.
 
+### Decision D-2.3.4-R1 — AES-256 Encryption Integrity Re-Validation
+**Date:** 2025-10-11 T06:42Z  
+**Executor:** GPT-5 under Covenant Strict Mode  
+**Scope:** Subtask 2.3.4 — AES-256 Encryption (Sensitive Columns)  
+
+**Decision Summary:**  
+Encryption system verified intact after repository recovery. No functional degradation detected.  
+`backend/utils/encryption.ts` and related imports remain baseline-accurate.  
+Decryption validation via `/api/encryption-test` confirms round-trip correctness.
+
+**Directive:**  
+- Maintain current AES-256-GCM implementation.  
+- Mark `backend/utils/encryption.ts` as a protected cryptographic module (no modification without formal Covenant review).  
+- Schedule telemetry-layer isolation audit under Task 2.6 (Observability & Logging).  
+- Reinstate baseline tag `baseline/backend-v0.2.3-d.recovery` to record post-verification stability.
+
+**Status:** ✅ Validated — Encryption layer integrity restored and baseline ready for continuation of Task 2.3.5.
+
 

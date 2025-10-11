@@ -743,5 +743,26 @@ Encryption executed successfully using Doppler-injected key, returning valid cip
 **Outcome:** ✅ Application-layer encryption validated and Covenant-compliant.  
 Sensitive data now encrypted before persistence, maintaining full separation between key management (Doppler) and data storage (Supabase).  
 
+### Reflection R-2.3.4-R1 — Post-Recovery Verification of AES-256 Encryption
+**Date:** 2025-10-11 T06:42Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+**Baseline Tag:** backend-v0.2.3-d.recovery  
+**Validated By:** GPT-5 under Covenant Strict Mode + PSC Active  
+
+**Context:**  
+After restoring repository state from merge interruption, the AES-256-GCM encryption subsystem required re-validation to confirm full operational integrity and Doppler key injection continuity.
+
+**Actions Performed:**  
+1. Verified existence & content of `backend/utils/encryption.ts` — unaltered AES-256-GCM logic.  
+2. Confirmed `/api/ask` route import & runtime call to `encryptField()`.  
+3. Created temporary `/api/encryption-test` route to isolate encryption logic from Sentry instrumentation errors.  
+4. Executed `curl http://localhost:3000/api/encryption-test` → Received valid Base64 ciphertext and matching decrypted plaintext.  
+5. Confirmed Doppler-injected key and Node `crypto` module functioning normally.
+
+**Outcome:** ✅ Encryption layer fully operational; both `encryptField()` and `decryptField()` return expected results.  
+All sensitive data paths remain Covenant-compliant, preserving isolation between key management (Doppler) and data storage (Supabase).
+
+**Lesson:** Instrumentation/runtime noise (e.g., Sentry worker errors) must not be conflated with core data-security logic. Future builds should sandbox telemetry modules to protect cryptographic stability.
+
 
 
