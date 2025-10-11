@@ -45,8 +45,10 @@ jobs:
         run: chmod +x backend/scripts/db_snapshot.sh
 
       - name: Link Supabase project
+        env:
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
-          echo "${{ secrets.SUPABASE_DB_PASSWORD }}" | supabase link --project-ref gjrxxiblykxtgmfwnjbp --password -
+          supabase link --project-ref gjrxxiblykxtgmfwnjbp --password "$SUPABASE_DB_PASSWORD"
 
 
       - name: Run snapshot script
