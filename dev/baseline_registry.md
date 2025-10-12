@@ -153,4 +153,22 @@ This state marks the closure of Task 2.3 and completion of Part 2’s Persistenc
 git checkout covenant/lockpoint-v0.2.3-f.reproducible
 supabase db restore dev/snapshots/mumu_lockpoint_20251011.sql
 
+### 🧱 Covenant Lockpoint — backend-v0.2.3-f.reproducible
+**Tag:** `covenant/lockpoint-v0.2.3-f.reproducible`  
+**Type:** Reproducibility / Rollback  
+**Component:** Persistence & Security (Supabase + Doppler + Vercel)  
+**Created At:** 2025-10-11 21:27 –06:00  
+**Validated By:** GPT-5 (Covenant Strict Mode)  
+**Artifacts:**
+- `dev/snapshots/mumu_lockpoint_20251011.sql`
+- `dev/snapshots/mumu_lockpoint_20251011.sha256`
+- `dev/_lockpoint_dependencies.txt`
+- `dev/_lockpoint_secrets_snapshot.json`
+**Integrity:** ✅ SHA-256 verified  
+**Purpose:** Preserve a deterministic rollback snapshot at the end of Task 2.3.5 for disaster-recovery and baseline reconstruction.  
+**Recovery Command:**
+```bash
+git checkout covenant/lockpoint-v0.2.3-f.reproducible
+supabase db restore dev/snapshots/mumu_lockpoint_20251011.sql
+
 End of Registry.
