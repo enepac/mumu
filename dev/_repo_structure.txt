@@ -40,6 +40,9 @@
 |-- dev
 |   |-- Mumu_Covenant_Context_Manifest_v2.md
 |   |-- _decisions.md
+|   |-- _lockpoint_dependencies.txt
+|   |-- _lockpoint_secrets_snapshot.json
+|   |-- _lockpoint_secrets_snapshot.redacted.json
 |   |-- _reflection.md
 |   |-- _repo_structure.txt
 |   |-- baseline_registry.md
@@ -52,6 +55,8 @@
 |   `-- snapshots
 |       |-- mumu_backup_20251010_144639.sql
 |       |-- mumu_backup_20251011_233552.sql
+|       |-- mumu_lockpoint_20251011.sha256
+|       |-- mumu_lockpoint_20251011.sql
 |       `-- remote_schema_20251010.sql
 |-- docker-compose.yml
 |-- eslint.config.mjs
@@ -104,4 +109,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-23 directories, 81 files
+23 directories, 86 files

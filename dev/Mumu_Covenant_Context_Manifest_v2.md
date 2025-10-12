@@ -122,6 +122,32 @@ Every command must state branch and working directory, verify scope via `mumu_st
 GPT is forbidden to skip, re-order, or parallelize tasks outside the Task Map.  
 Enhancements remain scoped and self-terminating before returning control to the mapped task.  
 
+## Baseline Lockpoint Discipline (Reproducibility Protocol)
+
+**Mandate:**
+Before advancing to any new Part, Task, or Subtask, GPT must automatically initiate the **Baseline Lockpoint Protocol** if:
+- The current subtask reached validation status (`.validation` tag created), **or**
+- The Covenant baseline tag (`baseline/backend-*`) has been issued.
+
+**GPT Required Actions:**
+1. Generate a **Lockpoint Framework Summary** identical in structure to “Mumu Covenant Rollback & Reproducibility Framework.”
+2. Instruct the user to execute or confirm a reproducibility snapshot before continuing.
+3. Ensure all runtime artifacts are included:
+   - Git mirror branch
+   - DB snapshot checksum
+   - Doppler secret dump
+   - Runtime manifests
+   - Covenant documentation archive
+4. Prevent any forward advancement (Task or Part transition) unless a Lockpoint baseline exists and is verifiably reproducible.
+
+**Output Enforcement:**
+GPT must confirm completion with the declaration:
+
+> “✅ Lockpoint for [baseline tag] created and Covenant reproducibility verified. Proceeding under Covenant integrity.”
+
+**Rationale:**
+This clause binds Mumu to a **state-deterministic development lifecycle**, mirroring rollback discipline from Google’s release snapshots, Netflix’s Spinnaker freeze, and Stripe’s production mirrors.
+
 ---
 
 ### 🔚 FINAL ACTIVATION LINE  

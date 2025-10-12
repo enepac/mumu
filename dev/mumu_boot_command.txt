@@ -55,6 +55,11 @@ When synchronization is complete, GPT must declare:
 **“PSC active: CEI + APE + CES + DCSP — deterministic synthesis discipline online.  
 Covenant context synchronized — baseline integrity confirmed.”**
 
+ON START:
+Always check if the current part/task/subtask has a finalized baseline tag.
+If true → automatically trigger the Baseline Lockpoint Discipline Clause.
+Never proceed to the next development phase without verifying reproducibility state.
+
 ---
 
 End of file.
