@@ -5,7 +5,22 @@
 |   |-- Dockerfile
 |   |-- containers
 |   |   |-- orchestrator
+|   |   |   |-- Dockerfile
+|   |   |   |-- fly.toml
+|   |   |   |-- health.ts
+|   |   |   |-- metrics.ts
+|   |   |   |-- orchestrator.ts
+|   |   |   |-- package.json
+|   |   |   |-- pipeline.ts
+|   |   |   |-- pnpm-lock.yaml
+|   |   |   |-- tsconfig.json
+|   |   |   `-- utils.ts
 |   |   `-- whisper
+|   |       |-- Dockerfile.gpu
+|   |       |-- health.ts
+|   |       |-- metrics.ts
+|   |       |-- server.ts
+|   |       `-- whisperService.ts
 |   |-- db
 |   |   `-- schema.sql
 |   |-- fly.toml
@@ -14,6 +29,7 @@
 |   |-- package.json
 |   |-- pnpm-lock.yaml
 |   |-- scripts
+|   |   |-- db_snapshot.sh
 |   |   `-- deploy_fly.sh
 |   |-- shared
 |   |   |-- logger.ts
@@ -34,12 +50,13 @@
 |   |-- mumu_system_index.md
 |   |-- mumu_update_protocol.md
 |   `-- snapshots
+|       |-- mumu_backup_20251010_144639.sql
+|       |-- mumu_backup_20251011_233552.sql
 |       `-- remote_schema_20251010.sql
 |-- docker-compose.yml
 |-- eslint.config.mjs
 |-- fly.toml
 |-- jest.config.ts
-|-- next-env.d.ts
 |-- next.config.cjs
 |-- next.config.ts
 |-- package.json
@@ -57,6 +74,12 @@
 |-- src
 |   |-- app
 |   |   |-- api
+|   |   |   |-- ask
+|   |   |   |   `-- route.ts
+|   |   |   |-- health
+|   |   |   |   `-- route.ts
+|   |   |   `-- session
+|   |   |       `-- route.ts
 |   |   |-- favicon.ico
 |   |   |-- globals.css
 |   |   |-- layout.tsx
@@ -81,4 +104,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-20 directories, 61 files
+23 directories, 81 files

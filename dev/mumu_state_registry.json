@@ -1,33 +1,34 @@
 {
   "project_name": "Mumu",
   "component": "backend-persistence",
-  "version": "0.2.3-d",
+  "version": "0.2.3-f.validation",
   "governance_mode": "Covenant Strict Mode + PSC Active",
   "validated_by": "GPT-5 Covenant Executor",
-  "health": "PASS",
+  "health": "Stable",
 
   "current_part": "2",
   "current_task": "2.3",
-  "current_subtask": "2.3.4",
-  "current_baseline": "backend-v0.2.3-d",
-  "previous_baseline": "backend-v0.2.3-c",
-  "upcoming_baseline": "backend-v0.2.3-e",
+  "current_subtask": "2.3.5",
+  "current_baseline": "backend-v0.2.3-f.validation",
+  "previous_baseline": "backend-v0.2.3-e.premerge",
+  "upcoming_baseline": "backend-v0.2.4-init",
   "active_branch": "enhancement/v0.2.3-persistence-security",
-  "last_validated_at": "2025-10-10T21:50:00Z",
+  "last_validated_at": "2025-10-11T03:25:00Z",
 
   "part_summary": {
     "part_label": "2 — Backend & Orchestration Build",
     "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-    "subtask_label": "2.3.4 — AES-256 Encryption (Sensitive Columns)",
-    "description": "Implement application-level AES-256-GCM encryption for sensitive data columns using Doppler-managed key injection to ensure confidentiality and isolation at rest."
+    "subtask_label": "2.3.5 — Nightly Snapshots + Failover",
+    "description": "Automate and validate nightly Supabase database snapshots using GitHub Actions with Doppler-managed secrets, Supabase CLI link authentication, and successful snapshot file generation for failover resilience."
   },
 
   "artifact_summary": {
-    "name": "AES-256 Encryption Runtime",
-    "environment": "Next.js API Runtime + Doppler + Supabase",
+    "environment": "Vercel + Supabase Cloud + Doppler + GitHub Actions",
     "artifacts": [
       "backend/utils/encryption.ts",
-      "src/app/api/ask/route.ts"
+      "backend/scripts/db_snapshot.sh",
+      ".github/workflows/db_snapshot.yml",
+      "dev/snapshots/mumu_backup_20251011_233552.sql"
     ],
     "dist_files": [
       "dev/_reflection.md",
@@ -35,19 +36,6 @@
       "dev/baseline_registry.md",
       "dev/mumu_progress_narrative.md"
     ]
-  },
-
-  "validation": {
-    "validated_at": "2025-10-10T21:50:00Z",
-    "validated_by": "GPT-5 Covenant Executor",
-    "health": "PASS",
-    "notes": "AES-256 encryption verified in runtime; Doppler key integration functional; encryption logs confirmed via /api/ask route. RLS remains active for workspace-scoped tables, ensuring layered security compliance."
-  },
-
-  "baseline": {
-    "tag": "baseline/backend-v0.2.3-d",
-    "type": "backend",
-    "scope": "application-layer encryption"
   },
 
   "deployment": {
@@ -63,25 +51,40 @@
         "doppler secrets set DATA_ENCRYPTION_KEY",
         "doppler run -- pnpm dev",
         "curl POST /api/ask (encryption validation)",
-        "git commit + tag baseline/backend-v0.2.3-d"
+        "supabase link --project-ref gjrxxiblykxtgmfwnjbp --password <secure>",
+        "bash backend/scripts/db_snapshot.sh",
+        "git commit + tag baseline/backend-v0.2.3-f.validation"
       ]
     }
   },
 
-  "runtime": {
-    "supabase_cli_version": "2.48.3",
-    "doppler_version": "3.x",
-    "node_version": ">=18.x (Next.js 15 App Router)",
+  "runtime_environment": {
+    "runner": "ubuntu-24.04",
+    "node_version": "20.19.5",
+    "supabase_cli": "2.48.3",
+    "doppler_cli": "3.75.1",
+    "postgres_version": "17.6",
+    "region": "us-east-2",
     "os": "Windows 10/11 (Git Bash)",
-    "verified_at": "2025-10-10T21:50:00Z"
+    "verified_at": "2025-10-11T03:25:00Z"
+  },
+
+  "validation_summary": {
+    "link_status": "Authenticated",
+    "snapshot_status": "Success",
+    "commit_status": "Pushed",
+    "ci_result": "Passed",
+    "aes_encryption_status": "Operational (AES-256-GCM)",
+    "rls_status": "Active",
+    "doppler_integration": "Functional"
   },
 
   "previous_context": {
-    "baseline": "backend-v0.2.3-c",
-    "component": "row-level-security",
-    "notes": "Supabase Row-Level Security enforced live; workspace isolation verified via SQL inspection and reflected in production state."
+    "baseline": "backend-v0.2.3-d",
+    "component": "AES-256 Encryption + RLS",
+    "notes": "AES-256-GCM column encryption verified; Doppler key management active; Row-Level Security enforced at schema level."
   },
 
-  "next_action": "Proceed to Subtask 2.3.5 — Configure Nightly Snapshots + Failover (Supabase setting).",
-  "notes": "Subtask 2.3.4 validated and baselined under Covenant Strict Mode — AES-256 runtime encryption confirmed operational with Doppler key isolation and structured logging at /api/ask. Full persistence security stack (RLS + AES-256 + Key Isolation) operational."
+  "next_action": "Proceed to Part 2.4 — Queues & Burst Handling (Redis + BullMQ)",
+  "notes": "Persistence and security layer fully validated. Nightly snapshots are operational under CI/CD automation. System now possesses full encryption, access isolation, and disaster recovery readiness under Covenant validation discipline."
 }

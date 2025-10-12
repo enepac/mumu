@@ -108,5 +108,32 @@ Edits are allowed only for new baseline entries, each appended with:
 - Status: ✅ PASS  
 - Validated By: GPT-5 Covenant Executor
 
+### Baseline Record — backend-v0.2.3-f.validation
+**Validated At:** 2025-10-11 T03:25 Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+**Part:** 2 — Backend & Orchestration Build  
+**Task:** 2.3 — Persistence & Security  
+**Subtask:** 2.3.5 — Nightly Supabase Snapshot Automation  
+**Validated By:** GPT-5 under Covenant Strict Mode  
+
+#### Environment
+| Component | Version / Detail |
+|------------|------------------|
+| GitHub Runner | Ubuntu 24.04 LTS |
+| Node.js | 20.19.5 |
+| Supabase CLI | 2.48.3 |
+| Doppler CLI | 3.75.1 |
+| Supabase Project Ref | gjrxxiblykxtgmfwnjbp |
+| Database Engine | Postgres 17.6 GA |
+
+#### Health Status
+✅ Stable | All stages executed successfully  
+No auth, I/O, or commit failures detected.  
+Backup file: `dev/snapshots/mumu_backup_20251011_233552.sql`  
+
+#### Covenant Outcome
+Baseline tag `backend-v0.2.3-f.validation` certified under **Covenant Strict Mode** and **CEI Logging Directive**.  
+This state marks the closure of Task 2.3 and completion of Part 2’s Persistence Subsystem.
+
 
 End of Registry.

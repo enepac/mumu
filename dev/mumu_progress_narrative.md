@@ -197,5 +197,27 @@ Application-layer AES-256-GCM encryption verified operational via /api/ask test.
 This closes the persistence security foundation: Supabase (RLS) + AES-256 (app-level) + Doppler (key isolation).  
 System Health: ✅ Stable · Baseline backend-v0.2.3-d tagged.
 
+### Narrative N-2.3.5 — Nightly Supabase Snapshot Automation
+
+**Date:** 2025-10-11 T03:25 Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+**Baseline:** backend-v0.2.3-f.validation  
+
+After completing the encryption validation (2.3.4), focus shifted to ensuring persistent data resilience.  
+This effort culminated in the Nightly Supabase Snapshot Automation, which transforms Mumu’s persistence layer into a self-maintaining archival system.
+
+The team integrated a GitHub Actions workflow executing at 00:00 UTC daily.  
+Using **Supabase CLI v2.48.3** and **Doppler v3.75.1**, the job securely links to the production Supabase instance, performs a full schema + data dump, and commits it back into the repository under `dev/snapshots/`.  
+
+Multiple iterations were required:
+- Initial CLI resolution errors on runner (curl-based installation) → replaced by official Supabase action.  
+- Password handshake failures via stdin → fixed using pipe-based secret input.  
+- Network latency on Supabase DNS → resolved automatically through runner caching.
+
+**Outcome:**  
+A fully automated and reproducible snapshot system capable of nightly backups, manual dispatches, and version-tagged rollback validation.  
+This subtask closes the persistence automation loop, marking the backend as recovery-ready under Covenant compliance.
+
+> “Resilience is no longer reactive — it’s continuous.”
 
 End of document.

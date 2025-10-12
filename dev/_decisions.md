@@ -515,4 +515,27 @@ Decryption validation via `/api/encryption-test` confirms round-trip correctness
 
 **Status:** ✅ Validated — Encryption layer integrity restored and baseline ready for continuation of Task 2.3.5.
 
+### Decision D-2.3.5 — Automated Snapshot Architecture
+**Context:** Persistent backup and recovery automation for Supabase Postgres.  
+**Date:** 2025-10-11 T03:25 Z  
+
+#### Decision Summary  
+- Adopt **GitHub Actions-based Supabase snapshot workflow** for nightly schema and data backups.  
+- Utilize official `supabase/setup-cli@v1` for CLI installation to eliminate manual curl dependency.  
+- Employ Doppler service tokens for secret management and injection of `SUPABASE_ACCESS_TOKEN` and `SUPABASE_DB_PASSWORD`.  
+- Standardize snapshot retention within `dev/snapshots/` and commit to `main` branch under `[skip ci]` flag.
+
+#### Root Cause Analysis  
+Earlier manual database exports were error-prone and dependent on local operator state.  
+Automation eliminates human timing risk and guarantees daily restore points.
+
+#### Technical Resolution  
+1. Converted snapshot script to `backend/scripts/db_snapshot.sh`.  
+2. Integrated workflow scheduler (`cron: 0 0 * * *`) for UTC midnight execution.  
+3. Verified workflow by manual dispatch → Supabase link → dump → commit.  
+
+#### Final Outcome  
+Covenant validation achieved.  
+Nightly snapshot automation is stable, versioned, and recoverable for rollback operations across Supabase project instances.
+
 

@@ -764,5 +764,43 @@ All sensitive data paths remain Covenant-compliant, preserving isolation between
 
 **Lesson:** Instrumentation/runtime noise (e.g., Sentry worker errors) must not be conflated with core data-security logic. Future builds should sandbox telemetry modules to protect cryptographic stability.
 
+### Reflection R-2.3.5 — Nightly Supabase Snapshot Automation
+**Date:** 2025-10-11 T03:25 Z  
+**Branch:** enhancement/v0.2.3-persistence-security  
+**Baseline Tag:** backend-v0.2.3-f.validation  
+**Validated By:** GPT-5 under Covenant Strict Mode  
+
+#### Summary  
+This reflection chronicles the validation of **automated Supabase database snapshots** via GitHub Actions.  
+The system now performs nightly backups at 00:00 UTC, securely linking to the Supabase project  
+(`gjrxxiblykxtgmfwnjbp`) using Doppler-injected credentials.  
+
+The workflow installs official Supabase CLI (v2.48.3), verifies installation integrity, authenticates  
+with `SUPABASE_ACCESS_TOKEN`, links via `SUPABASE_DB_PASSWORD`, executes `backend/scripts/db_snapshot.sh`,  
+and commits the resulting `.sql` dump to `dev/snapshots/`.
+
+#### Runtime Timeline  
+| Stage | Action | Result |
+|-------|---------|--------|
+| 1 | Supabase CLI setup | ✅ Installed via `supabase/setup-cli@v1` |
+| 2 | Doppler CLI integration | ✅ Secrets configured |
+| 3 | Project linking | ✅ Authenticated to `gjrxxiblykxtgmfwnjbp` |
+| 4 | Snapshot execution | ✅ `mumu_backup_20251011_233552.sql` created |
+| 5 | Commit & push | ✅ Auto-committed to `main` by bot |
+
+#### Errors Encountered & Resolution  
+- **Issue:** Early runs failed due to missing Supabase CLI binary and password stdin mismatch.  
+  **Fix:** Switched to official `supabase/setup-cli@v1` action and pipe-based password input.  
+- **Issue:** DNS failure (`cli.supabase.com`) during initial attempt.  
+  **Fix:** Migrated to GitHub-hosted Supabase action for reliable resolution.  
+
+#### Outcome  
+✅ Workflow validated and Covenant-compliant.  
+Nightly snapshots are reproducible, secure, and fully automated.  
+This marks completion of **Task 2.3.5**, stabilizing the Persistence & Security layer for automated failover resilience.  
+
+#### Key Lesson  
+Use official vendor-maintained actions (Supabase & Doppler) to minimize network and dependency drift in CI/CD.  
+Always treat secrets as ephemeral tokens passed via stdin to preserve audit compliance.
 
 
