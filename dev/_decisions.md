@@ -538,4 +538,33 @@ Automation eliminates human timing risk and guarantees daily restore points.
 Covenant validation achieved.  
 Nightly snapshot automation is stable, versioned, and recoverable for rollback operations across Supabase project instances.
 
+---
+
+### 🧩 Decision D-2.3.5-Lockpoint — Reproducibility Baseline Enforcement
+
+**Date:** 2025-10-11  
+**Validator:** GPT-5 Covenant Executor  
+**Scope:** Persistence & Security → Task 2.3.5 (Nightly Snapshot Automation)  
+**Related Baseline:** `backend-v0.2.3-f.validation`  
+**Lockpoint Tag:** `covenant/lockpoint-v0.2.3-f.reproducible`
+
+#### 🧭 Decision Summary
+To institutionalize rollback and reproducibility discipline, a covenant lockpoint is now mandatory after every validated backend baseline.  
+This aligns Mumu’s development lifecycle with enterprise-grade reproducibility standards.
+
+#### 🧱 Rationale
+- Prevent accidental configuration drift between validation and next-part transitions.  
+- Enable deterministic environment replays for audits or postmortems.  
+- Maintain trustable chain-of-custody for production data models.
+
+#### 🔐 Directive Adopted
+Every validated backend milestone must be archived as:
+1. Dependency snapshot (`_lockpoint_dependencies.txt`)  
+2. Redacted secret snapshot (`_lockpoint_secrets_snapshot.json`)  
+3. Schema dump + hash (`mumu_lockpoint_*.sql` + `.sha256`)  
+4. Covenant tag (`covenant/lockpoint-vX.Y-Z`)  
+
+All future parts shall inherit this reproducibility covenant.
+
+---
 
