@@ -26,6 +26,17 @@
 |   |-- fly.toml
 |   |-- fly.whisper.toml
 |   |-- index.ts
+|   |-- lib
+|   |   |-- buffer
+|   |   |   |-- backend
+|   |   |   |   `-- lib
+|   |   |   |       `-- jobs
+|   |   |   |           `-- queueDispatcher.ts
+|   |   |   `-- createBuffer.ts
+|   |   |-- jobs
+|   |   |   `-- queueDispatcher.ts
+|   |   `-- telemetry
+|   |       `-- ceiTelemetry.ts
 |   |-- package.json
 |   |-- pnpm-lock.yaml
 |   |-- scripts
@@ -34,9 +45,15 @@
 |   |-- shared
 |   |   |-- logger.ts
 |   |   `-- types.ts
+|   |-- tests
+|   |   `-- integration
+|   |       `-- asrIntegration.test.ts
 |   |-- tsconfig.json
-|   `-- utils
-|       `-- encryption.ts
+|   |-- utils
+|   |   `-- encryption.ts
+|   `-- workers
+|       `-- asr
+|           `-- whisperWorker.ts
 |-- dev
 |   |-- Mumu_Covenant_Context_Manifest_v2.md
 |   |-- _decisions.md
@@ -62,9 +79,11 @@
 |       |-- mumu_backup_20251023_210335.dump
 |       |-- mumu_backup_20251023_214918.sql
 |       |-- mumu_backup_20251023_220624.sql
+|       |-- mumu_backup_20251024_123659.sql
 |       |-- mumu_lockpoint_20251011.sha256
 |       |-- mumu_lockpoint_20251011.sql
 |       |-- mumu_lockpoint_20251023.sha256
+|       |-- mumu_lockpoint_20251024.sha256
 |       `-- remote_schema_20251010.sql
 |-- docker-compose.yml
 |-- eslint.config.mjs
@@ -133,4 +152,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-32 directories, 101 files
+43 directories, 109 files
