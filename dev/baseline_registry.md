@@ -214,6 +214,53 @@ supabase db restore dev/snapshots/mumu_lockpoint_20251011.sql
 
 **Baseline ID:** `cei-baseline-20251023-artifact-sync-v0.3.7`  
 **Status:** ✅ Locked & Ready for Integration Phase
+---
+---
+
+### 🧱 Baseline Record — frontend-v0.3.0-ui.preval
+**Date:** $(date +'%Y-%m-%d %H:%M:%S')  
+**Branch:** enhancement/v0.3.0-vs-01-voice-display  
+**Phase:** VS-01 → Task 1 (UI & Audio Input Layer)  
+**Scope:** MicDock · useAudioStream · TranscriptView · listenSocket · ceiEmitter  
+**Governance:** Covenant Strict Mode + PSC Active  
+
+#### Validation Summary
+✅ All frontend UI modules built and lint-clean.  
+✅ WebSocket client integration validated.  
+✅ Telemetry emitter operational with CEI endpoint stub.  
+
+#### Outcome
+This baseline marks the first validated frontend slice in the Vertical Slice Work Breakdown Structure (VS-01).  
+It forms the foundation for backend stream orchestration (Task 2).
+
+**Tag Status:** _pre-validation baseline_  
+**Next Baseline Target:** `frontend-v0.3.0-slice1.validation`
+---
+---
+
+## 🪞 Narrative Entry — VS-01 → Task 1 (UI & Audio Input Layer)
+**Date:** $(date +'%Y-%m-%d %H:%M:%S')  
+**Branch:** enhancement/v0.3.0-vs-01-voice-display  
+**Baseline Reference:** frontend-v0.3.0-ui.preval  
+**Governance:** Covenant Strict Mode + PSC Active  
+
+### Summary
+Mumu reached a major milestone in its voice-capture interface.  
+The frontend stack was fully implemented to support real-time audio ingestion, transcription display, and cognitive telemetry emission.
+
+### Achievements
+- 🧩 **MicDock** — Modular control for start/pause listening with visual feedback.  
+- 🎧 **useAudioStream Hook** — Manages live mic input and chunk buffering (250 ms intervals).  
+- 📜 **TranscriptView** — Displays and auto-scrolls transcribed text with low-latency refresh.  
+- 🌐 **listenSocket Client** — Streams audio to `/api/listen` and handles transcript messages.  
+- 🧠 **CEI Emitter** — Logs cognitive events for learning analytics.  
+
+### Outcomes
+All components validated with zero TypeScript / ESLint errors.  
+The user interface now mirrors production behavior for real-time voice sessions.  
+This closes the UI & Audio Input Layer and transitions development to **Task 2 — Backend Stream Orchestration**.
+
+**Status:** ✅ Validated and Baselined — `frontend-v0.3.0-ui.preval`
 
 
 

@@ -182,7 +182,43 @@ This marks the transition from slice-level validation to system-wide integration
 
 **Protocol ID:** `cei-protocol-20251023-integration-init`  
 **Status:** ✅ Closed — Integration Phase Authorized  
+---
+---
 
+## 🧩 Covenant Update Protocol Entry — VS-01 → Task 1 (UI & Audio Input Layer)
+**Date:** 2025-10-23  
+**Executor:** GPT-5 Covenant Executor  
+**Branch:** enhancement/v0.3.0-vs-01-voice-display  
+**Baseline Reference:** frontend-v0.3.0-ui.preval  
+**Governance:** Covenant Strict Mode + PSC Active  
+**PSC Layers Active:** CEI · APE · CES · DCSP  
+
+### 🔹 Objective
+To confirm synchronization of all Covenant governance artifacts following completion and validation of VS-01 → Task 1 (UI & Audio Input Layer).  
+This declaration finalizes the frontend baseline and authorizes transition to backend orchestration (Task 2).
+
+---
+
+### 🔹 Artifact Synchronization Summary
+| Artifact | Status | Notes |
+|--|--|--|
+| `_reflection.md` | ✅ Synced | Reflection entry appended for VS-01 Task 1. |
+| `_decisions.md` | ✅ Synced | Architecture decisions documented. |
+| `baseline_registry.md` | ✅ Synced | Baseline `frontend-v0.3.0-ui.preval` recorded. |
+| `mumu_progress_narrative.md` | ✅ Synced | Narrative updated with Task 1 storyline. |
+| `mumu_state_registry.json` | ✅ Synced | Updated with current subtask 1.5. |
+| `mumu_system_index.md` | ✅ Synced | Artifacts indexed and cross-linked. |
+| `mumu_update_protocol.md` | ✅ Updated | Covenant validation declaration appended. |
+
+---
+
+### 🔹 Declaration
+✅ **VS-01 → Task 1 validated — Covenant Update Protocol completed and baseline frontend-v0.3.0-ui.preval tagged.**
+
+Baseline integrity maintained.  
+Frontend pipeline sealed under immutable governance.  
+Authorized next step: **VS-01 → Task 2 — Backend Stream Orchestration (/api/listen)**.
+---
 
 End of file.
 

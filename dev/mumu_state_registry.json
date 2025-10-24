@@ -1,122 +1,9 @@
 {
   "project_name": "Mumu",
-  "component": "backend-persistence",
-  "version": "0.2.3-f.validation",
   "governance_mode": "Covenant Strict Mode + PSC Active",
   "validated_by": "GPT-5 Covenant Executor",
   "health": "Stable",
-
-  "current_part": "2",
-  "current_task": "2.3",
-  "current_subtask": "2.3.5",
-  "current_baseline": "backend-v0.2.3-f.validation",
-  "previous_baseline": "backend-v0.2.3-e.premerge",
-  "upcoming_baseline": "backend-v0.2.4-init",
-  "active_branch": "enhancement/v0.2.3-persistence-security",
-  "last_validated_at": "2025-10-11T03:25:00Z",
-
-  "part_summary": {
-    "part_label": "2 — Backend & Orchestration Build",
-    "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-    "subtask_label": "2.3.5 — Nightly Snapshots + Failover",
-    "description": "Automate and validate nightly Supabase database snapshots using GitHub Actions with Doppler-managed secrets, Supabase CLI link authentication, and successful snapshot file generation for failover resilience."
-  },
-
-  "artifact_summary": {
-    "environment": "Vercel + Supabase Cloud + Doppler + GitHub Actions",
-    "artifacts": [
-      "backend/utils/encryption.ts",
-      "backend/scripts/db_snapshot.sh",
-      ".github/workflows/db_snapshot.yml",
-      "dev/snapshots/mumu_backup_20251011_233552.sql"
-    ],
-    "dist_files": [
-      "dev/_reflection.md",
-      "dev/_decisions.md",
-      "dev/baseline_registry.md",
-      "dev/mumu_progress_narrative.md"
-    ]
-  },
-
-  "deployment": {
-    "platform": "Vercel + Supabase Cloud + Doppler",
-    "status": "validated",
-    "details": {
-      "project_ref": "gjrxxiblykxtgmfwnjbp",
-      "project_name": "mumu-db",
-      "connection_verified": true,
-      "schema_state": "up_to_date",
-      "runtime_validated": true,
-      "commands_executed": [
-        "doppler secrets set DATA_ENCRYPTION_KEY",
-        "doppler run -- pnpm dev",
-        "curl POST /api/ask (encryption validation)",
-        "supabase link --project-ref gjrxxiblykxtgmfwnjbp --password <secure>",
-        "bash backend/scripts/db_snapshot.sh",
-        "git commit + tag baseline/backend-v0.2.3-f.validation"
-      ]
-    }
-  },
-
-  "runtime_environment": {
-    "runner": "ubuntu-24.04",
-    "node_version": "20.19.5",
-    "supabase_cli": "2.48.3",
-    "doppler_cli": "3.75.1",
-    "postgres_version": "17.6",
-    "region": "us-east-2",
-    "os": "Windows 10/11 (Git Bash)",
-    "verified_at": "2025-10-11T03:25:00Z"
-  },
-
-  "validation_summary": {
-    "link_status": "Authenticated",
-    "snapshot_status": "Success",
-    "commit_status": "Pushed",
-    "ci_result": "Passed",
-    "aes_encryption_status": "Operational (AES-256-GCM)",
-    "rls_status": "Active",
-    "doppler_integration": "Functional"
-  },
-
-  "previous_context": {
-    "baseline": "backend-v0.2.3-d",
-    "component": "AES-256 Encryption + RLS",
-    "notes": "AES-256-GCM column encryption verified; Doppler key management active; Row-Level Security enforced at schema level."
-  },
-
-  "next_action": {
-    "action": "Proceed to Part 2.4 — Queues & Burst Handling (Redis + BullMQ)",
-    "notes": "Persistence and security layer fully validated. Nightly snapshots are operational under CI/CD automation. System now possesses full encryption, access isolation, and disaster recovery readiness under Covenant validation discipline."
-  },
-
-  "lockpoint": {
-    "tag": "covenant/lockpoint-v0.2.3-f.reproducible",
-    "created_at": "2025-10-11T21:27:45-06:00",
-    "component": "backend-persistence",
-    "purpose": "Reproducible rollback state after validation of Task 2.3.5",
-    "verified_hash": "OK",
-    "validated_by": "GPT-5 Covenant Executor"
-  },
-
   "current_phase": "Integration and Implementation",
-  "integration_scope": {
-    "vertical_slices": ["VS-01", "VS-02", "VS-03", "VS-04", "VS-05", "VS-06", "VS-07", "VS-08"],
-    "description": "Integrated development phase combining all validated vertical slices into a unified, governed system."
-  },
-  "integration_baseline": "baseline/artifact-sync-v0.3.7",
-  "previous_integration_baseline": "enterprise-v0.3.7-slice8.validation",
-  "next_expected_baseline": "integration-v0.3.8",
-  "last_validated_integration_at": "2025-10-23T23:00:00Z",
-
-  "phase_summary": {
-    "objective": "Integrate all validated vertical slices into a continuous, governed build pipeline under PSC enforcement.",
-    "status": "Ready for coding and validation in VSCode.",
-    "reflection_link": "cei-reflection-20251023-preintegration-vs-08",
-    "decision_link": "cei-decision-20251023-integration-vs-08",
-    "baseline_link": "cei-baseline-20251023-artifact-sync-v0.3.7"
-  },
-
   "psc_layers_active": ["CEI", "APE", "CES", "DCSP"],
   "reos_state": {
     "phase": "Invoke → Execute",
@@ -128,6 +15,158 @@
     "reflection_logging": true,
     "baseline_enforcement": true,
     "lockpoint_required": true
+  },
+  "components": [
+    {
+      "component": "backend-persistence",
+      "version": "0.2.3-f.validation",
+      "current_part": "2",
+      "current_task": "2.3",
+      "current_subtask": "2.3.5",
+      "current_baseline": "backend-v0.2.3-f.validation",
+      "previous_baseline": "backend-v0.2.3-e.premerge",
+      "upcoming_baseline": "backend-v0.2.4-init",
+      "active_branch": "enhancement/v0.2.3-persistence-security",
+      "last_validated_at": "2025-10-11T03:25:00Z",
+      "part_summary": {
+        "part_label": "2 — Backend & Orchestration Build",
+        "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
+        "subtask_label": "2.3.5 — Nightly Snapshots + Failover",
+        "description": "Automate and validate nightly Supabase database snapshots using GitHub Actions with Doppler-managed secrets, Supabase CLI authentication, and snapshot file generation for failover resilience."
+      },
+      "artifact_summary": {
+        "environment": "Vercel + Supabase Cloud + Doppler + GitHub Actions",
+        "artifacts": [
+          "backend/utils/encryption.ts",
+          "backend/scripts/db_snapshot.sh",
+          ".github/workflows/db_snapshot.yml",
+          "dev/snapshots/mumu_backup_20251011_233552.sql"
+        ],
+        "dist_files": [
+          "dev/_reflection.md",
+          "dev/_decisions.md",
+          "dev/baseline_registry.md",
+          "dev/mumu_progress_narrative.md"
+        ]
+      },
+      "deployment": {
+        "platform": "Vercel + Supabase Cloud + Doppler",
+        "status": "validated",
+        "details": {
+          "project_ref": "gjrxxiblykxtgmfwnjbp",
+          "project_name": "mumu-db",
+          "connection_verified": true,
+          "schema_state": "up_to_date",
+          "runtime_validated": true,
+          "commands_executed": [
+            "doppler secrets set DATA_ENCRYPTION_KEY",
+            "doppler run -- pnpm dev",
+            "curl POST /api/ask (encryption validation)",
+            "supabase link --project-ref gjrxxiblykxtgmfwnjbp --password <secure>",
+            "bash backend/scripts/db_snapshot.sh",
+            "git commit + tag baseline/backend-v0.2.3-f.validation"
+          ]
+        }
+      },
+      "runtime_environment": {
+        "runner": "ubuntu-24.04",
+        "node_version": "20.19.5",
+        "supabase_cli": "2.48.3",
+        "doppler_cli": "3.75.1",
+        "postgres_version": "17.6",
+        "region": "us-east-2",
+        "os": "Windows 10/11 (Git Bash)",
+        "verified_at": "2025-10-11T03:25:00Z"
+      },
+      "validation_summary": {
+        "link_status": "Authenticated",
+        "snapshot_status": "Success",
+        "commit_status": "Pushed",
+        "ci_result": "Passed",
+        "aes_encryption_status": "Operational (AES-256-GCM)",
+        "rls_status": "Active",
+        "doppler_integration": "Functional"
+      },
+      "previous_context": {
+        "baseline": "backend-v0.2.3-d",
+        "component": "AES-256 Encryption + RLS",
+        "notes": "AES-256-GCM column encryption verified; Doppler key management active; Row-Level Security enforced."
+      },
+      "next_action": {
+        "action": "Proceed to Part 2.4 — Queues & Burst Handling (Redis + BullMQ)",
+        "notes": "Persistence and security layer validated. Nightly snapshots operational under CI/CD automation."
+      },
+      "lockpoint": {
+        "tag": "covenant/lockpoint-v0.2.3-f.reproducible",
+        "created_at": "2025-10-11T21:27:45-06:00",
+        "component": "backend-persistence",
+        "purpose": "Reproducible rollback state after validation of Task 2.3.5",
+        "verified_hash": "OK",
+        "validated_by": "GPT-5 Covenant Executor"
+      }
+    },
+    {
+      "component": "frontend-ui",
+      "version": "0.3.0-ui.preval",
+      "current_part": "VS-01",
+      "current_task": "1",
+      "current_subtask": "1.5",
+      "current_baseline": "frontend-v0.3.0-ui.preval",
+      "previous_baseline": "backend-v0.2.3-f.validation",
+      "upcoming_baseline": "frontend-v0.3.0-slice1.validation",
+      "active_branch": "enhancement/v0.3.0-vs-01-voice-display",
+      "last_validated_at": "2025-10-23T22:40:00Z",
+      "part_summary": {
+        "part_label": "VS-01 — Voice Capture → Transcription → Display",
+        "task_label": "Task 1 — UI & Audio Input Layer",
+        "subtask_label": "1.5 — Telemetry Emitter (CEI Learning Hook Integration)",
+        "description": "Completed the frontend capture pipeline, including MicDock, useAudioStream, TranscriptView, WebSocket client, and CEI telemetry emitter."
+      },
+      "artifact_summary": {
+        "environment": "Next.js 15 + Tailwind + WebSocket + CEI Telemetry",
+        "artifacts": [
+          "src/components/voice/MicDock/MicDock.tsx",
+          "src/hooks/useAudioStream.ts",
+          "src/components/ui/TranscriptView.tsx",
+          "src/lib/socket/listenSocket.ts",
+          "src/utils/ceiEmitter.ts"
+        ],
+        "dist_files": [
+          "dev/_reflection.md",
+          "dev/_decisions.md",
+          "dev/baseline_registry.md",
+          "dev/mumu_progress_narrative.md"
+        ]
+      },
+      "next_action": {
+        "action": "Proceed to VS-01 → Task 2 — Backend Stream Orchestration (/api/listen)",
+        "notes": "Frontend voice-capture layer validated and baselined. Backend orchestration to be implemented next."
+      }
+    }
+  ],
+  "integration_scope": {
+    "vertical_slices": [
+      "VS-01",
+      "VS-02",
+      "VS-03",
+      "VS-04",
+      "VS-05",
+      "VS-06",
+      "VS-07",
+      "VS-08"
+    ],
+    "description": "Integrated development phase combining all validated vertical slices into a unified, governed system."
+  },
+  "integration_baseline": "baseline/artifact-sync-v0.3.7",
+  "previous_integration_baseline": "enterprise-v0.3.7-slice8.validation",
+  "next_expected_baseline": "integration-v0.3.8",
+  "last_validated_integration_at": "2025-10-23T23:00:00Z",
+  "phase_summary": {
+    "objective": "Integrate all validated vertical slices into a continuous, governed build pipeline under PSC enforcement.",
+    "status": "Ready for coding and validation in VSCode.",
+    "reflection_link": "cei-reflection-20251023-preintegration-vs-08",
+    "decision_link": "cei-decision-20251023-integration-vs-08",
+    "baseline_link": "cei-baseline-20251023-artifact-sync-v0.3.7"
   },
   "notes": [
     "All artifacts verified and synchronized.",

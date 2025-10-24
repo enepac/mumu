@@ -127,6 +127,40 @@ Each artifact listed here forms part of the Covenant validation loop (Reflection
 
 **System Index ID:** `cei-index-20251023-integration-phase`  
 **Status:** ✅ Locked and Synced with Baseline `artifact-sync-v0.3.7`
+---
+---
+
+## 🧱 System Index Entry — VS-01 → Task 1 (UI & Audio Input Layer)
+**Date:** 2025-10-23  
+**Executor:** GPT-5 Covenant Executor  
+**Branch:** enhancement/v0.3.0-vs-01-voice-display  
+**Baseline Reference:** frontend-v0.3.0-ui.preval  
+**Governance:** Covenant Strict Mode + PSC Active  
+
+### 📁 Artifact Map
+| Layer | File / Module | Purpose |
+|-------|----------------|----------|
+| UI | `src/components/voice/MicDock/MicDock.tsx` | Microphone dock UI for start/pause control. |
+| Logic | `src/hooks/useAudioStream.ts` | Manages mic audio chunks and stream state. |
+| Display | `src/components/ui/TranscriptView.tsx` | Displays live transcripts with auto-scroll. |
+| Socket | `src/lib/socket/listenSocket.ts` | WebSocket client for /api/listen. |
+| Telemetry | `src/utils/ceiEmitter.ts` | CEI event emitter and React hook. |
+
+### 🧭 Status
+✅ Validated — Frontend capture and telemetry layer complete.  
+🔹 Next Task → VS-01 → Task 2 — Backend Stream Orchestration (/api/listen)
+
+---
+
+### 🔗 Cross-References
+| Linked Artifact | Purpose |
+|-----------------|----------|
+| `_reflection.md` | Reflection entry for VS-01 Task 1 completion. |
+| `_decisions.md` | Design rationale and architecture choices. |
+| `baseline_registry.md` | Baseline `frontend-v0.3.0-ui.preval` recorded. |
+| `mumu_progress_narrative.md` | Narrative storyline for VS-01 Task 1. |
+| `mumu_state_registry.json` | Machine-state updated to current subtask 1.5. |
+---
 
 
 End of Index.

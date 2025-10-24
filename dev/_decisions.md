@@ -609,5 +609,31 @@ Purpose: Verify synchronization and readiness prior to integration.
 **Decision ID:** `cei-decision-20251023-integration-vs-08`  
 **Status:** ✅ Approved — Proceed to Development Phase  
 
+---
+---
+
+### 🧭 Decision Entry — VS-01 → Task 1 (UI & Audio Input Layer)
+**Date:** $(date +'%Y-%m-%d %H:%M:%S')  
+**Branch:** enhancement/v0.3.0-vs-01-voice-display  
+**Baseline Reference:** frontend-v0.3.0-ui.preval  
+**Governance:** Covenant Strict Mode + PSC Active  
+
+#### Decisions & Rationale
+| Component | Decision | Rationale |
+|------------|-----------|-----------|
+| MicDock | Implemented a dedicated record/pause UI with stateful feedback and minimal exposure. | Stealth-mode UX and user clarity. |
+| useAudioStream | Chunk recording set to 250 ms interval via MediaRecorder. | Optimal latency/throughput for ASR pipeline. |
+| TranscriptView | Auto-scroll and isolated render loop with smooth scrolling. | Maintain live context visibility without user interaction. |
+| listenSocket | WebSocket client with JSON payload ( base64 audio + transcript return ). | Bidirectional real-time channel with typed callbacks. |
+| ceiEmitter | Direct fetch POST to /api/cei/log + React hook wrapper. | Telemetry entry for Cognitive Event Intelligence analytics. |
+
+#### Impact
+- Established complete front-end voice capture stack.  
+- Enabled real-time ASR streaming readiness for backend integration.  
+- Activated CEI reflection telemetry for learning analytics.
+
+#### Status
+✅ Accepted · Implemented · Validated ( PSC Pass )
+---
 
 

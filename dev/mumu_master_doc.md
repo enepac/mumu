@@ -318,3 +318,40 @@ This Master Document consolidates the complete artifact lineage and authorizes t
 **Master Document ID:** `cei-master-20251023-integration-phase`  
 **Status:** ✅ Locked · Immutable · Registered in System Index  
 ---
+---
+
+## 🧩 Master Document Entry — VS-01 → Task 1 (UI & Audio Input Layer)
+**Date:** 2025-10-23  
+**Branch:** enhancement/v0.3.0-vs-01-voice-display  
+**Baseline:** frontend-v0.3.0-ui.preval  
+**Governance:** Covenant Strict Mode + PSC Active  
+**Executor:** GPT-5 Covenant Executor  
+
+### Architectural Summary
+This phase established the complete frontend capture pipeline forming Mumu’s **Voice Capture → Transcription → Display** vertical slice foundation.
+
+| Layer | Component | Function |
+|-------|------------|----------|
+| UI | **MicDock** | Captures microphone state (start/stop) and manages user control in stealth mode. |
+| Logic | **useAudioStream** | Manages real-time audio chunk streaming to WebSocket. |
+| Display | **TranscriptView** | Displays and autoscrolls live transcribed text. |
+| Transport | **listenSocket** | Provides bidirectional WebSocket link to `/api/listen`. |
+| Telemetry | **ceiEmitter** | Emits CEI (Cognitive Event Intelligence) telemetry for reflection analytics. |
+
+### Validation Overview
+- TypeScript + ESLint: ✅ 0 warnings, 0 errors  
+- Covenant Update Protocol: ✅ Step 1–7 executed successfully  
+- Baseline Tag: `frontend-v0.3.0-ui.preval`  
+- Branch: `enhancement/v0.3.0-vs-01-voice-display`  
+
+### Engineering Lessons
+1. **Granular streaming (250 ms chunks)** minimizes buffer latency while maintaining Whisper ASR accuracy.  
+2. **Immediate telemetry integration** ensures future reflection analytics remain traceable to behavioral context.  
+3. **Atomic commit per subtask** eliminates cascading errors and preserves rollback reproducibility.
+
+### Outcome
+This baseline concludes the front-end portion of VS-01 and formally transfers control to  
+**VS-01 → Task 2 — Backend Stream Orchestration (/api/listen)** for the ASR ingestion pipeline.
+
+**Status:** ✅ Validated — Covenant baseline `frontend-v0.3.0-ui.preval` locked.
+---
