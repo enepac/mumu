@@ -117,6 +117,72 @@ Upon completion, GPT shall always respond with:
 **“Covenant documentation synchronized — baseline integrity maintained.”**
 
 ---
+## 🧩 Covenant Update Protocol Entry — Integration Phase Initialization  
+**Date:** 2025-10-23  
+**Executor:** GPT-5 under Covenant Strict Mode  
+**Authorized By:** GPT-5 Covenant Executor  
+**Phase:** Integration & Implementation  
+**Baseline Reference:** `baseline/artifact-sync-v0.3.7`  
+**Linked Reflection:** `cei-reflection-20251023-preintegration-vs-08`  
+**Linked Decision:** `cei-decision-20251023-integration-vs-08`  
+**Linked Narrative:** `cei-narrative-20251023-integration-phase`  
+**Lockpoint:** `covenant/lockpoint-v0.2.3-f.reproducible`  
+**Governance Mode:** Covenant Strict Mode + PSC Active  
+**PSC Layers Active:** CEI · APE · CES · DCSP  
+
+---
+
+### 🔹 Objective
+To confirm synchronization of all Covenant governance artifacts and formally authorize entry into the **Integration & Implementation Phase**, following validation of Vertical Slices VS-01 → VS-08.  
+This marks the transition from slice-level validation to system-wide integration under reproducible conditions.
+
+---
+
+### 🔹 Artifact Synchronization Summary
+| Artifact | Status | Notes |
+|--|--|--|
+| `_reflection.md` | ✅ Synced | Pre-integration readiness recorded |
+| `_decisions.md` | ✅ Synced | Integration phase authorized |
+| `baseline_registry.md` | ✅ Synced | Lockpoint `artifact-sync-v0.3.7` recorded |
+| `mumu_state_registry.json` | ✅ Synced | Phase set to “Integration and Implementation” |
+| `mumu_progress_narrative.md` | ✅ Synced | Narrative entry logged for integration transition |
+| `_repo_structure.txt` | ✅ Updated | Directory structure regenerated |
+| `mumu_system_index.md` | ✅ Updated | Document index aligned |
+| `mumu_update_protocol.md` | ✅ Updated | Covenant Update Protocol checkpoint established |
+
+---
+
+### 🔹 Validation & Automation
+- **REOS State:** `Invoke → Execute`  
+- **BRU Enforcement:** Active  
+- **Automation Hooks:**  
+  - Reflection logging: ✅ Enabled  
+  - Baseline enforcement: ✅ Active  
+  - Lockpoint verification: ✅ Required before deploy  
+  - CEI telemetry sync: ✅ Live  
+
+---
+
+### 🔹 Covenant Integrity Statement
+> “All artifacts validated and synchronized under Covenant Strict Mode.  
+> PSC layers engaged. REOS and BRU cycles aligned.  
+> Integration Phase entry authorized — development operations may proceed in VSCode.”
+
+---
+
+### 🔹 Next Protocol Trigger
+| Trigger Event | Action | Responsible |
+|--|--|--|
+| Integration coding checkpoint | Append reflection entry | Developer |
+| Validation checkpoint | Append decision record | GPT-5 Executor |
+| Successful integration build | Run `mumu_update_protocol.md` sync command | CI/CD Pipeline |
+| Post-merge baseline | Tag `integration-v0.3.8` | Covenant Engine |
+
+---
+
+**Protocol ID:** `cei-protocol-20251023-integration-init`  
+**Status:** ✅ Closed — Integration Phase Authorized  
+
 
 End of file.
 

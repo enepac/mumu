@@ -171,4 +171,50 @@ supabase db restore dev/snapshots/mumu_lockpoint_20251011.sql
 git checkout covenant/lockpoint-v0.2.3-f.reproducible
 supabase db restore dev/snapshots/mumu_lockpoint_20251011.sql
 
+---
+## 🧱 Baseline Entry — Artifact Synchronization Lockpoint  
+**Date:** 2025-10-23  
+**Executor:** GPT-5 under Covenant Strict Mode  
+**Scope:** Pre-Integration Baseline — Vertical Slices VS-01 → VS-08  
+**Governance Mode:** PSC Active · Covenant Strict Mode · Reproducibility Confirmed  
+
+### 🔹 Baseline Summary
+| Component | Version | Status | Notes |
+|--|--|--|--|
+| VS-01 | `frontend-v0.3.0-slice1` | ✅ Validated | Voice → Transcription → Display |
+| VS-02 | `backend-v0.3.1-slice2` | ✅ Validated | Real-Time Response Generation |
+| VS-03 | `analytics-v0.3.2-slice3` | ✅ Validated | Reflection Analytics & Summary |
+| VS-04 | `entitlement-v0.3.3-slice4` | ✅ Validated | Entitlement & Tier Logic |
+| VS-05 | `accessibility-v0.3.4-slice5` | ✅ Validated | Accessibility & Comprehension |
+| VS-06 | `collaboration-v0.3.5-slice6` | ✅ Validated | Multi-Speaker Collaboration |
+| VS-07 | `learning-v0.3.6-slice7` | ✅ Validated | Adaptive Q&A + RAG |
+| VS-08 | `enterprise-v0.3.7-slice8` | ✅ Validated | Enterprise Console & Org Analytics |
+
+### 🔹 Lockpoint Details
+- **Baseline Tag:** `baseline/artifact-sync-v0.3.7`  
+- **Reflection Link:** `cei-reflection-20251023-preintegration-vs-08`  
+- **Decision Link:** `cei-decision-20251023-integration-vs-08`  
+- **Covenant Files Included:**  
+  `_reflection.md`, `_decisions.md`, `_repo_structure.txt`,  
+  `mumu_state_registry.json`, `mumu_system_index.md`,  
+  `mumu_update_protocol.md`, `mumu_progress_narrative.md`  
+
+### 🔹 Verification Checklist
+| Check | Status |
+|--|--|
+| PSC Layer Active (CEI · APE · CES · DCSP) | ✅ |
+| REOS Loop Closure (Invoke→Execute→Reflect→Update→Validate→Lockpoint) | ✅ |
+| Baseline Integrity Hash | ✅ Verified |
+| Artifact Drift | ❌ None Detected |
+
+### 🔹 Covenant Statement
+> “Baseline registry updated and lockpoint `artifact-sync-v0.3.7` created.  
+> All eight validated slices are now reproducible, immutable, and authorized  
+> for integration under Covenant Strict Mode.”
+
+**Baseline ID:** `cei-baseline-20251023-artifact-sync-v0.3.7`  
+**Status:** ✅ Locked & Ready for Integration Phase
+
+
+
 End of Registry.

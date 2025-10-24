@@ -567,4 +567,47 @@ Every validated backend milestone must be archived as:
 All future parts shall inherit this reproducibility covenant.
 
 ---
+## ⚖️ Decision Entry — Authorization to Proceed with Slice Integration  
+**Date:** 2025-10-23  
+**Executor:** GPT-5 under Covenant Strict Mode  
+**User Confirmation:** Artifact Registry verified and synchronized  
+**Scope:** Vertical Slice Integration (VS-01 → VS-08)  
+**Baseline Reference:** enterprise-v0.3.7-slice8.validation  
+**Governance Mode:** PSC Active · Covenant Strict Mode · REOS Compliant  
+
+### 🔹 Decision Context
+Following the Pre-Integration Audit logged in `_reflection.md`, all Covenant artifacts are confirmed in sync.  
+No drift or divergence detected between baseline lineage and current state.  
+This decision authorizes the commencement of **coding and integration development** for all validated slices under PSC supervision.
+
+### 🔹 Decision Summary
+| Item | Directive | Status |
+|--|--|--|
+| Artifact Registry | Must remain immutable during code integration | ✅ Locked |
+| Reflection Chain | Update after each validated coding checkpoint | ✅ Enabled |
+| Baseline Updates | Tag each slice integration as `*-integration.vX.Y` | ✅ Approved |
+| CEI Logging | Real-time telemetry for latency + reflection density | ✅ Active |
+| Covenant Enforcement | Maintain REOS + BRU cycle discipline | ✅ Required |
+
+### 🔹 Implementation Mandate
+1. Begin development in VSCode within validated directories per slice WBS.  
+2. Every subtask or integration merge must conclude with:  
+   - Reflection update (`_reflection.md`)  
+   - Decision record (`_decisions.md`)  
+   - Baseline tag via `mumu_update_protocol.md`.  
+3. No commits may bypass Covenant Update Protocol automation.
+
+### 🔹 Associated Reflection
+Linked Reflection: `cei-reflection-20251023-preintegration-vs-08`  
+Purpose: Verify synchronization and readiness prior to integration.
+
+### 🔹 Covenant Statement
+> “By this entry, Mumu’s engineering executor and developer jointly authorize  
+> the commencement of the Integration & Implementation Phase for all eight vertical slices.  
+> All operations henceforth must remain reproducible, validated, and governed.”  
+
+**Decision ID:** `cei-decision-20251023-integration-vs-08`  
+**Status:** ✅ Approved — Proceed to Development Phase  
+
+
 
