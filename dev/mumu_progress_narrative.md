@@ -271,6 +271,11 @@ each validated vertical slice now interconnects through shared cognitive, orches
 **Narrative ID:** `cei-narrative-20251023-integration-phase`  
 **Status:** ✅ Logged & Synchronized under PSC Enforcement
 ---
+### 🚀 VS-01 → Task 2 → Subtask 2.6 Progress Narrative
+Telemetry layer successfully integrated with Whisper ASR worker.  
+Live event stream now reports CEI metrics per job execution.  
+This finalizes the frontend-backend integration for VS-01, enabling cross-slice analytics for later REOS loops.
+---
 
 
 End of document.

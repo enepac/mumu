@@ -635,5 +635,14 @@ Purpose: Verify synchronization and readiness prior to integration.
 #### Status
 ✅ Accepted · Implemented · Validated ( PSC Pass )
 ---
+### 🧩 Decision #D-20251024-VS01-T2-S6
 
+**Context:** Need a universal telemetry channel for ASR job analytics under PSC.  
+**Decision:** Implement `CEITelemetryEmitter` as a singleton class emitting structured events for every BullMQ job state.  
+**Alternatives Considered:**  
+- Direct logging only (no state persistence) — rejected (no traceability).  
+- External service hooks per job — rejected due to latency and complexity.  
+**Outcome:** Centralized CEI emitter adopted. Integration successful.  
+**Validation:** `asrIntegration.test.ts` passed; telemetry events verified.  
+---
 

@@ -355,3 +355,44 @@ This baseline concludes the front-end portion of VS-01 and formally transfers co
 
 **Status:** ✅ Validated — Covenant baseline `frontend-v0.3.0-ui.preval` locked.
 ---
+## VS-01 → Task 2 → Subtask 2.6 — Telemetry Event Emission & CEI Integration (Whisper Job Analytics)
+**Date:** 2025-10-24  
+**Governance:** Covenant Strict Mode · PSC Active (CEI · APE · CES · DCSP)  
+**Status:** ✅ Validated · Baseline: \`frontend-v0.3.0-slice1.telemetry.validation\`
+
+### Objective
+Instrument the ASR processing pipeline to emit structured CEI telemetry on job lifecycle events (completed/failed), enabling reflective analytics and cross-slice observability.
+
+### Scope & Artifacts
+- **Telemetry Emitter:** \`backend/lib/telemetry/ceiTelemetry.ts\`  
+  - Emits \`CEITelemetryEvent\` with fields: jobId, eventType, receivedAt, completedAt, durationMs, bufferBytes, transcriptLength, resultSnippet, errorMessage.
+- **Worker Integration:** \`backend/workers/asr/whisperWorker.ts\`  
+  - Hooks: \`worker.on("completed")\` → \`ceiTelemetry.emitJobCompleted\`; \`worker.on("failed")\` → \`ceiTelemetry.emitJobFailed\`.
+
+### Key Decisions (logged in _decisions.md)
+- Adopt a **singleton CEI emitter** for low-latency, centralized analytics (extensible to Supabase/LogRocket sinks).
+- Enforce BullMQ v5 requirement \`maxRetriesPerRequest: null\` for redis clients.
+- Prefer **Worker events** over queue polling for accurate, typed lifecycle signals.
+
+### Validation Evidence
+- **Test:** \`backend/tests/integration/asrIntegration.test.ts\`  
+  - Live Redis + BullMQ orchestration: buffer → queue → worker → telemetry.  
+  - Output sample: \`📊 [CEI] COMPLETED – Job: <id> | Duration: <ms> | Buffer: <bytes> | Transcript: <len>\`  
+  - Result: **PASS**, deterministic termination (CI may use \`forceExit\`).
+
+### Observability Model (Initial)
+- **Performance:** durationMs, bufferBytes, transcriptLength  
+- **Reliability:** completed/failed counts, errorMessage  
+- **Traceability:** jobId, receivedAt, completedAt
+
+### Next Steps
+- Persist telemetry to Supabase event store in VS-02.
+- Extend CEI hooks across VS-02 … VS-08 for end-to-end analytics.
+- Add dashboards (latency distributions, error rates, throughput).
+
+### Covenant Notes
+- REOS Loop: Invoke → Execute → Reflect → Update → Validate → Lockpoint (sealed).  
+- BRU Cycle completed; baseline tagged: \`baseline/frontend-v0.3.0-slice1.telemetry.validation\`.
+
+---
+

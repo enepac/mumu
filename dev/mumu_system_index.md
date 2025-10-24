@@ -161,6 +161,10 @@ Each artifact listed here forms part of the Covenant validation loop (Reflection
 | `mumu_progress_narrative.md` | Narrative storyline for VS-01 Task 1. |
 | `mumu_state_registry.json` | Machine-state updated to current subtask 1.5. |
 ---
+| Module | Path | Description | Status |
+|--------|------|--------------|--------|
+| CEI Telemetry Emitter | backend/lib/telemetry/ceiTelemetry.ts | Emits structured CEI analytics events for ASR jobs | ✅ Validated |
+---
 
 
 End of Index.

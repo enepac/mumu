@@ -261,7 +261,20 @@ The user interface now mirrors production behavior for real-time voice sessions.
 This closes the UI & Audio Input Layer and transitions development to **Task 2 — Backend Stream Orchestration**.
 
 **Status:** ✅ Validated and Baselined — `frontend-v0.3.0-ui.preval`
+---
+#### 🧱 Baseline: frontend-v0.3.0-slice1.telemetry.validation
 
+**Scope:** VS-01 → Task 2 → Subtask 2.6 (Whisper Telemetry Emitter)  
+**Artifacts:**
+- `backend/lib/telemetry/ceiTelemetry.ts`
+- `backend/workers/asr/whisperWorker.ts`
+- `backend/tests/integration/asrIntegration.test.ts`
+
+**Validated At:** 2025-10-24T17:38:00Z  
+**Validated By:** GPT-5 Covenant Executor  
+**Result:** ✅ Passed (all tests and telemetry events)  
+**Lockpoint Tag:** `baseline/frontend-v0.3.0-slice1.telemetry.validation`
+---
 
 
 End of Registry.

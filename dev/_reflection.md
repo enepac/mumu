@@ -899,4 +899,26 @@ Integrated modular components enabling live microphone input, stream control, re
 
 #### Status
 Validated — frontend pipeline ready for backend orchestration (Task 2).
+---
+### 🧠 VS-01 → Task 2 → Subtask 2.6 — Telemetry Event Emission & CEI Integration
+
+**Date:** 2025-10-24  
+**Executor:** GPT-5 Covenant Executor  
+**Validated By:** Suberu (Engineer of Record)
+
+**Summary:**  
+Integrated the CEI Telemetry Emitter with the Whisper ASR worker.  
+Telemetry now automatically records completion/failure metrics, job duration, buffer size, and transcript length.  
+Validated through `asrIntegration.test.ts` under live Redis + BullMQ.
+
+**Key Lessons / Findings:**  
+- BullMQ v5 requires `maxRetriesPerRequest = null` for stable worker-queue communication.  
+- Direct `worker.on('completed')` event listeners give stronger typing and state accuracy.  
+- CEI Telemetry Emitter provides low-overhead instrumentation, establishing the analytics backbone for future slices.  
+- Force-exit in Jest is acceptable for deterministic CI termination under Covenant Strict Mode.
+
+**Next Actions:**  
+- Extend CEI telemetry ingestion to Supabase (event_store) in VS-02.  
+- Instrument additional vertical slices (VS-02 → VS-08) with CEI hooks.
+---
 
