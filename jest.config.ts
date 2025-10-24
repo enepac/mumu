@@ -3,11 +3,11 @@ import type { Config } from "jest";
 /**
  * Mumu Jest Configuration
  * -------------------------------------------------------
- * • Runs only unit/integration tests under /tests/unit and /src
- * • Ignores Playwright E2E specs (handled separately)
- * • Collects coverage from TypeScript + React (TSX) sources
- * • Enforces ≥ 80 % coverage threshold
- * • Uses ts-jest preset with Babel transform for JSX
+ * • Supports both unit + integration tests across frontend and backend
+ * • Includes /src, /tests/unit, and /backend/tests directories
+ * • Collects coverage from both lib and backend logic
+ * • Enforces Covenant 0-error compliance and reproducible reporting
+ * • Uses ts-jest with Babel transforms for TSX + Node targets
  */
 
 const config: Config = {
@@ -16,7 +16,11 @@ const config: Config = {
   testEnvironment: "node",
 
   // --- File Discovery ---
-  roots: ["<rootDir>/src", "<rootDir>/tests/unit"],
+  roots: [
+    "<rootDir>/src",
+    "<rootDir>/tests/unit",
+    "<rootDir>/backend/tests", // ✅ Added: include backend integration tests
+  ],
   testMatch: ["**/?(*.)+(spec|test).[tj]s?(x)"],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/tests/e2e/"],
 
@@ -41,7 +45,10 @@ const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: [
     "tests/unit/**/*.{ts,tsx}",
+    "backend/tests/**/*.{ts,tsx}", // ✅ Added: collect coverage from backend tests
     "src/lib/**/*.{ts,tsx}", // keep library coverage
+    "backend/lib/**/*.{ts,tsx}", // ✅ Added: backend orchestration libraries
+    "backend/workers/**/*.{ts,tsx}",
   ],
   coverageReporters: ["text", "lcov", "html"],
   coverageDirectory: "<rootDir>/coverage",
@@ -56,7 +63,7 @@ const config: Config = {
 
   // --- Module Resolution ---
   moduleFileExtensions: ["ts", "tsx", "js", "json"],
-  moduleDirectories: ["node_modules", "src"],
+  moduleDirectories: ["node_modules", "src", "backend"],
 
   // --- Test Setup (optional global mocks/init) ---
   setupFilesAfterEnv: [],
@@ -69,6 +76,9 @@ const config: Config = {
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",
   ],
+  // --- Handle cleanup ---
+  detectOpenHandles: false,
+  forceExit: true,
 };
 
 export default config;

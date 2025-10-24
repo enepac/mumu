@@ -17,14 +17,15 @@ const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
 export default [
   // --- Global ignores (build + cache outputs)
   {
-    ignores: [
-      ".next/**",
-      "coverage/**",
-      "dist/**",
-      "backend/dist/**",
-      "node_modules/**",
-    ],
-  },
+  ignores: [
+    ".next/**",
+    "coverage/**",
+    "dist/**",
+    "backend/dist/**",
+    "backend/containers/orchestrator/dist/**",
+    "node_modules/**",
+  ],
+},
 
   // --- Base ESLint + Next.js recommended rules
   js.configs.recommended,

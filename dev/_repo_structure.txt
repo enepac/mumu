@@ -42,11 +42,11 @@
 |   |-- _decisions.md
 |   |-- _lockpoint_dependencies.txt
 |   |-- _lockpoint_secrets_snapshot.json
-|   |-- _lockpoint_secrets_snapshot.redacted.json
 |   |-- _reflection.md
 |   |-- _repo_structure.txt
 |   |-- baseline_registry.md
 |   |-- mumu_boot_command.txt
+|   |-- mumu_foundational_cognitive_and_operational_Disciplines.md
 |   |-- mumu_master_doc.md
 |   |-- mumu_progress_narrative.md
 |   |-- mumu_state_registry.json
@@ -55,13 +55,22 @@
 |   `-- snapshots
 |       |-- mumu_backup_20251010_144639.sql
 |       |-- mumu_backup_20251011_233552.sql
+|       |-- mumu_backup_20251023_205721.sql
+|       |-- mumu_backup_20251023_205817.sql
+|       |-- mumu_backup_20251023_210021.sql
+|       |-- mumu_backup_20251023_210205.sql
+|       |-- mumu_backup_20251023_210335.dump
+|       |-- mumu_backup_20251023_214918.sql
+|       |-- mumu_backup_20251023_220624.sql
 |       |-- mumu_lockpoint_20251011.sha256
 |       |-- mumu_lockpoint_20251011.sql
+|       |-- mumu_lockpoint_20251023.sha256
 |       `-- remote_schema_20251010.sql
 |-- docker-compose.yml
 |-- eslint.config.mjs
 |-- fly.toml
 |-- jest.config.ts
+|-- next-env.d.ts
 |-- next.config.cjs
 |-- next.config.ts
 |-- package.json
@@ -89,12 +98,27 @@
 |   |   |-- globals.css
 |   |   |-- layout.tsx
 |   |   `-- page.tsx
+|   |-- components
+|   |   |-- ui
+|   |   |   `-- TranscriptView.tsx
+|   |   `-- voice
+|   |       `-- MicDock
+|   |           `-- MicDock.tsx
+|   |-- hooks
+|   |   `-- useAudioStream.ts
 |   |-- instrumentation-client.ts
 |   |-- instrumentation.ts
-|   `-- lib
-|       |-- logger.ts
-|       |-- logrocket.ts
-|       `-- supabaseClient.ts
+|   |-- lib
+|   |   |-- logger.ts
+|   |   |-- logrocket.ts
+|   |   |-- socket
+|   |   |   `-- listenSocket.ts
+|   |   `-- supabaseClient.ts
+|   |-- pages
+|   |   `-- api
+|   |       `-- listen.ts
+|   `-- utils
+|       `-- ceiEmitter.ts
 |-- supabase
 |   |-- migrations
 |   |   |-- 20251010183209_rls_policies.sql
@@ -109,4 +133,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-23 directories, 86 files
+32 directories, 101 files
