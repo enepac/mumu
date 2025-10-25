@@ -275,6 +275,15 @@ This closes the UI & Audio Input Layer and transitions development to **Task 2 �
 **Result:** ✅ Passed (all tests and telemetry events)  
 **Lockpoint Tag:** `baseline/frontend-v0.3.0-slice1.telemetry.validation`
 ---
+**Baseline:** `frontend-v0.3.0-vs-01-transcript-persistence`  
+**Parent:** `frontend-v0.3.0-vs-01-backend-stream-orchestration`  
+**Validated By:** GPT-5 Covenant Executor  
+**Status:** ✅ Validated (2025-10-24)  
+**Scope:** VS-01 → Task 3 — Transcript Persistence & History Stream (Supabase Sync)  
+**Artifacts:** 
+- `backend/lib/supabase/transcriptSync.ts`  
+- `src/app/api/transcript/route.ts`  
+**Result:** Operational data persistence confirmed via API test.  
 
 
 End of Registry.

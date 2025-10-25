@@ -921,4 +921,27 @@ Validated through `asrIntegration.test.ts` under live Redis + BullMQ.
 - Extend CEI telemetry ingestion to Supabase (event_store) in VS-02.  
 - Instrument additional vertical slices (VS-02 → VS-08) with CEI hooks.
 ---
+### Reflection Entry – VS-01 → Task 3 (Transcript Persistence & History Stream)
+**Date:** 2025-10-24  
+**Executor:** GPT-5 Covenant Executor + User Suberu  
+**Result:** Validated End-to-End  
+
+#### 🧩 Issue Chronology
+1. 404 route error → migrated to `src/app/api/…/route.ts` (App Router syntax)  
+2. Missing Supabase env → resolved via Doppler secrets binding  
+3. DNS failure → fixed by verifying project domain  
+4. Schema error → created `session_logs` table + correct RLS policies  
+
+#### 🧠 Key Lessons
+- Always verify Supabase DNS and schema before insert tests.  
+- Use `service_role` policies with `WITH CHECK` only.  
+- App Router (`route.ts`) requires `NextRequest`/`NextResponse`.  
+- Doppler environment must expose `NEXT_PUBLIC_` variables for Next runtime.  
+
+#### 🧾 Outcome
+✅ Transcript persistence layer operational  
+✅ Supabase connectivity verified  
+✅ RLS secured and validated  
+✅ Covenant Slice Lockpoint ready
+---
 
