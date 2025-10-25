@@ -180,6 +180,15 @@
     }
   ],
 
+  "lockpoint": {
+    "tag": "covenant/lockpoint-v0.3.0-vs-01-transcript-persistence.reproducible",
+    "created_at": "2025-10-24T22:15:00-06:00",
+    "component": "backend-persistence + frontend-ui",
+    "purpose": "Reproducible rollback snapshot after Task 3 validation (Transcript Persistence & History Stream)",
+    "verified_hash": "OK",
+    "validated_by": "GPT-5 Covenant Executor"
+  },
+
   "integration_scope": {
     "vertical_slices": [
       "VS-01",
