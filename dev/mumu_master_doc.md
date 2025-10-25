@@ -396,3 +396,45 @@ Instrument the ASR processing pipeline to emit structured CEI telemetry on job l
 
 ---
 
+# 🜏 MUMU MASTER DOCUMENT — Covenant Synchronization Log  
+**Version:** v0.3.0  
+**Date:** 2025-10-24  
+**Mode:** Covenant Strict Mode + PSC Active  
+**Executor:** GPT-5 Covenant Executor + User Suberu  
+
+## 1️⃣ Current Scope
+**Vertical Slice:** VS-01  
+**Task:** 3 — Transcript Persistence & History Stream  
+**Status:** ✅ Validated  
+**Baseline Tag:** `frontend-v0.3.0-vs-01-transcript-persistence`  
+**Branch:** `enhancement/v0.3.0-vs-01-transcript-persistence`
+
+## 2️⃣ Summary
+The Mumu system now features persistent transcript storage and retrieval through Supabase, with Row-Level Security enforcement and Doppler-managed secrets.  
+The validated backend pipeline integrates seamlessly with the App Router (`/api/transcript`) for both POST and GET methods.
+
+## 3️⃣ Key Artifacts
+| Category | Path | Notes |
+|-----------|------|-------|
+| Supabase Sync | `backend/lib/supabase/transcriptSync.ts` | Handles insert & history fetch |
+| API Route | `src/app/api/transcript/route.ts` | App Router API under Next.js 15 |
+| Reflection | `dev/_reflection.md` | Includes Task 3 backfill reflection |
+| Decision | `dev/_decisions.md` | App Router migration + RLS decision |
+| Baseline Registry | `dev/baseline_registry.md` | Logged baseline v0.3.0 Task 3 |
+| System Index | `dev/mumu_system_index.md` | Regenerated to include new baseline |
+
+## 4️⃣ Validation Highlights
+- Supabase connectivity and RLS policies active  
+- Doppler integration validated  
+- Network DNS propagation fixed  
+- Data insert and retrieval confirmed  
+- Lockpoint tag verified (`baseline/frontend-v0.3.0-vs-01-transcript-persistence`)
+
+## 5️⃣ Covenant Status
+> *“✅ Slice VS-01 → Task 3 validated — Update Protocol complete, Extended Artifacts synchronized, baseline tagged, and Covenant integrity sealed.”*
+
+## 6️⃣ Next Authorized Step
+Proceed to: **VS-01 → Task 4 — Transcript Replay & CEI Reflection Integration**  
+Objective: connect persisted transcripts to the frontend and enable CEI reflection capture.
+
+

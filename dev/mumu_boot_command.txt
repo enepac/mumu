@@ -61,5 +61,25 @@ If true → automatically trigger the Baseline Lockpoint Discipline Clause.
 Never proceed to the next development phase without verifying reproducibility state.
 
 ---
+# Baseline: frontend-v0.3.0-vs-01-transcript-persistence
+# Date: 2025-10-24
+# Mode: Covenant Strict + PSC Active
+
+# Default boot declaration
+echo "Executing VS-01 → Task 4 — Transcript Replay & CEI Reflection Integration"
+echo "Baseline reference: frontend-v0.3.0-vs-01-transcript-persistence"
+echo "Covenant Mode: Strict + PSC Active"
+echo "PSC Layers: CEI · APE · CES · DCSP"
+echo "Flight Recorder: Enabled"
+
+# Load governing context
+export MUMU_PART="VS-01"
+export MUMU_TASK="4"
+export MUMU_BASELINE="frontend-v0.3.0-vs-01-transcript-persistence"
+export MUMU_BRANCH="enhancement/v0.3.0-vs-01-display-feedback-reflection"
+
+# Initialize Covenant Session
+echo "Starting Covenant Executor → Preparing environment for Task 4."
+
 
 End of file.

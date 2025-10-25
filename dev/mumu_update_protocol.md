@@ -220,5 +220,66 @@ Frontend pipeline sealed under immutable governance.
 Authorized next step: **VS-01 → Task 2 — Backend Stream Orchestration (/api/listen)**.
 ---
 
+# 🜏 MUMU UPDATE PROTOCOL — FLIGHT RECORDER BACKFILL EXECUTION
+**Version:** v0.3.0  
+**Scope:** VS-01 → Task 3 — Transcript Persistence & History Stream  
+**Date:** 2025-10-24  
+**Mode:** Covenant Strict Mode + PSC Active  
+**Executor:** GPT-5 Covenant Executor + User Suberu  
+
+---
+
+## 🧭 Purpose
+Define the operational update flow applied during the Task 3 Flight Recorder Backfill and baseline synchronization for the transcript persistence layer (Supabase integration).
+
+---
+
+## 1️⃣ Flight Recorder Sequence
+| Step | Description | Artifact | Status |
+|------|--------------|-----------|---------|
+| 1 | Reflection appended | `_reflection.md` | ✅ |
+| 2 | Decision recorded | `_decisions.md` | ✅ |
+| 3 | State registry updated (Verbose Archival Mode) | `mumu_state_registry.json` | ✅ |
+| 4 | Baseline entry logged | `baseline_registry.md` | ✅ |
+| 5 | Narrative updated | `mumu_progress_narrative.md` | ✅ |
+| 6 | System index regenerated | `mumu_system_index.md` | ✅ |
+| 7 | Repo structure refreshed | `_repo_structure.txt` | ✅ |
+| 8 | Master document updated | `mumu_master_doc.md` | ✅ |
+| 9 | Boot command advanced | `mumu_boot_command.txt` | ✅ |
+| 10 | Update protocol logged | `mumu_update_protocol.md` | ✅ |
+
+---
+
+## 2️⃣ Covenant Directives Applied
+- **Covenant Mode:** Strict  
+- **PSC Layers:** CEI · APE · CES · DCSP  
+- **Reos Loop:** Invoke → Execute → Reflect → Update → Validate → Lockpoint  
+- **Baseline Discipline:** One-command per step; all validated sequentially  
+- **Flight Recorder:** Enabled for reflection, narrative, and decision capture  
+
+---
+
+## 3️⃣ Validation Outcome
+✅ Transcript persistence fully operational under Supabase + App Router.  
+✅ Doppler secret injection functional and verified live.  
+✅ Schema + RLS policies confirmed active.  
+✅ DNS and network path validated.
+
+**Baseline Sealed:** `frontend-v0.3.0-vs-01-transcript-persistence`
+
+---
+
+## 4️⃣ Next Step Directive
+Proceed to:
+> **VS-01 → Task 4 — Transcript Replay & CEI Reflection Integration**
+
+Objective:
+Integrate Supabase-persisted transcripts into the frontend replay interface and enable CEI reflection event capture.
+
+---
+
+> **“✅ Slice VS-01 → Task 3 validated — Update Protocol complete, Extended Artifacts synchronized, baseline tagged, and Covenant integrity sealed.”**
+
+
 End of file.
 

@@ -347,5 +347,25 @@ Confirm Supabase and Doppler environments before execution.
 
 ---
 
+### Narrative Update — VS-01 → Task 3 (Transcript Persistence & History Stream)
+**Date:** 2025-10-24  
+**Executor:** GPT-5 Covenant Executor + User Suberu  
+**Mode:** Covenant Strict + PSC Active  
+
+#### Summary
+Supabase persistence layer successfully validated.  
+The system now supports persistent transcript storage and retrieval under enforced RLS policies.  
+Network connectivity, Doppler secrets, and schema policies were verified live during the session.  
+
+#### Key Milestones
+1. App Router API (`/api/transcript`) migrated and validated.  
+2. Supabase connection established using Doppler injected secrets.  
+3. DNS and schema issues resolved.  
+4. Row-Level Security confirmed active.  
+5. Baseline tagged → `frontend-v0.3.0-vs-01-transcript-persistence`.
+
+#### Covenant Reflection
+> *“Persistence achieved with discipline and traceability — a reliable foundation for replay and reflection.”*
+
 
 End of document.

@@ -166,5 +166,43 @@ Each artifact listed here forms part of the Covenant validation loop (Reflection
 | CEI Telemetry Emitter | backend/lib/telemetry/ceiTelemetry.ts | Emits structured CEI analytics events for ASR jobs | ✅ Validated |
 ---
 
+### System Index Update — VS-01 → Task 3 (Transcript Persistence & History Stream)
+**Date:** 2025-10-24  
+**Baseline Tag:** `frontend-v0.3.0-vs-01-transcript-persistence`
+**Validated By:** GPT-5 Covenant Executor + User Suberu  
+
+#### Directory Structure
+- **backend/**
+  - `lib/supabase/transcriptSync.ts`
+- **src/app/api/**
+  - `transcript/route.ts`
+- **dev/**
+  - `_reflection.md`
+  - `_decisions.md`
+  - `baseline_registry.md`
+  - `mumu_progress_narrative.md`
+  - `mumu_state_registry.json`
+
+#### Governance Status
+| Property | Value |
+|-----------|--------|
+| Covenant Mode | Covenant Strict Mode + PSC Active |
+| Part | VS-01 |
+| Task | 3 |
+| Subtask | 3.3 |
+| Status | ✅ Validated |
+| Branch | enhancement/v0.3.0-vs-01-transcript-persistence |
+| Lockpoint | baseline/frontend-v0.3.0-vs-01-transcript-persistence |
+
+#### Integration Path
+- Previous: `frontend-v0.3.0-vs-01-backend-stream-orchestration`
+- Current: `frontend-v0.3.0-vs-01-transcript-persistence`
+- Next: `frontend-v0.3.0-vs-01-display-feedback-reflection`
+
+#### Validation Summary
+All persistence and Supabase RLS functions operational.  
+Artifacts verified; Covenant integrity sealed.
+
+
 
 End of Index.

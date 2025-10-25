@@ -715,4 +715,24 @@ Proceed to **VS-01 → Task 3 — Transcript Persistence & History Stream (Supab
 Confirm Supabase and Doppler environments before execution.  
 
 ---
+### Decision Entry – VS-01 → Task 3 (Transcript Persistence & History Stream)
+**Date:** 2025-10-24  
+**Validated By:** GPT-5 Covenant Executor + User Suberu  
+
+#### 🧭 Context
+The backend transcript API required migration to Next 15 App Router structure and secure Supabase data persistence under RLS.
+
+#### 🧩 Decision
+Adopt App Router (`route.ts`) for API endpoints and integrate Supabase persistence via `transcriptSync.ts` using service_role key with RLS policies (`WITH CHECK` and `USING` for select).  
+Environment variables managed through Doppler (`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`).
+
+#### 🧠 Rationale
+Ensures secure data sync between transcription streams and persistent storage while maintaining modularity and Covenant compliance.
+
+#### ✅ Outcome
+- Supabase RLS enabled and policies validated  
+- API insert and fetch confirmed operational  
+- Baseline tagged → `frontend-v0.3.0-vs-01-transcript-persistence`  
+- Covenant integrity maintained
+---
 

@@ -1,46 +1,67 @@
 {
   "project_name": "Mumu",
-  "governance_mode": "Covenant Strict Mode + PSC Active",
+  "version": "0.3.0-vs-01-transcript-persistence",
+  "governance_mode": "Covenant Strict Mode + Precision Synthesis Covenant (PSC) Active",
   "validated_by": "GPT-5 Covenant Executor",
   "health": "Stable",
+
   "current_phase": "Integration and Implementation",
-  "psc_layers_active": ["CEI", "APE", "CES", "DCSP"],
-  "reos_state": {
-    "phase": "Invoke → Execute",
-    "last_cycle_completed": "BRU Lockpoint Sync",
-    "next_cycle": "Integration Coding and Validation"
+  "current_part": "VS-01",
+  "current_task": "3",
+  "current_subtask": "3.3",
+  "current_baseline": "frontend-v0.3.0-vs-01-transcript-persistence",
+  "previous_baseline": "frontend-v0.3.0-vs-01-backend-stream-orchestration",
+  "upcoming_baseline": "frontend-v0.3.0-vs-01-display-feedback-reflection",
+  "active_branch": "enhancement/v0.3.0-vs-01-transcript-persistence",
+  "last_validated_at": "2025-10-24T06:55:00Z",
+
+  "next_action": {
+    "action": "Proceed to VS-01 → Task 4 — Transcript Replay & Chronological View Component",
+    "notes": "Supabase persistence validated. Next: frontend replay and CEI reflection integration."
   },
+
+  "psc_layers_active": ["CEI", "APE", "CES", "DCSP"],
+
+  "reos_state": {
+    "phase": "Invoke → Execute → Reflect → Update → Validate → Lockpoint",
+    "last_cycle_completed": "BRU Lockpoint Sync (Task 3)",
+    "next_cycle": "Frontend Integration and CEI Reflection Validation"
+  },
+
   "automation_flags": {
     "mumu_update_protocol": true,
     "reflection_logging": true,
     "baseline_enforcement": true,
     "lockpoint_required": true
   },
+
+  "flight_recorder": {
+    "reflection_file": "dev/_reflection.md",
+    "decision_file": "dev/_decisions.md",
+    "baseline_file": "dev/baseline_registry.md",
+    "narrative_file": "dev/mumu_progress_narrative.md",
+    "system_index": "dev/mumu_system_index.md",
+    "last_commit_tag": "baseline/frontend-v0.3.0-vs-01-transcript-persistence"
+  },
+
   "components": [
     {
       "component": "backend-persistence",
-      "version": "0.2.3-f.validation",
-      "current_part": "2",
-      "current_task": "2.3",
-      "current_subtask": "2.3.5",
-      "current_baseline": "backend-v0.2.3-f.validation",
-      "previous_baseline": "backend-v0.2.3-e.premerge",
-      "upcoming_baseline": "backend-v0.2.4-init",
-      "active_branch": "enhancement/v0.2.3-persistence-security",
-      "last_validated_at": "2025-10-11T03:25:00Z",
+      "version": "0.3.0-vs-01-transcript-persistence",
+      "status": "validated",
+      "governance": "Covenant Strict Mode + PSC Active",
+      "validated_by": "GPT-5 Covenant Executor",
       "part_summary": {
-        "part_label": "2 — Backend & Orchestration Build",
-        "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
-        "subtask_label": "2.3.5 — Nightly Snapshots + Failover",
-        "description": "Automate and validate nightly Supabase database snapshots using GitHub Actions with Doppler-managed secrets, Supabase CLI authentication, and snapshot file generation for failover resilience."
+        "part_label": "VS-01 — Voice Capture → Transcription → Persistence",
+        "task_label": "Task 3 — Transcript Persistence & History Stream",
+        "subtask_label": "3.3 — Supabase Sync and RLS Validation",
+        "description": "Established backend data persistence for transcripts via Supabase under RLS-secured schema and Doppler-managed environment configuration. API integrated through App Router route.ts."
       },
       "artifact_summary": {
-        "environment": "Vercel + Supabase Cloud + Doppler + GitHub Actions",
+        "environment": "Next.js 15 + Supabase + Doppler",
         "artifacts": [
-          "backend/utils/encryption.ts",
-          "backend/scripts/db_snapshot.sh",
-          ".github/workflows/db_snapshot.yml",
-          "dev/snapshots/mumu_backup_20251011_233552.sql"
+          "backend/lib/supabase/transcriptSync.ts",
+          "src/app/api/transcript/route.ts"
         ],
         "dist_files": [
           "dev/_reflection.md",
@@ -49,78 +70,58 @@
           "dev/mumu_progress_narrative.md"
         ]
       },
-      "deployment": {
-        "platform": "Vercel + Supabase Cloud + Doppler",
-        "status": "validated",
-        "details": {
-          "project_ref": "gjrxxiblykxtgmfwnjbp",
-          "project_name": "mumu-db",
-          "connection_verified": true,
-          "schema_state": "up_to_date",
-          "runtime_validated": true,
-          "commands_executed": [
-            "doppler secrets set DATA_ENCRYPTION_KEY",
-            "doppler run -- pnpm dev",
-            "curl POST /api/ask (encryption validation)",
-            "supabase link --project-ref gjrxxiblykxtgmfwnjbp --password <secure>",
-            "bash backend/scripts/db_snapshot.sh",
-            "git commit + tag baseline/backend-v0.2.3-f.validation"
-          ]
-        }
-      },
       "runtime_environment": {
-        "runner": "ubuntu-24.04",
+        "runner": "local-dev (VSCode + Git Bash)",
         "node_version": "20.19.5",
         "supabase_cli": "2.48.3",
         "doppler_cli": "3.75.1",
         "postgres_version": "17.6",
         "region": "us-east-2",
-        "os": "Windows 10/11 (Git Bash)",
-        "verified_at": "2025-10-11T03:25:00Z"
+        "os": "Windows 11 (Build 24H2)",
+        "verified_at": "2025-10-24T06:55:00Z"
       },
       "validation_summary": {
-        "link_status": "Authenticated",
-        "snapshot_status": "Success",
-        "commit_status": "Pushed",
-        "ci_result": "Passed",
-        "aes_encryption_status": "Operational (AES-256-GCM)",
-        "rls_status": "Active",
-        "doppler_integration": "Functional"
+        "endpoint": "/api/transcript",
+        "insert_test": "Success (POST → persisted record)",
+        "fetch_test": "Success (GET → replay query functional)",
+        "rls_status": "Enabled and active for service_role",
+        "doppler_integration": "Functional",
+        "network_dns_status": "Resolved after propagation",
+        "schema_state": "Up-to-date"
       },
-      "previous_context": {
-        "baseline": "backend-v0.2.3-d",
-        "component": "AES-256 Encryption + RLS",
-        "notes": "AES-256-GCM column encryption verified; Doppler key management active; Row-Level Security enforced."
-      },
-      "next_action": {
-        "action": "Proceed to Part 2.4 — Queues & Burst Handling (Redis + BullMQ)",
-        "notes": "Persistence and security layer validated. Nightly snapshots operational under CI/CD automation."
+      "deployment_trace": {
+        "platform": "Vercel + Supabase Cloud",
+        "doppler_environment": "dev",
+        "deployment_branch": "enhancement/v0.3.0-vs-01-transcript-persistence",
+        "commit_hash": "auto-generated under Covenant lockpoint",
+        "baseline_tag": "frontend-v0.3.0-vs-01-transcript-persistence"
       },
       "lockpoint": {
-        "tag": "covenant/lockpoint-v0.2.3-f.reproducible",
-        "created_at": "2025-10-11T21:27:45-06:00",
-        "component": "backend-persistence",
-        "purpose": "Reproducible rollback state after validation of Task 2.3.5",
+        "tag": "baseline/frontend-v0.3.0-vs-01-transcript-persistence",
+        "created_at": "2025-10-24T07:10:00-06:00",
+        "purpose": "Lockpoint snapshot after validated transcript persistence baseline",
         "verified_hash": "OK",
         "validated_by": "GPT-5 Covenant Executor"
+      },
+      "previous_context": {
+        "baseline": "frontend-v0.3.0-vs-01-backend-stream-orchestration",
+        "notes": "Supabase connection validated following orchestration API chain (Task 2). DNS + RLS corrections executed via SQL policies."
+      },
+      "next_action": {
+        "action": "Proceed to VS-01 → Task 4 — Display & CEI Reflection Integration",
+        "notes": "Frontend transcript replay component to visualize persisted data and feed CEI reflection analytics."
       }
     },
     {
       "component": "frontend-ui",
       "version": "0.3.0-ui.preval",
-      "current_part": "VS-01",
-      "current_task": "1",
-      "current_subtask": "1.5",
-      "current_baseline": "frontend-v0.3.0-ui.preval",
-      "previous_baseline": "backend-v0.2.3-f.validation",
-      "upcoming_baseline": "frontend-v0.3.0-slice1.validation",
-      "active_branch": "enhancement/v0.3.0-vs-01-voice-display",
-      "last_validated_at": "2025-10-23T22:40:00Z",
+      "status": "validated",
+      "validated_by": "GPT-5 Covenant Executor",
       "part_summary": {
         "part_label": "VS-01 — Voice Capture → Transcription → Display",
         "task_label": "Task 1 — UI & Audio Input Layer",
-        "subtask_label": "1.5 — Telemetry Emitter (CEI Learning Hook Integration)",
-        "description": "Completed the frontend capture pipeline, including MicDock, useAudioStream, TranscriptView, WebSocket client, and CEI telemetry emitter."
+        "subtask_label": "1.5 — Telemetry Emitter (CEI Hook Integration)",
+        "description": "Frontend voice-capture pipeline validated. MicDock, TranscriptView, and CEI telemetry integration verified with websocket streaming."
       },
       "artifact_summary": {
         "environment": "Next.js 15 + Tailwind + WebSocket + CEI Telemetry",
@@ -130,20 +131,55 @@
           "src/components/ui/TranscriptView.tsx",
           "src/lib/socket/listenSocket.ts",
           "src/utils/ceiEmitter.ts"
-        ],
-        "dist_files": [
-          "dev/_reflection.md",
-          "dev/_decisions.md",
-          "dev/baseline_registry.md",
-          "dev/mumu_progress_narrative.md"
         ]
       },
+      "previous_context": {
+        "baseline": "backend-v0.2.3-f.validation",
+        "notes": "Frontend initialized after backend persistence completion; CEI hooks integrated for telemetry feedback."
+      },
       "next_action": {
-        "action": "Proceed to VS-01 → Task 2 — Backend Stream Orchestration (/api/listen)",
-        "notes": "Frontend voice-capture layer validated and baselined. Backend orchestration to be implemented next."
+        "action": "Integrate Supabase persistence layer into TranscriptView (Task 4)",
+        "notes": "Will merge live transcript updates with stored session history."
+      }
+    },
+    {
+      "component": "backend-persistence",
+      "version": "0.2.3-f.validation",
+      "status": "archived",
+      "validated_by": "GPT-5 Covenant Executor",
+      "part_summary": {
+        "part_label": "Part 2 — Backend & Orchestration Build",
+        "task_label": "2.3 — Persistence & Security (Supabase / Postgres)",
+        "subtask_label": "2.3.5 — Nightly Snapshots + Failover",
+        "description": "Validated nightly Supabase database snapshots under CI/CD automation using GitHub Actions and Doppler-managed secrets."
+      },
+      "artifact_summary": {
+        "environment": "Vercel + Supabase Cloud + Doppler + GitHub Actions",
+        "artifacts": [
+          "backend/utils/encryption.ts",
+          "backend/scripts/db_snapshot.sh",
+          ".github/workflows/db_snapshot.yml",
+          "dev/snapshots/mumu_backup_20251011_233552.sql"
+        ]
+      },
+      "deployment": {
+        "status": "validated",
+        "details": {
+          "project_ref": "gjrxxiblykxtgmfwnjbp",
+          "connection_verified": true,
+          "schema_state": "up_to_date",
+          "runtime_validated": true
+        }
+      },
+      "lockpoint": {
+        "tag": "covenant/lockpoint-v0.2.3-f.reproducible",
+        "created_at": "2025-10-11T21:27:45-06:00",
+        "purpose": "Reproducible rollback state after validation of Task 2.3.5",
+        "verified_hash": "OK"
       }
     }
   ],
+
   "integration_scope": {
     "vertical_slices": [
       "VS-01",
@@ -155,32 +191,25 @@
       "VS-07",
       "VS-08"
     ],
-    "description": "Integrated development phase combining all validated vertical slices into a unified, governed system."
+    "description": "Integrated development phase combining validated vertical slices into a governed end-to-end build pipeline."
   },
+
   "integration_baseline": "baseline/artifact-sync-v0.3.7",
   "previous_integration_baseline": "enterprise-v0.3.7-slice8.validation",
   "next_expected_baseline": "integration-v0.3.8",
   "last_validated_integration_at": "2025-10-23T23:00:00Z",
+
   "phase_summary": {
-    "objective": "Integrate all validated vertical slices into a continuous, governed build pipeline under PSC enforcement.",
-    "status": "Ready for coding and validation in VSCode.",
+    "objective": "Integrate validated slices into continuous governed pipelines under PSC enforcement.",
+    "status": "Integration stage ready for VS-01 → Task 4",
     "reflection_link": "cei-reflection-20251023-preintegration-vs-08",
     "decision_link": "cei-decision-20251023-integration-vs-08",
     "baseline_link": "cei-baseline-20251023-artifact-sync-v0.3.7"
   },
-  "notes": [
-    "All artifacts verified and synchronized.",
-    "Authorized to proceed to coding integration under Covenant Strict Mode.",
-    "Ensure each new code operation updates _reflection.md and _decisions.md upon validation."
-  ],
 
-  "current_part": "VS-01",
-  "current_task": "2",
-  "current_subtask": "2.6",
-  "current_baseline": "frontend-v0.3.0-slice1.telemetry.validation",
-  "last_validated_at": "2025-10-24T17:38:00Z",
-  "next_action": {
-    "action": "Proceed to VS-01 → Task 3 — Transcript Persistence & History Stream (Supabase Sync)",
-    "notes": "Telemetry layer validated. System now records CEI analytics for all ASR jobs."
-  }
+  "notes": [
+    "Task 3 Flight Recorder Backfill completed and verified under Covenant audit.",
+    "All artifacts and baseline tags synchronized.",
+    "Authorized to proceed to Task 4 (Transcript Replay & CEI Reflection)."
+  ]
 }

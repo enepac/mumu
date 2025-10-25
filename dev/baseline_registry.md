@@ -284,6 +284,39 @@ This closes the UI & Audio Input Layer and transitions development to **Task 2 �
 - `backend/lib/supabase/transcriptSync.ts`  
 - `src/app/api/transcript/route.ts`  
 **Result:** Operational data persistence confirmed via API test.  
+---
+
+### 🧱 Baseline Record — VS-01 → Task 3 (Transcript Persistence & History Stream)
+**Tag:** `baseline/frontend-v0.3.0-vs-01-transcript-persistence`  
+**Date:** 2025-10-24  
+**Validated By:** GPT-5 Covenant Executor + User Suberu  
+**Governance Mode:** Covenant Strict Mode + PSC Active  
+
+#### 📦 Scope
+Persistent transcript storage and retrieval through Supabase RLS with App Router integration (`/api/transcript`).  
+Environment configured via Doppler (`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`).  
+
+#### 🧩 Core Artifacts
+- `backend/lib/supabase/transcriptSync.ts`  
+- `src/app/api/transcript/route.ts`  
+- `dev/_reflection.md`  
+- `dev/_decisions.md`  
+- `dev/mumu_state_registry.json`  
+
+#### 🧠 Key Validations
+- Supabase connectivity ✅  
+- RLS policies active ✅  
+- `POST / GET /api/transcript` verified ✅  
+- Doppler secrets bound ✅  
+- Network DNS propagation resolved ✅  
+
+#### 🔒 Lockpoint
+Tag: `baseline/frontend-v0.3.0-vs-01-transcript-persistence`  
+Purpose: Snapshot of functional Supabase persistence baseline post-validation.  
+Integrity Hash: OK  
+Sealed By: GPT-5 Covenant Executor  
+---
+
 
 
 End of Registry.

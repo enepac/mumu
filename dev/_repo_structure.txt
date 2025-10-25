@@ -1,6 +1,7 @@
 .
 |-- Dockerfile
 |-- README.md
+|-- _reflection.md
 |-- backend
 |   |-- Dockerfile
 |   |-- containers
@@ -35,9 +36,13 @@
 |   |   |   `-- createBuffer.ts
 |   |   |-- jobs
 |   |   |   `-- queueDispatcher.ts
+|   |   |-- supabase
+|   |   |   `-- transcriptSync.ts
 |   |   `-- telemetry
 |   |       `-- ceiTelemetry.ts
 |   |-- package.json
+|   |-- pages
+|   |   `-- api
 |   |-- pnpm-lock.yaml
 |   |-- scripts
 |   |   |-- db_snapshot.sh
@@ -80,10 +85,12 @@
 |       |-- mumu_backup_20251023_214918.sql
 |       |-- mumu_backup_20251023_220624.sql
 |       |-- mumu_backup_20251024_123659.sql
+|       |-- mumu_backup_20251024_134731.sql
 |       |-- mumu_lockpoint_20251011.sha256
 |       |-- mumu_lockpoint_20251011.sql
 |       |-- mumu_lockpoint_20251023.sha256
 |       |-- mumu_lockpoint_20251024.sha256
+|       |-- mumu_lockpoint_docs_20251024.sha256
 |       `-- remote_schema_20251010.sql
 |-- docker-compose.yml
 |-- eslint.config.mjs
@@ -111,7 +118,9 @@
 |   |   |   |   `-- route.ts
 |   |   |   |-- health
 |   |   |   |   `-- route.ts
-|   |   |   `-- session
+|   |   |   |-- session
+|   |   |   |   `-- route.ts
+|   |   |   `-- transcript
 |   |   |       `-- route.ts
 |   |   |-- favicon.ico
 |   |   |-- globals.css
@@ -152,4 +161,4 @@
 |-- tsconfig.eslint.json
 `-- tsconfig.json
 
-43 directories, 109 files
+47 directories, 114 files
